@@ -158,6 +158,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css y js CONTACT\bootstrap.css" />
+    <Content Include="Content\css y js CONTACT\bootstrap.min.css" />
+    <Content Include="Content\css y js CONTACT\bootstrap.min.js" />
+    <Content Include="Content\css y js CONTACT\jquery.min.js" />
+    <Content Include="Content\js\bootstrapvalidator.min.js" />
+    <Content Include="Content\js\contact.js" />
     <Content Include="Content\user-group-icon.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
