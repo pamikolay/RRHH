@@ -3,5 +3,90 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal">
+                <span><img id="imagenLogin" src="~/Content/user-group-icon.png" /></span>
+                <div class="modal-header">
+                    <!--<h4 class="modal-title">Ingresar</h4>-->
+                    <div id="messenger">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="UserName" class="col-lg-3 control-label">Usuario:</label>
+                    <input class="form-control" id="UserName" placeholder="Usuario" type="text" />
+                </div>
+                <div class="form-group">
+                    <label for="Password" class="col-lg-3 control-label">Contraseña:</label>
+                    <input class="form-control" id="Password" placeholder="Contraseña" type="password" />
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary LbtnMargin" id="Login">Loguearse!!! <span class="glyphicon glyphicon-ok"></span></a>
+                    <a href="#" class="btn btn-danger RbtnMargin" id="Register">Registarse <span class="glyphicon glyphicon-user"></span></a>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
+<style>
+    .modal-header {
+        padding: 0px;
+    }
+
+    .modal-dialog {
+        max-width: 480px;
+        padding-top: 00px;
+    }
+
+    .modal-dialog {
+        transform: translate(0,30%) !important;
+    }
+
+    .form-horizontal {
+        margin-left: 30px;
+    }
+
+    .form-control {
+        width: 420px;
+    }
+
+    .form-group {
+        margin-bottom: 5px;
+    }
+
+    .col-lg-3 {
+        padding-left: 0px;
+        padding-bottom: 7px;
+    }
+
+    input, select, textarea {
+        max-width: 430px;
+    }
+
+    .failed {
+        text-align: center;
+        font-weight: bold;
+        font-family: 'Times New Roman';
+        color: white;
+        background-color: red;
+    }
+
+    #imagenLogin {
+        display: block;
+        margin: 0 auto 0 auto;
+        height: 80px;
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+        $("#myModal").modal({
+            backdrop:'static',
+        });
+    });
+    $("#Login").click(function () {
+        
+    });
+</script>
