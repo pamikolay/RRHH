@@ -44,8 +44,8 @@ UserTypeID int
 create table Company(
 CompanyID int primary key IDENTITY(1,1) not null,
 CompanyName varchar(50) not null,
-CompanyAddress varchar(50) not null,
-CompanyPhone varchar(50) not null
+CompanyAddress varchar(50),
+CompanyPhone varchar(50)
 )
 
 create table JobStatus(
@@ -57,7 +57,7 @@ create table Job(
 JobID int primary key IDENTITY(1,1) not null,
 JobName varchar(50) not null,
 JobDate date not null,
-JobDescription varchar(50) not null,
+JobDescription varchar(5000) not null,
 CompanyID int,
 JobStatusID int
 )
