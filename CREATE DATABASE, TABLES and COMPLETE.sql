@@ -28,7 +28,7 @@ CityName varchar (50) not null
 )
 
 create table UserTable(
-UserTableID int primary key not null,
+UserTableID int primary key IDENTITY(1,1) not null,
 UserTableFirtMame varchar(50) not null,
 UserTableLastMame varchar(50) not null,
 UserTableEmail varchar(50) not null,
@@ -42,7 +42,7 @@ UserTypeID int
 )
 
 create table Company(
-CompanyID int primary key not null,
+CompanyID int primary key IDENTITY(1,1) not null,
 CompanyName varchar(50) not null,
 CompanyAddress varchar(50) not null,
 CompanyPhone varchar(50) not null
@@ -54,7 +54,7 @@ JobStatusDetalis varchar(15) not null
 )
 
 create table Job(
-JobID int primary key not null,
+JobID int primary key IDENTITY(1,1) not null,
 JobName varchar(50) not null,
 JobDate date not null,
 JobDescription varchar(50) not null,
@@ -74,7 +74,7 @@ InterviewStatus varchar(50) not null
 )
 
 create table Applicant(
-ApplicantID int primary key not null,
+ApplicantID int primary key IDENTITY(1,1) not null,
 ApplicantDate date not null,
 UserTableID int,
 JobID int,
