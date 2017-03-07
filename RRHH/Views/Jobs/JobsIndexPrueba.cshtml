@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "JobsIndexPrueba";
+}
+
+<!-- Artículos -->
+<h2>Artículos</h2>
+<div>
+    <ul>
+        <li id="nuevaPostulacion"><a href="#" role="button" data-toggle="modal" data-target="#modalArticulo">Nuevo Artículo</a></li>
+    </ul>
+</div>
+<div id="articulos">
+    @if (ViewBag.Busquedas != null)
+    {
+        foreach (RRHH.Models.Job busquedas in ViewBag.Busquedas)
+        {
+            <div class="col-md-8">
+                <h3>Puesto: @busquedas.JobName</h3>
+                <p>Fecha: @busquedas.JobDate</p>
+                <p>Descripcion del puesto: @busquedas.JobDescription</p>
+            </div>
+        }
+    }
+</div>
+
+<!-- Modal Nuevo Artículo -->
+<div class="modal fade" id="modalArticulo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="@Url.Action("GuardarBusqueda","Jobs")" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Nueva busqueda</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="tituloPuesto">Título del Puesto</label>
+                        <input type="text" id="tituloBusqueda" name="job_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcionPuesto">Descripcion del puesto</label>
+                        <textarea type="text" id="descripcionPuesto" name="job_description"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input id="guardarBusqueda" type="submit" class="btn btn-primary" value="Guardar">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
