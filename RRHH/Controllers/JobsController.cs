@@ -22,58 +22,26 @@ namespace RRHH.Controllers
         {
             string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
             SqlConnection conexion = new SqlConnection(s);
-            conexion.Open();
-            SqlCommand comando = new SqlCommand("select * from Job", conexion);
-
-
-            //PRUEBA
-            string querySql = "select * from dbo.Job";
+            string querySql = "select * from Job";
             SqlDataAdapter adapter = new SqlDataAdapter(querySql, conexion);
 
-            DataSet ds = new DataSet();
-            adapter.Fill(ds, "Job");
-
-            DataTable dt = new DataTable("Job");
+            DataTable dt = new DataTable();
             adapter.Fill(dt);
 
-            /// VER TODAS LAS FILAS DE LA TABLA Job
-            /// JobID
-            //dt.Rows[0][0]
-            //JobName
-            //ds.Tables[0].Rows[0][1]
-            //JobDate
-            //dt.Rows[0][2]
-            //JobDescription
-            //dt.Rows[0][3]
-            //CompanyID
-            //dt.Rows[0][4]
-            //JobStatusID
-            //dt.Rows[0][5]
+            ViewBag.TablaBusquedas = dt.Rows;
 
-            if (dt.Rows.Count>0)
+            List<Job> listaTablaBusquedas = new List<Job>();
+            foreach (DataRow row in dt.Rows)
             {
-                DataRow row = dt.Rows[0];
-                string nombreTrabajo = Convert.ToString(row["JobName"]);
-                string descripcionTrabajo = Convert.ToString(row["JobDescription"]);
-                string fechaTrabajo = Convert.ToString(row["JobDate"]);
-
+                Job busquedasSql = new Job();
+                busquedasSql.JobName = Convert.ToString(row["JobName"]);
+                busquedasSql.JobDate = Convert.ToDateTime(row["JobDate"]);
+                busquedasSql.JobDescription = Convert.ToString(row["JobDescription"]);
+                listaTablaBusquedas.Add(busquedasSql);
             }
             
-
-            //FIN PRUEBA
-
-            //SqlDataReader registro = comando.ExecuteReader();
-            //if (registro.Read())
-            //{
-            //    ViewBag.n = registro["JobName"];
-            //    ViewBag.c = registro["JobDate"];
-            //    ViewBag.e = registro["JobDescription"];
-            //}
-            //else
-            //    ViewBag.msj = "No existe un usuario con dicho nombre";
             conexion.Close();
-            List<Job> busquedas = (List<Job>)Session["Busquedas"];
-            ViewBag.Busquedas = busquedas;
+            ViewBag.TablaBusquedas = listaTablaBusquedas;
             return View();
         }
         [HttpPost]

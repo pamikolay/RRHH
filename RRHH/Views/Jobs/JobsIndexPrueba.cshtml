@@ -11,14 +11,14 @@
     </ul>
 </div>
 <div id="articulos">
-    @if (ViewBag.Busquedas != null)
+    @if (ViewBag.TablaBusquedas != null)
     {
-        foreach (RRHH.Models.Job busquedas in ViewBag.Busquedas)
+        foreach (RRHH.Models.Job row in ViewBag.TablaBusquedas)
         {
             <div class="col-md-8">
-                <h3>Puesto: @busquedas.JobName</h3>
-                <p>Fecha: @busquedas.JobDate</p>
-                <p>Descripcion del puesto: @busquedas.JobDescription</p>
+                <h3>Puesto: @row.JobName</h3>
+                <p>Fecha: @row.JobDate</p>
+                <p>Descripcion del puesto: @row.JobDescription</p>
             </div>
         }
     }
