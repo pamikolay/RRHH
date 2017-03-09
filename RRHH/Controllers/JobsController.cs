@@ -35,7 +35,7 @@ namespace RRHH.Controllers
             {
                 Job busquedasSql = new Job();
                 busquedasSql.JobName = Convert.ToString(row["JobName"]);
-                //busquedasSql.JobDate = Convert.ToDateTime(row["JobDate"]);
+                busquedasSql.JobDate = Convert.ToDateTime(row["JobDate"]);
                 busquedasSql.JobDescription = Convert.ToString(row["JobDescription"]);
                 listaTablaBusquedas.Add(busquedasSql);
             }

@@ -1,0 +1,33 @@
+.carousel-caption h2{
+	background-color: rgba(175,183,186,0.8);
+	width:50%;
+	margin:0 auto 0 auto;
+}
+
+.carousel-inner>.item>img{
+	margin:0 auto 0 auto;
+	/*width: 80%;
+	/*max-width: 700px;*/
+	max-height: 460px;
+}
+
+/* PARA CENTRAR LA IMAGEN RECONDEADA DE LOS ARTICULOS */
+.img-circle{
+	margin: 0 auto;
+    display: block;
+}
+
+#success_message{ display: none;}
+
+.oculto, #menuUsuario{
+	display:none;
+}
+
+.nuevoArt{
+	max-height: 116px;
+	overflow: hidden;
+}
+
+.eliminarArt{
+	float: right;
+}

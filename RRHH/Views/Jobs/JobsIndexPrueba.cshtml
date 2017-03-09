@@ -2,26 +2,27 @@
 @{
     ViewBag.Title = "JobsIndexPrueba";
 }
-
-<!-- Artículos -->
-<h2>Artículos</h2>
+@section styles{
+    <link href="~/Content/css/job.css" rel="stylesheet" />
+}
+<br /><br /><br />
+<!-- Busquedas -->
 <div>
-    <ul>
-        <li id="nuevaPostulacion"><a href="#" role="button" data-toggle="modal" data-target="#modalArticulo">Nuevo Artículo</a></li>
-    </ul>
-</div>
-<div id="articulos">
-    @if (ViewBag.TablaBusquedas != null)
-    {
-        foreach (RRHH.Models.Job row in ViewBag.TablaBusquedas)
+    <h2>Busquedas Activas</h2>
+    <div  id="BusquedasActivas" class="row">
+        @if (ViewBag.TablaBusquedas != null)
         {
-            <div class="col-md-8">
-                <h3>Puesto: @row.JobName</h3>
-                <p>Fecha: @row.JobDate</p>
-                <p>Descripcion del puesto: @row.JobDescription</p>
-            </div>
+            foreach (RRHH.Models.Job row in ViewBag.TablaBusquedas)
+            {
+                <div class="col-md-8 col-md-offset-1">
+                    <h3><strong>Puesto:</strong> @row.JobName</h3>
+                    <p><strong>Fecha:</strong> @row.JobDate</p>
+                    <p><strong>Descripcion del puesto:</strong> @row.JobDescription</p>
+                    <p><a class="button-modal btn btn-primary botonPostularse" role="button">Postularse</a></p>
+                </div>
+            }
         }
-    }
+    </div>
 </div>
 
 <!-- Modal Nuevo Artículo -->

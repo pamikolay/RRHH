@@ -162,12 +162,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\css y js CONTACT\bootstrap.css" />
-    <Content Include="Content\css y js CONTACT\bootstrap.min.css" />
-    <Content Include="Content\css y js CONTACT\bootstrap.min.js" />
-    <Content Include="Content\css y js CONTACT\jquery.min.js" />
+    <Content Include="Content\css\job.css" />
+    <Content Include="Content\css\registro.css" />
+    <Content Include="Content\css\styles.css" />
+    <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\bootstrapvalidator.min.js" />
-    <Content Include="Content\js\contact.js" />
+    <Content Include="Content\js\registro.js" />
     <Content Include="Content\user-group-icon.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -184,6 +184,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -204,7 +205,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
