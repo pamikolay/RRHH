@@ -55,7 +55,7 @@ JobStatusDetalis varchar(15) not null
 
 create table Job(
 JobID int primary key IDENTITY(1,1) not null,
-JobName varchar(50) not null,
+JobName varchar(100) not null,
 JobDate date not null,
 JobDescription varchar(MAX) not null,
 CompanyID int,

@@ -12,13 +12,13 @@ namespace RRHH.Controllers
     public class JobsController : Controller
     {
         // GET: Jobs
-        public ActionResult JobsIndex()
-        {
-            List<Job> busquedas = (List<Job>)Session["Busquedas"];
-            ViewBag.Busquedas = busquedas;
-            return View();
-        }
-        public ActionResult JobsIndexPrueba()
+    //    public ActionResult JobsIndex()
+    //    {
+    //        List<Job> busquedas = (List<Job>)Session["Busquedas"];
+    //        ViewBag.Busquedas = busquedas;
+    //        return View();
+    //    }
+        public ActionResult Busquedas()
         {
             string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
             SqlConnection conexion = new SqlConnection(s);
@@ -28,40 +28,59 @@ namespace RRHH.Controllers
             DataTable dt = new DataTable();
             adapter.Fill(dt);
 
-            ViewBag.TablaBusquedas = dt.Rows;
+            //ViewBag.TablaBusquedas = dt.Rows;
 
             List<Job> listaTablaBusquedas = new List<Job>();
             foreach (DataRow row in dt.Rows)
             {
+                if(Convert.ToString(row["JobStatusID"])=="2")
+                { 
                 Job busquedasSql = new Job();
                 busquedasSql.JobName = Convert.ToString(row["JobName"]);
                 busquedasSql.JobDate = Convert.ToDateTime(row["JobDate"]);
                 busquedasSql.JobDescription = Convert.ToString(row["JobDescription"]);
                 listaTablaBusquedas.Add(busquedasSql);
+                }
             }
             
             conexion.Close();
             ViewBag.TablaBusquedas = listaTablaBusquedas;
             return View();
         }
-        [HttpPost]
-        public ActionResult GuardarBusqueda(string job_name, string job_description)
+        public ActionResult AgregarNuevaBusqueda()
         {
-            Job nuevaBusqueda = new Job();
-            nuevaBusqueda.JobName = job_name;
-            nuevaBusqueda.JobDate = DateTime.Now;
-            nuevaBusqueda.JobDescription = job_description;
-            
-            List<Job> listaBusquedas = (List<Job>)Session["Busquedas"];
-            if (listaBusquedas == null) //verifico si existe la lista de articulos
-            {
-                //si no existe la creo
-                listaBusquedas = new List<Job>();
-            }
-            listaBusquedas.Add(nuevaBusqueda);
-            Session["Busquedas"] = listaBusquedas;
+            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
+            SqlConnection conexion = new SqlConnection(s);
+            string queryCompany = "select [CompanyID],[CompanyName] from [Company]";
+            SqlDataAdapter adapter = new SqlDataAdapter(queryCompany, conexion);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
 
-            return RedirectToAction("JobsIndex", "Jobs");
+            List<Company> listaTablaCompany= new List<Company>();
+            foreach (DataRow row in dt.Rows)
+            {
+                Company companySql = new Company();
+                companySql.CompanyID = Convert.ToInt32(row["CompanyID"]);
+                companySql.CompanyName = Convert.ToString(row["CompanyName"]);
+                listaTablaCompany.Add(companySql);
+            }
+            conexion.Close();
+            ViewBag.TablaCompany = listaTablaCompany;
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GuardarNuevaBusqueda(string job_name, string job_description, string empresaPuesto)
+        {
+            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
+            SqlConnection conexion = new SqlConnection(s);
+            conexion.Open();
+            string queryInsertSql = "insert into Job (JobName,JobDate,JobDescription,CompanyID,JobStatusID) values('" +
+              job_name + "','" + DateTime.Now.ToString("yyyy-MM-dd h:m:s") + "','" + job_description + "','" + int.Parse(empresaPuesto) + "','" + 2 + "')";
+            SqlCommand comando = new SqlCommand(queryInsertSql,conexion);
+            comando.ExecuteNonQuery();
+
+            return RedirectToAction("Busquedas", "Jobs");
         }
     }
 }

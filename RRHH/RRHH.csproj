@@ -162,6 +162,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\aregarNuevaBusqueda.css" />
     <Content Include="Content\css\job.css" />
     <Content Include="Content\css\registro.css" />
     <Content Include="Content\css\styles.css" />
@@ -210,7 +211,8 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Jobs\JobsIndex.cshtml" />
-    <Content Include="Views\Jobs\JobsIndexPrueba.cshtml" />
+    <Content Include="Views\Jobs\Busquedas.cshtml" />
+    <Content Include="Views\Jobs\AgregarNuevaBusqueda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
