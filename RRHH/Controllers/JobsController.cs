@@ -12,12 +12,6 @@ namespace RRHH.Controllers
     public class JobsController : Controller
     {
         // GET: Jobs
-    //    public ActionResult JobsIndex()
-    //    {
-    //        List<Job> busquedas = (List<Job>)Session["Busquedas"];
-    //        ViewBag.Busquedas = busquedas;
-    //        return View();
-    //    }
         public ActionResult Busquedas()
         {
             string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;

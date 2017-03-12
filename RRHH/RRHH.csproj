@@ -205,12 +205,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Home\Contacto.cshtml" />
+    <Content Include="Views\Login\Registro.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Login\Register.cshtml" />
-    <Content Include="Views\Jobs\JobsIndex.cshtml" />
     <Content Include="Views\Jobs\Busquedas.cshtml" />
     <Content Include="Views\Jobs\AgregarNuevaBusqueda.cshtml" />
   </ItemGroup>

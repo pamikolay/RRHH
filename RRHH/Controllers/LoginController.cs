@@ -13,7 +13,7 @@ namespace RRHH.Controllers
         {
             return View();
         }
-        public ActionResult Register()
+        public ActionResult Registro()
         {
             return View();
         }
