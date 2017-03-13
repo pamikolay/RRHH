@@ -79,5 +79,9 @@ namespace RRHH.Controllers
 
             return listaTablaBusquedas;
         }
+        public ActionResult EditarJob()
+        {
+            return RedirectToAction("Busquedas", "Jobs");
+        }
     }
 }

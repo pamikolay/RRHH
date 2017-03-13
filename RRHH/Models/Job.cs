@@ -14,7 +14,7 @@ namespace RRHH.Models
         public string JobName { get; set; }
         public string JobDescription { get; set; }
         //Relaciones
-        public Company CompanyID_claseJob { get; set; }    //preguntar si la propiedad tiene q tener el mismo nombre de la tabla
+        public Company CompanyID_claseJob { get; set; }
         public JobStatus JobStatusID_claseJob { get; set; }
     }
 }
