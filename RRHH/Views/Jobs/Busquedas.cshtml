@@ -5,6 +5,10 @@
 @section styles{
     <link href="~/Content/css/job.css" rel="stylesheet" />
 }
+@section scripts{
+    <script src="~/Content/js/busquedas.js"></script>
+}
+
 <br /><br /><br />
 <!-- Busquedas -->
 <div>
@@ -15,9 +19,9 @@
             foreach (RRHH.Models.Job row in ViewBag.TablaBusquedas)
             {
                 <div class="col-md-8 col-md-offset-1">
-                    <h3><strong>Puesto:</strong> @row.JobName</h3>
+                    <h3 id="tituloBusqueda"><strong>Puesto:</strong> @row.JobName</h3>
                     <p><strong>Fecha:</strong> @row.JobDate</p>
-                    <p><strong>Descripcion del puesto:</strong> @row.JobDescription</p>
+                    <p id="descripcionBusqueda"><strong>Descripcion del puesto:</strong> @row.JobDescription</p>
                     <p>
                         <a class="button-modal btn btn-danger botonEditar" role="button" data-toggle="modal" data-target="#modalEditarBusqueda">Editar</a>
                         <a class="button-modal btn btn-primary botonPostularse" role="button">Postularse</a>
@@ -39,11 +43,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="tituloBusqueda">Título de la Busqueda</label>
-                        <input type="text" id="tituloBusqueda" name="job_name" class="form-control">
+                        <input type="text" id="modalTituloBusqueda" name="job_name" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="descripcionPuesto">Descripcion de la Busqueda</label>
-                        <textarea type="text" id="descripcionBusqueda" name="job_description" class="form-control"></textarea>
+                        <textarea type="text" id="modalDescripcionBusqueda" name="job_description" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
