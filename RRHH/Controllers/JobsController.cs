@@ -14,31 +14,7 @@ namespace RRHH.Controllers
         // GET: Jobs
         public ActionResult Busquedas()
         {
-            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
-            SqlConnection conexion = new SqlConnection(s);
-            string querySql = "select * from Job";
-            SqlDataAdapter adapter = new SqlDataAdapter(querySql, conexion);
-
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-
-            //ViewBag.TablaBusquedas = dt.Rows;
-
-            List<Job> listaTablaBusquedas = new List<Job>();
-            foreach (DataRow row in dt.Rows)
-            {
-                if(Convert.ToString(row["JobStatusID"])=="2")
-                { 
-                Job busquedasSql = new Job();
-                busquedasSql.JobName = Convert.ToString(row["JobName"]);
-                busquedasSql.JobDate = Convert.ToDateTime(row["JobDate"]);
-                busquedasSql.JobDescription = Convert.ToString(row["JobDescription"]);
-                listaTablaBusquedas.Add(busquedasSql);
-                }
-            }
-            
-            conexion.Close();
-            ViewBag.TablaBusquedas = listaTablaBusquedas;
+            ViewBag.TablaBusquedas = retornarBusquedasActivas();
             return View();
         }
         public ActionResult AgregarNuevaBusqueda()
@@ -75,6 +51,33 @@ namespace RRHH.Controllers
             comando.ExecuteNonQuery();
 
             return RedirectToAction("Busquedas", "Jobs");
+        }
+        public List<Job> retornarBusquedasActivas()
+        {
+            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
+            SqlConnection conexion = new SqlConnection(s);
+            string querySql = "select * from Job";
+            SqlDataAdapter adapter = new SqlDataAdapter(querySql, conexion);
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            List<Job> listaTablaBusquedas = new List<Job>();
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Convert.ToString(row["JobStatusID"]) == "2")
+                {
+                    Job busquedasSql = new Job();
+                    busquedasSql.JobName = Convert.ToString(row["JobName"]);
+                    busquedasSql.JobDate = Convert.ToDateTime(row["JobDate"]);
+                    busquedasSql.JobDescription = Convert.ToString(row["JobDescription"]);
+                    listaTablaBusquedas.Add(busquedasSql);
+                }
+            }
+
+            conexion.Close();
+
+            return listaTablaBusquedas;
         }
     }
 }
