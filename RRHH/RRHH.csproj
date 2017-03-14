@@ -220,6 +220,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Jobs\Busquedas.cshtml" />
     <Content Include="Views\Jobs\AgregarNuevaBusqueda.cshtml" />
+    <Content Include="Views\Jobs\PruebaEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
