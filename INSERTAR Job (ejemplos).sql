@@ -95,7 +95,16 @@ Skills técnicos:
 ·         Spring
 ·         Hibernate/JPA
  ¿Que ofrecemos como empleador? Desafíos. Trabajo en equipo. Capacitación. Reconocimientos. Desarrollo de carrera. Motivación. En Accenture ponemos a tu disposición nuestros recursos, para que llegues tan lejos como te lo propongas. Si esto es lo que buscás, Accenture es tu lugar.
-Accenture es una empresa que asegura la igualdad de oportunidades sin discriminar por motivos de raza, religión o creencias, origen étnico, discapacidad, edad, nacionalidad, estado civil, orientación sexual, género o cualquier otro motivo protegido por legislación vigente.',1,2)
+Accenture es una empresa que asegura la igualdad de oportunidades sin discriminar por motivos de raza, religión o creencias, origen étnico, discapacidad, edad, nacionalidad, estado civil, orientación sexual, género o cualquier otro motivo protegido por legislación vigente.',1,2),
+('Larala','2017-11-03','Esta busqueda no se tienen que ver porque el estado es 1(Busqueda Inactiva)',1,1),
+('Soporte de Aplicaciones SQL','2017-12-03','Requisitos
+Experiencia en programación general
+Consulta y programación de base de datos en SQL
+Inglés Intermedio / Avanzado
+Capacidad de análisis de problemas.
+ 
+Estudiante avanzado o graduado de Ing. En sistemas o a fines.
+Excelentes Beneficios!!',3,2)
 
 
 
