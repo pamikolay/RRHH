@@ -68,6 +68,7 @@ namespace RRHH.Controllers
                 if (Convert.ToString(row["JobStatusID"]) == "2")
                 {
                     Job busquedasSql = new Job();
+                    busquedasSql.JobID = Convert.ToInt32(row["JobID"]);
                     busquedasSql.JobName = Convert.ToString(row["JobName"]);
                     busquedasSql.JobDate = Convert.ToDateTime(row["JobDate"]);
                     busquedasSql.JobDescription = Convert.ToString(row["JobDescription"]);
@@ -79,8 +80,16 @@ namespace RRHH.Controllers
 
             return listaTablaBusquedas;
         }
-        public ActionResult EditarJob()
+        public ActionResult EditarBusqueda(int id_job, string job_name, string job_description)
         {
+            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
+            SqlConnection conexion = new SqlConnection(s);
+            conexion.Open();
+            SqlCommand comando = new SqlCommand("update Job set " + 
+                "JobName='" + job_name + "',JobDescription='" + job_description + "' where JobID='" + id_job + "'", conexion);
+            comando.ExecuteNonQuery();
+            conexion.Close();
+
             return RedirectToAction("Busquedas", "Jobs");
         }
     }
