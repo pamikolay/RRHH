@@ -154,9 +154,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Applicant.cs" />
+    <Compile Include="Models\City.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Cv.cs" />
+    <Compile Include="Models\Interview.cs" />
     <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\JobApplication.cs" />
     <Compile Include="Models\JobStatus.cs" />
+    <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\UserTable.cs" />
+    <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -19,26 +19,10 @@ namespace RRHH.Controllers
         }
         public ActionResult AgregarNuevaBusqueda()
         {
-            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
-            SqlConnection conexion = new SqlConnection(s);
-            string queryCompany = "select [CompanyID],[CompanyName] from [Company]";
-            SqlDataAdapter adapter = new SqlDataAdapter(queryCompany, conexion);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-
-            List<Company> listaTablaCompany= new List<Company>();
-            foreach (DataRow row in dt.Rows)
-            {
-                Company companySql = new Company();
-                companySql.CompanyID = Convert.ToInt32(row["CompanyID"]);
-                companySql.CompanyName = Convert.ToString(row["CompanyName"]);
-                listaTablaCompany.Add(companySql);
-            }
-            conexion.Close();
-            ViewBag.TablaCompany = listaTablaCompany;
-
+            ViewBag.TablaCompany = retornarCompanys();
             return View();
         }
+
         [HttpPost]
         public ActionResult GuardarNuevaBusqueda(string job_name, string job_description, string empresaPuesto)
         {
@@ -52,6 +36,20 @@ namespace RRHH.Controllers
 
             return RedirectToAction("Busquedas", "Jobs");
         }
+
+        public ActionResult EditarBusqueda(int id_job, string job_name, string job_description)
+        {
+            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
+            SqlConnection conexion = new SqlConnection(s);
+            conexion.Open();
+            SqlCommand comando = new SqlCommand("update Job set " +
+                "JobName='" + job_name + "',JobDescription='" + job_description + "' where JobID='" + id_job + "'", conexion);
+            comando.ExecuteNonQuery();
+            conexion.Close();
+
+            return RedirectToAction("Busquedas", "Jobs");
+        }
+
         public List<Job> retornarBusquedasActivas()
         {
             string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
@@ -80,17 +78,26 @@ namespace RRHH.Controllers
 
             return listaTablaBusquedas;
         }
-        public ActionResult EditarBusqueda(int id_job, string job_name, string job_description)
+
+        public List<Company> retornarCompanys()
         {
             string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
             SqlConnection conexion = new SqlConnection(s);
-            conexion.Open();
-            SqlCommand comando = new SqlCommand("update Job set " + 
-                "JobName='" + job_name + "',JobDescription='" + job_description + "' where JobID='" + id_job + "'", conexion);
-            comando.ExecuteNonQuery();
-            conexion.Close();
+            string queryCompany = "select [CompanyID],[CompanyName] from [Company]";
+            SqlDataAdapter adapter = new SqlDataAdapter(queryCompany, conexion);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
 
-            return RedirectToAction("Busquedas", "Jobs");
+            List<Company> listaTablaCompany = new List<Company>();
+            foreach (DataRow row in dt.Rows)
+            {
+                Company companySql = new Company();
+                companySql.CompanyID = Convert.ToInt32(row["CompanyID"]);
+                companySql.CompanyName = Convert.ToString(row["CompanyName"]);
+                listaTablaCompany.Add(companySql);
+            }
+            conexion.Close();
+            return listaTablaCompany;
         }
     }
 }

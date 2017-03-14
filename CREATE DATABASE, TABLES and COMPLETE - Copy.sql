@@ -29,8 +29,8 @@ CityName varchar (50) not null
 
 create table UserTable(
 UserTableID int primary key IDENTITY(1,1) not null,
-UserTableFirtMame varchar(50) not null,
-UserTableLastMame varchar(50) not null,
+UserTableFirstName varchar(50) not null,
+UserTableLastName varchar(50) not null,
 UserTableEmail varchar(50) not null,
 UserTableAddress varchar(50) not null,
 UserTablePhone varchar(50) not null,
