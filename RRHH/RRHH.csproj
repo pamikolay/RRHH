@@ -165,6 +165,7 @@
     <Compile Include="Models\JobApplication.cs" />
     <Compile Include="Models\JobManager.cs" />
     <Compile Include="Models\JobStatus.cs" />
+    <Compile Include="Models\JobStatusManager.cs" />
     <Compile Include="Models\Province.cs" />
     <Compile Include="Models\UserTable.cs" />
     <Compile Include="Models\UserType.cs" />

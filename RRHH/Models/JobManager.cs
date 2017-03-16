@@ -110,7 +110,7 @@ namespace RRHH.Models
                 //creo el artículo, le completo los datos 
                 Job job = new Job();
                 job.JobID = (int)reader["JobID"];
-                job.JobDate = (DateTime)reader["JobDate"];
+                job.JobDate = (DateTime)reader["JobDate"];        
                 job.JobName = (string)reader["JobName"];
                 job.JobDescription = (string)reader["JobDescription"];
                 job.Company = cManager.Consultar((int)reader["CompanyID"]);
@@ -126,9 +126,33 @@ namespace RRHH.Models
             return jobs;
         }
 
-        public Job Consultar(long ID)
+        public Job Consultar(int ID)
         {
-            return new Job();
+            string sqlquery = "select * from Job WHERE JobID=@JobID";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            sentencia.Parameters.AddWithValue("@JobID", ID);
+
+            Job job = new Job();
+            SqlDataReader reader = sentencia.ExecuteReader();
+            while (reader.Read()) //mientras haya un registro para leer
+            {
+                //creo el artículo, le completo los datos 
+                job.JobID = (int)reader["JobID"];
+                job.JobDate = (DateTime)reader["JobDate"];    
+                job.JobName = (string)reader["JobName"];
+                job.JobDescription = (string)reader["JobDescription"];
+                CompanyManager cManager = new CompanyManager();
+                job.Company = cManager.Consultar((int)reader["CompanyID"]);
+                
+            }
+
+            //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
+            reader.Close();
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+
+            return job;
         }
 
         /// <summary>

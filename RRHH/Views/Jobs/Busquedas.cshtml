@@ -14,22 +14,26 @@
 <div>
     <h2>Busquedas Activas</h2>
     <div  id="BusquedasActivas" class="row">
+        <form action="@Url.Action("EditarBusqueda","Jobs")" method="post">
+            <input type="number" class="oculto" id="datoID" name="id_job">
+            <input type="submit" class="button-modal btn btn-danger oculto" id="pasarDatos" value="Editar">
+        </form>
         @if (ViewBag.TablaBusquedas != null)
         {
             foreach (RRHH.Models.Job row in ViewBag.TablaBusquedas)
             {
-                <div class="col-md-8 col-md-offset-1">
-                    <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@row.JobName</span></h3>
-                    <p><strong>Fecha:</strong> @row.JobDate</p>
-                    <p><strong>Empresa:</strong> @row.Company.CompanyName</p>
-                    <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.JobDescription</span></p>
-                    <span class="oculto">@row.JobID</span>
-                    <p>
-                        <a class="button-modal btn btn-danger botonEditar" role="button">Editar</a>
-                        <a class="button-modal btn btn-primary botonPostularse" role="button">Postularse</a>
-                    </p>
-                </div>
-            }
+            <div class="col-md-8 col-md-offset-1">
+                <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@row.JobName</span></h3>
+                <p><strong>Fecha:</strong> @row.JobDate</p>
+                <p><strong>Empresa:</strong> @row.Company.CompanyName</p>
+                <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.JobDescription</span></p>
+                <span class="oculto">@row.JobID</span>
+                <p>
+                    <a class="button-modal btn btn-danger botonEditar" role="button">Editar</a>
+                    <a class="button-modal btn btn-primary botonPostularse" role="button">Postularse</a>
+                </p>
+            </div>
+            }            
         }
     </div>
 </div>

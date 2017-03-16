@@ -16,7 +16,6 @@ namespace RRHH.Controllers
         // GET: Jobs
         public ActionResult Busquedas()
         {
-            //ViewBag.TablaBusquedas = retornarBusquedasActivas();
             JobManager jManager = new JobManager();
             ViewBag.TablaBusquedas = jManager.ConsultarActivas();
             return View();
@@ -44,7 +43,35 @@ namespace RRHH.Controllers
             return RedirectToAction("Busquedas", "Jobs");
         }
 
-        public ActionResult EditarBusqueda(int id_job, string job_name, string job_description)
+        [HttpPost]
+        public ActionResult EditarBusqueda(int id_job)
+        {
+            JobStatusManager jSmanager = new JobStatusManager();
+            JobManager jManager = new JobManager();
+            CompanyManager cManager = new CompanyManager();
+            ViewBag.TablaCompany = cManager.ConsultarTodos();       //paso la lista de las compañias
+            ViewBag.JobAmodificar = jManager.Consultar(id_job);     //paso el job actual
+            ViewBag.JobStatus = jSmanager.ConsultarTodos();         //paso la lista de los jobstatus
+
+            return RedirectToAction("EditarBusqueda", "Jobs");
+        }
+
+        [HttpPost]
+        public ActionResult EditarBusquedaGuardarCambios(string job_name, string job_description, int empresaPuesto)
+        {
+            Job newJob = new Job();
+            newJob.JobName = job_name;
+            newJob.JobDescription = job_description;
+            CompanyManager cManager = new CompanyManager();     //para pasarle un objeto company necesito el CompanyManager
+            newJob.Company = cManager.Consultar(empresaPuesto);
+
+            JobManager jManager = new JobManager();
+            jManager.Insertar(newJob);
+
+            return RedirectToAction("Busquedas", "Jobs"); ;
+        }
+
+        public ActionResult EditarBusquedas(int id_job, string job_name, string job_description)
         {
             string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
             SqlConnection conexion = new SqlConnection(s);
