@@ -1,2 +1,3 @@
-*.JavaScript linguist-language=C#
-*.Rmd linguist-language=C#
+src/main/resources/static/* linguist-vendored
+project-docs/* linguist-documentation
+*.rb linguist-language=C#
