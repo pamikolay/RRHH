@@ -21,14 +21,23 @@
         </div>
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="descripcionPuesto">Descripcion del puesto</label>
-            <textarea type="text" class="form-control" rows="9" id="descripcionPuesto" name="job_description"></textarea>
+            <textarea type="text" class="form-control" rows="9" id="descripcionPuesto" name="job_description">@ViewBag.JobAmodificar.JobDescription</textarea>
         </div>
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="empresaPuesto">Empresa</label>
             <select id="companySelect" name="empresaPuesto">
-                @foreach (RRHH.Models.Company row in ViewBag.TablaCompany)
+                @foreach (RRHH.Models.Company row in ViewBag.Company)
                 {
                     <option value="@row.CompanyID">@row.CompanyName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group col-md-6 col-md-offset-1">
+            <label for="estadoPuesto">Estado de la busqueda</label>
+            <select id="jobStatusSelect" name="jobStatusPuesto">
+                @foreach (RRHH.Models.JobStatus row in ViewBag.JobStatus)
+                {
+                    <option value="@row.JobStatusID">@row.JobStatusName</option>
                 }
             </select>
         </div>

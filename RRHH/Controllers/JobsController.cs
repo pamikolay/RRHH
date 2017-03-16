@@ -48,7 +48,7 @@ namespace RRHH.Controllers
             JobStatusManager jSmanager = new JobStatusManager();
             JobManager jManager = new JobManager();
             CompanyManager cManager = new CompanyManager();
-            ViewBag.TablaCompany = cManager.ConsultarTodos();       //paso la lista de las compañias
+            ViewBag.Company = cManager.ConsultarTodos();       //paso la lista de las compañias
             ViewBag.JobAmodificar = jManager.Consultar(id_job);     //paso el job actual
             ViewBag.JobStatus = jSmanager.ConsultarTodos();         //paso la lista de los jobstatus
 
