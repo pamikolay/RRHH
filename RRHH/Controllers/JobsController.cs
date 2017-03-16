@@ -57,16 +57,18 @@ namespace RRHH.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarBusquedaGuardarCambios(string job_name, string job_description, int empresaPuesto)
+        public ActionResult EditarBusquedaGuardarCambios(int job_id, string job_name, string job_description, int company_id, int job_status_id)
         {
             Job newJob = new Job();
+            newJob.JobID = job_id;
             newJob.JobName = job_name;
             newJob.JobDescription = job_description;
             CompanyManager cManager = new CompanyManager();     //para pasarle un objeto company necesito el CompanyManager
-            newJob.Company = cManager.Consultar(empresaPuesto);
-
+            newJob.Company = cManager.Consultar(company_id);
+            JobStatusManager jStatusManager = new JobStatusManager();
+            newJob.JobStatus = jStatusManager.Consultar(job_status_id);
             JobManager jManager = new JobManager();
-            jManager.Insertar(newJob);
+            jManager.Actualizar(newJob);
 
             return RedirectToAction("Busquedas", "Jobs"); ;
         }

@@ -47,7 +47,8 @@ namespace RRHH.Models
         /// <param name="job"></param>
         public void Actualizar(Job job)
         {
-            string sqlquery = "UPDATE Job set JobName = @JobName, JobDescription = @JobDescription, Company = @Company, JobStatus = @JobStatus where JobID = @JobID";
+            string sqlquery = "UPDATE Job set JobName = @JobName, JobDescription = @JobDescription, CompanyID = @Company, JobStatusID = @JobStatus where JobID = @JobID";
+            //LA FECHA NO LA QUIERO MODIFICAR
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             //4-escribrimos la sentencia
@@ -144,7 +145,9 @@ namespace RRHH.Models
                 job.JobDescription = (string)reader["JobDescription"];
                 CompanyManager cManager = new CompanyManager();
                 job.Company = cManager.Consultar((int)reader["CompanyID"]);
-                
+                JobStatusManager jManager = new JobStatusManager();
+                job.JobStatus = jManager.Consultar((int)reader["JobStatusID"]);
+
             }
 
             //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS

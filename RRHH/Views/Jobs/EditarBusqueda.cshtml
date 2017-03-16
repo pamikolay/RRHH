@@ -3,7 +3,7 @@
     ViewBag.Title = "NuevaBusqueda";
 }
 @section styles{
-    @*<link href="~/Content/css/aregarNuevaBusqueda.css" rel="stylesheet" />*@
+    <link href="~/Content/css/editarBusqueda.css" rel="stylesheet" />
 }
 
 
@@ -18,6 +18,8 @@
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="tituloPuesto">Título del Puesto</label>
             <input type="text" class="form-control" value="@ViewBag.JobAmodificar.JobName" id="tituloBusqueda" name="job_name">
+            @*<input type="datetime" class="oculto" value="@ViewBag.JobAmodificar.JobDate" id="fechaBusqueda" name="job_date"> NO QUIERO MODIFICAR LA FECHA*@
+            <input type="number" class="oculto" value="@ViewBag.JobAmodificar.JobID" id="idBusqueda" name="job_id">
         </div>
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="descripcionPuesto">Descripcion del puesto</label>
@@ -25,19 +27,33 @@
         </div>
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="empresaPuesto">Empresa</label>
-            <select id="companySelect" name="empresaPuesto">
+            <select id="companySelect" name="company_id">
                 @foreach (RRHH.Models.Company row in ViewBag.Company)
                 {
-                    <option value="@row.CompanyID">@row.CompanyName</option>
+                    if (ViewBag.JobAmodificar.Company.CompanyID == row.CompanyID)
+                    {
+                        <option value="@row.CompanyID" selected="selected">@row.CompanyName</option>
+                    }
+                    else
+                    {
+                        <option value="@row.CompanyID">@row.CompanyName</option>
+                    }
                 }
             </select>
         </div>
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="estadoPuesto">Estado de la busqueda</label>
-            <select id="jobStatusSelect" name="jobStatusPuesto">
+            <select id="jobStatusSelect" name="job_status_id">
                 @foreach (RRHH.Models.JobStatus row in ViewBag.JobStatus)
                 {
-                    <option value="@row.JobStatusID">@row.JobStatusName</option>
+                    if(ViewBag.JobAmodificar.JobStatus.JobStatusID == row.JobStatusID)
+                    { 
+                        <option value="@row.JobStatusID" selected="selected">@row.JobStatusName</option>
+                    }
+                    else
+                    {
+                        <option value="@row.JobStatusID">@row.JobStatusName</option>
+                    }
                 }
             </select>
         </div>

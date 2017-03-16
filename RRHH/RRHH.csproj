@@ -175,6 +175,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\aregarNuevaBusqueda.css" />
+    <Content Include="Content\css\editarBusqueda.css" />
     <Content Include="Content\css\job.css" />
     <Content Include="Content\css\registro.css" />
     <Content Include="Content\css\styles.css" />
