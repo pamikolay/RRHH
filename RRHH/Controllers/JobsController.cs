@@ -52,7 +52,8 @@ namespace RRHH.Controllers
             ViewBag.JobAmodificar = jManager.Consultar(id_job);     //paso el job actual
             ViewBag.JobStatus = jSmanager.ConsultarTodos();         //paso la lista de los jobstatus
 
-            return RedirectToAction("EditarBusqueda", "Jobs");
+            return View();
+            //return RedirectToAction("EditarBusqueda", "Jobs");
         }
 
         [HttpPost]

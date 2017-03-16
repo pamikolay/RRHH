@@ -50,7 +50,7 @@ CompanyPhone varchar(50)
 
 create table JobStatus(
 JobStatusID int primary key not null,
-JobStatusDetalis varchar(15) not null
+JobStatusDetails varchar(15) not null
 )
 
 create table Job(

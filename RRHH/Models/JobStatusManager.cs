@@ -22,7 +22,7 @@ namespace RRHH.Models
                 //creo el artículo, le completo los datos 
                 JobStatus jobstatus = new JobStatus();
                 jobstatus.JobStatusID = (int)reader["JobStatusID"];
-                jobstatus.JobStatusName = (string)reader["JobStatusName"];
+                jobstatus.JobStatusName = (string)reader["JobStatusDetails"];
                 //AGREGO LA company A LA LISTA
                 jobstatuses.Add(jobstatus);
             }
