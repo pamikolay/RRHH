@@ -181,7 +181,6 @@
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\bootstrapvalidator.min.js" />
     <Content Include="Content\js\busquedas.js" />
-    <Content Include="Content\js\editarBusqueda.js" />
     <Content Include="Content\js\registro.js" />
     <Content Include="Content\user-group-icon.png" />
     <Content Include="favicon.ico" />

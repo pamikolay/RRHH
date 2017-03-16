@@ -7,8 +7,6 @@ $(document).ready(function(){
         idBusqueda = elementoActual.children("span")[0].textContent;    //paso el valor del id
         Number(idBusqueda);     //lo convierto a int
         $('#datoID').val(idBusqueda);
-        //darclick();
-        //$('#pasarDatos').on('click', function () { $(this).submit(); });
-        document.forms[0].submit();
+        document.forms[0].submit();     //voy al evento click del boton submit para enviar el ID de la busqueda al JobController
     });
 });

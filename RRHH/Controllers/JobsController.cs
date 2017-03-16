@@ -24,7 +24,6 @@ namespace RRHH.Controllers
         {
             CompanyManager cManager = new CompanyManager();
             ViewBag.TablaCompany = cManager.ConsultarTodos();
-
             return View();
         }
 
