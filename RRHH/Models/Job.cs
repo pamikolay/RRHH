@@ -14,7 +14,7 @@ namespace RRHH.Models
         public string JobName { get; set; }
         public string JobDescription { get; set; }
         //Relaciones
-        public Company CompanyID { get; set; }
-        public JobStatus JobStatusID { get; set; }
+        public Company Company { get; set; }
+        public JobStatus JobStatus { get; set; }
     }
 }

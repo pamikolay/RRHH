@@ -21,10 +21,11 @@
                 <div class="col-md-8 col-md-offset-1">
                     <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@row.JobName</span></h3>
                     <p><strong>Fecha:</strong> @row.JobDate</p>
+                    <p><strong>Empresa:</strong> @row.Company.CompanyName</p>
                     <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.JobDescription</span></p>
                     <span class="oculto">@row.JobID</span>
                     <p>
-                        <a class="button-modal btn btn-danger botonEditar" role="button" >Editar</a>
+                        <a class="button-modal btn btn-danger botonEditar" role="button">Editar</a>
                         <a class="button-modal btn btn-primary botonPostularse" role="button">Postularse</a>
                     </p>
                 </div>
@@ -42,20 +43,28 @@
                     <h4 class="modal-title" id="myModalLabel">Editar busqueda</h4>
                 </div>
                 <div class="modal-body">
+                    @*<div class="form-group">
+                        <select id="companySelect" name="empresaPuesto">
+                            @foreach (RRHH.Models.Company row in ViewBag.TablaCompany)
+                            {
+                                <option value="@row.CompanyID">@row.CompanyName</option>
+                            }
+                        </select>
+                    </div>*@
                     <div class="form-group">
-                        <label for="tituloBusqueda">Título de la Busqueda</label>
-                        <input type="text" id="modalTituloBusqueda" name="job_name" class="form-control">
-                        <input type="number" id="modalIdBusqueda" class="oculto" name="id_job">
+                            <label for="tituloBusqueda">Título de la Busqueda</label>
+                            <input type="text" id="modalTituloBusqueda" name="job_name" class="form-control">
+                            <input type="number" id="modalIdBusqueda" class="oculto" name="id_job">
                     </div>
                     <div class="form-group">
-                        <label for="descripcionPuesto">Descripcion de la Busqueda</label>
-                        <textarea type="text" id="modalDescripcionBusqueda" name="job_description" rows="9" class="form-control"></textarea>
+                            <label for="descripcionPuesto">Descripcion de la Busqueda</label>
+                            <textarea type="text" id="modalDescripcionBusqueda" name="job_description" rows="9" class="form-control"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer">
+            <div class="modal-footer">
                     <input id="guardarBusqueda" type="submit" class="btn btn-primary" value="Guardar Cambios">
                     <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>-->
-                </div>
+            </div>
             </form>
         </div>
     </div>

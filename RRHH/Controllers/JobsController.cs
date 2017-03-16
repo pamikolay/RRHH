@@ -16,25 +16,30 @@ namespace RRHH.Controllers
         // GET: Jobs
         public ActionResult Busquedas()
         {
-            ViewBag.TablaBusquedas = retornarBusquedasActivas();
+            //ViewBag.TablaBusquedas = retornarBusquedasActivas();
+            JobManager jManager = new JobManager();
+            ViewBag.TablaBusquedas = jManager.ConsultarActivas();
             return View();
         }
         public ActionResult AgregarNuevaBusqueda()
         {
-            ViewBag.TablaCompany = retornarCompanys();
+            CompanyManager cManager = new CompanyManager();
+            ViewBag.TablaCompany = cManager.ConsultarTodos();
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult GuardarNuevaBusqueda(string job_name, string job_description, string empresaPuesto)
+        public ActionResult GuardarNuevaBusqueda(string job_name, string job_description, int empresaPuesto)
         {
-            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
-            SqlConnection conexion = new SqlConnection(s);
-            conexion.Open();
-            string queryInsertSql = "insert into Job (JobName,JobDate,JobDescription,CompanyID,JobStatusID) values('" +
-              job_name + "','" + DateTime.Now.ToString("yyyy-MM-dd h:m:s") + "','" + job_description + "','" + int.Parse(empresaPuesto) + "','" + 2 + "')";
-            SqlCommand comando = new SqlCommand(queryInsertSql,conexion);
-            comando.ExecuteNonQuery();
+            Job newJob = new Job();
+            newJob.JobName = job_name;
+            newJob.JobDescription = job_description;
+            CompanyManager cManager = new CompanyManager();     //para pasarle un objeto company necesito el CompanyManager
+            newJob.Company = cManager.Consultar(empresaPuesto);
+
+            JobManager jManager = new JobManager();
+            jManager.Insertar(newJob);
 
             return RedirectToAction("Busquedas", "Jobs");
         }
@@ -92,56 +97,6 @@ namespace RRHH.Controllers
             
             return mensaje;
         }
-
-        public List<Job> retornarBusquedasActivas()
-        {
-            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
-            SqlConnection conexion = new SqlConnection(s);
-            string querySql = "select * from Job";
-            SqlDataAdapter adapter = new SqlDataAdapter(querySql, conexion);
-
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-
-            List<Job> listaTablaBusquedas = new List<Job>();
-            foreach (DataRow row in dt.Rows)
-            {
-                if (Convert.ToString(row["JobStatusID"]) == "2")
-                {
-                    Job busquedasSql = new Job();
-                    busquedasSql.JobID = Convert.ToInt32(row["JobID"]);
-                    busquedasSql.JobName = Convert.ToString(row["JobName"]);
-                    busquedasSql.JobDate = Convert.ToDateTime(row["JobDate"]);
-                    busquedasSql.JobDescription = Convert.ToString(row["JobDescription"]);
-                    listaTablaBusquedas.Add(busquedasSql);
-                }
-            }
-
-            conexion.Close();
-
-            return listaTablaBusquedas;
-        }
-
-        public List<Company> retornarCompanys()
-        {
-            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
-            SqlConnection conexion = new SqlConnection(s);
-            string queryCompany = "select [CompanyID],[CompanyName] from [Company]";
-            SqlDataAdapter adapter = new SqlDataAdapter(queryCompany, conexion);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-
-            List<Company> listaTablaCompany = new List<Company>();
-            foreach (DataRow row in dt.Rows)
-            {
-                Company companySql = new Company();
-                companySql.CompanyID = Convert.ToInt32(row["CompanyID"]);
-                companySql.CompanyName = Convert.ToString(row["CompanyName"]);
-                listaTablaCompany.Add(companySql);
-            }
-            conexion.Close();
-            return listaTablaCompany;
-        }
- 
+                
     }
 }
