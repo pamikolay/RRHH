@@ -48,7 +48,7 @@ namespace RRHH.Models
             {
                 //creo el artículo, le completo los datos 
                 jobstatus.JobStatusID = (int)reader["JobStatusID"];
-                jobstatus.JobStatusName = (string)reader["JobStatusName"];
+                jobstatus.JobStatusName = (string)reader["JobStatusDetails"];
             }
 
             //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
