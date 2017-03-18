@@ -29,6 +29,7 @@
                 <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.JobDescription</span></p>
                 <span class="oculto">@row.JobID</span>
                 <p>
+                    <a class="button-modal btn btn-warning botonAgregar" href="@Url.Action("AgregarNuevaBusqueda","Jobs")" role="button">Agregar nueva busqueda</a>
                     <a class="button-modal btn btn-danger botonEditar" role="button">Editar</a>
                     <a class="button-modal btn btn-primary botonPostularse" role="button">Postularse</a>
                 </p>

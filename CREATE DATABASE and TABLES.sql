@@ -64,7 +64,7 @@ JobStatusID int
 
 create table JobApplication(
 JobApplicationID int primary key not null,
-JobApplicationDetalis varchar(50) not null
+JobApplicationDetails varchar(50) not null
 )
 
 create table Interview(

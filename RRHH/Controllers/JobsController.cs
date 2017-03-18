@@ -28,13 +28,13 @@ namespace RRHH.Controllers
         }
 
         [HttpPost]
-        public ActionResult GuardarNuevaBusqueda(string job_name, string job_description, int empresaPuesto)
+        public ActionResult GuardarNuevaBusqueda(string job_name, string job_description, int company_id)
         {
             Job newJob = new Job();
             newJob.JobName = job_name;
             newJob.JobDescription = job_description;
             CompanyManager cManager = new CompanyManager();     //para pasarle un objeto company necesito el CompanyManager
-            newJob.Company = cManager.Consultar(empresaPuesto);
+            newJob.Company = cManager.Consultar(company_id);
 
             JobManager jManager = new JobManager();
             jManager.Insertar(newJob);
