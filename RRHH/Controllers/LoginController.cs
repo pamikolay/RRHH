@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RRHH.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,16 @@ namespace RRHH.Controllers
         }
         public ActionResult Registro()
         {
+            ProvinceManager pManager = new ProvinceManager();
+            ViewBag.Provinces = pManager.ConsultarTodas();
             return View();
+        }
+        [HttpPost]
+        public ActionResult GetCiudades(int id)
+        {
+            List<City> ciudades = new List<City>();
+            ciudades = new CityManager().GetCiudadesPorProvincia(id);
+            return Json(new SelectList(ciudades, "CityID", "CityName"));
         }
     }
 }

@@ -14,6 +14,7 @@ namespace RRHH.Models
         public string UserTableAddress { get; set; }
         public string UserTablePhone { get; set; }
         public string UserTablePassword { get; set; }
+        public string UserTableGenre { get; set; }
         //Relaciones
         public City CityID { get; set; }
         public Province ProvinceID { get; set; }

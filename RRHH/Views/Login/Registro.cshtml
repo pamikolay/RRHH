@@ -6,6 +6,9 @@
     <script src="~/Content/js/bootstrapvalidator.min.js"></script>
     <script src="~/Content/js/registro.js"></script>
 }
+@section scriptsQnecesitoAntesPagina{
+    <script src="~/Scripts/jquery.min.js"></script>
+}
 
 @section styles{
     <link href="~/Content/css/registro.css" rel="stylesheet" />
@@ -21,8 +24,7 @@
             <!-- Form Name -->
             <legend>Datos para registro!!!</legend>
 
-            <!-- Text input-->
-
+            <!-- FirsName input-->
             <div class="form-group">
                 <label class="col-md-4 control-label">Nombre</label>
                 <div class="col-md-4 inputGroupContainer">
@@ -33,8 +35,7 @@
                 </div>
             </div>
 
-            <!-- Text input-->
-
+            <!-- LastName input-->
             <div class="form-group">
                 <label class="col-md-4 control-label">Apellido</label>
                 <div class="col-md-4 inputGroupContainer">
@@ -45,7 +46,7 @@
                 </div>
             </div>
 
-            <!-- Text input-->
+            <!-- E-mail input-->
             <div class="form-group">
                 <label class="col-md-4 control-label">E-Mail</label>
                 <div class="col-md-4 inputGroupContainer">
@@ -56,9 +57,7 @@
                 </div>
             </div>
 
-
-            <!-- Text input-->
-
+            <!-- Phone input-->
             <div class="form-group">
                 <label class="col-md-4 control-label">Telefono #</label>
                 <div class="col-md-4 inputGroupContainer">
@@ -69,8 +68,7 @@
                 </div>
             </div>
 
-            <!-- Text input-->
-
+            <!-- Address input-->
             <div class="form-group">
                 <label class="col-md-4 control-label">Dirección</label>
                 <div class="col-md-4 inputGroupContainer">
@@ -81,69 +79,38 @@
                 </div>
             </div>
 
-            <!-- Text input-->
-
-            <div class="form-group">
-                <label class="col-md-4 control-label">Ciudad</label>
-                <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="city" placeholder="Ciudad" class="form-control" type="text">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Select Basic -->
-
+            <!-- Select Province -->
             <div class="form-group">
                 <label class="col-md-4 control-label">Provincia</label>
                 <div class="col-md-4 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                        <select name="state" class="form-control selectpicker">
-                            <option value="">Seleccione su provincia</option>
-                            <option value="Buenos Aires">Buenos Aires</option>
-                            <option value="Catamarca">Catamarca</option>
-                            <option value="Chaco">Chaco</option>
-                            <option value="Chubut">Chubut</option>
-                            <option value="Corrientes">Corrientes</option>
-                            <option value="Cordoba">Córdoba</option>
-                            <option value="Distrito Federal">Distrito Federal</option>
-                            <option value="Entre Rios">Entre Ríos</option>
-                            <option value="Formosa">Formosa</option>
-                            <option value="Jujuy">Jujuy</option>
-                            <option value="La Pampa">La Pampa</option>
-                            <option value="La Rioja">La Rioja</option>
-                            <option value="Mendoza">Mendoza</option>
-                            <option value="Misiones">Misiones</option>
-                            <option value="Neuquen">Neuquen</option>
-                            <option value="Rio Negro">Río Negro</option>
-                            <option value="Salta">Salta</option>
-                            <option value="San Juan">San Juan</option>
-                            <option value="San Luis">San Luis</option>
-                            <option value="Santa Cruz">Santa Cruz</option>
-                            <option value="Santa Fe">Santa Fe</option>
-                            <option value="Santiago del Estero">Santiago del Estero</option>
-                            <option value="Tierra del Fuego">Tierra del Fuego</option>
-                            <option value="Tucuman">Tucumán</option>
+                        @*<select name="state" class="form-control selectpicker">*@
+                        <select class="form-control selectpicker" id="proviceSelect" name="province_id">
+                                <option value="">Seleccione su provincia</option>
+                                @foreach (RRHH.Models.Province row in ViewBag.Provinces)
+                                {
+                                    <option value="@row.ProvinceID">@row.ProvinceName</option>
+                                }
                         </select>
                     </div>
                 </div>
             </div>
 
-            <!-- Text input-->
-
+            <!-- Select City -->
             <div class="form-group">
-                <label class="col-md-4 control-label">Codigo Postal</label>
-                <div class="col-md-4 inputGroupContainer">
+                <label class="col-md-4 control-label">Ciudad</label>
+                <div class="col-md-4 selectContainer">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                        <input name="zip" placeholder="Codigo Postal" class="form-control" type="text">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select class="form-control selectpicker" id="citySelect" name="city_id">
+                            <option value="">Seleccione su ciudad</option>
+                        </select>
                     </div>
                 </div>
             </div>
 
-            <!-- radio checks -->
+            <!-- Genre radio checks -->
             <div class="form-group">
                 <label class="col-md-4 control-label">Sexo?</label>
                 <div class="col-md-4">
@@ -156,18 +123,6 @@
                         <label>
                             <input type="radio" name="hosting" value="mujer" /> Mujer
                         </label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Text area -->
-
-            <div class="form-group">
-                <label class="col-md-4 control-label">Descripción</label>
-                <div class="col-md-4 inputGroupContainer">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                        <textarea class="form-control" name="comment" placeholder="completa aqui tu consulta..."></textarea>
                     </div>
                 </div>
             </div>
@@ -193,3 +148,25 @@
     </footer>
 
 </div>
+
+<script>//SI LO PONIA EN EL ARCHIVO SEPARADO DE js NO ME RECONOCE EL REDIRECCIONAMIENTO Url.Action
+    $("#proviceSelect").change(function () {
+        $("#citySelect").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetCiudades","Login")',
+            dataType: 'json',
+            data: { id: Number($("#proviceSelect").val()) },
+            success: function (ciudades) {
+                $.each(ciudades, function (i, ciudad) {
+                    $("#citySelect").append('<option value="' + ciudad.Value + '">' +
+                    ciudad.Text + '</option>');
+
+                });
+            },
+            //error: function (request, errorType, errorMessage) {
+            //    alert(errorMessage);
+            //}
+        })
+    });
+</script>

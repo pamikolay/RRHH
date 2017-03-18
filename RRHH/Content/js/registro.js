@@ -1,6 +1,11 @@
 $(document).ready(function () {
     $(':input[type="submit"]').prop('disabled', true);
 
+    //$("#proviceSelect").change(function () {
+    //    fillCombo("citySelect", $("#proviceSelect").val());
+    //});
+    
+
     $('#contact_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
@@ -60,31 +65,17 @@ $(document).ready(function () {
                     }
                 }
             },
-            city: {
+            city_id: {
                 validators: {
-                     stringLength: {
-                        min: 4,
-                    },
                     notEmpty: {
-                        message: 'Por favor ingrese su ciudad'
+                        message: 'Por favor seleccione su ciudad'
                     }
                 }
             },
-            state: {
+            province_id: {
                 validators: {
                     notEmpty: {
                         message: 'Por favor seleccione su provincia'
-                    }
-                }
-            },
-            zip: {
-                validators: {
-                    notEmpty: {
-                        message: 'Por favor ingrese su codigo postal'
-                    },
-                    zipCode: {
-                        country: 'AR',
-                        message: 'Por favor ingrese un codigo postal valido'
                     }
                 }
             },
@@ -109,4 +100,3 @@ $(document).ready(function () {
             }, 'json');
         });
 });
-
