@@ -10,9 +10,9 @@ namespace RRHH.Models
         public int ApplicantID { get; set; }
         public DateTime ApplicantDate { get; set; }
         //Relaciones
-        public UserTable UserTableID { get; set; }
-        public Job JobID { get; set; }
-        public JobApplication JobApplicationID { get; set; }
-        public Interview InterviewID { get; set; }
+        public UserTable User { get; set; }
+        public Job Job { get; set; }
+        public JobApplication JobApplicationStatus { get; set; }
+        public Interview InterviewStatus { get; set; }
     }
 }

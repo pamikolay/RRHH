@@ -155,6 +155,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Applicant.cs" />
+    <Compile Include="Models\ApplicantManager.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\CityManager.cs" />
     <Compile Include="Models\Company.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Models\ProvinceManager.cs" />
     <Compile Include="Models\UserTable.cs" />
     <Compile Include="Models\UserType.cs" />
+    <Compile Include="Models\UserTableManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

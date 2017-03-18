@@ -18,7 +18,7 @@
 
 <div class="container">
 
-    <form class="well form-horizontal" action="" method="post" id="contact_form">
+    <form class="well form-horizontal" action="@Url.Action("GuardarNuevoUsuario","Login")" method="post" id="contact_form">
         <fieldset>
 
             <!-- Form Name -->
@@ -53,6 +53,17 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         <input name="email" placeholder="E-Mail" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Contraseña</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="password" placeholder="Contraseña" class="form-control" type="password">
                     </div>
                 </div>
             </div>
@@ -116,12 +127,12 @@
                 <div class="col-md-4">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="hosting" value="hombre" /> Hombre
+                            <input type="radio" name="genre" value="hombre" /> Hombre
                         </label>
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="hosting" value="mujer" /> Mujer
+                            <input type="radio" name="genre" value="mujer" /> Mujer
                         </label>
                     </div>
                 </div>

@@ -73,19 +73,6 @@ namespace RRHH.Controllers
             return RedirectToAction("Busquedas", "Jobs"); ;
         }
 
-        public ActionResult EditarBusquedas(int id_job, string job_name, string job_description)
-        {
-            string s = System.Configuration.ConfigurationManager.ConnectionStrings["cadenaconexion1"].ConnectionString;
-            SqlConnection conexion = new SqlConnection(s);
-            conexion.Open();
-            SqlCommand comando = new SqlCommand("update Job set " +
-                "JobName='" + job_name + "',JobDescription='" + job_description + "' where JobID='" + id_job + "'", conexion);
-            comando.ExecuteNonQuery();
-            conexion.Close();
-
-            return RedirectToAction("Busquedas", "Jobs");
-        }
-
         public ActionResult PruebaEmail()
         {
             ViewBag.mensaje = MailCambioEstado("Pepe Argento","pa.mikolay@gmail.com","laralaaaaa","probando probando");

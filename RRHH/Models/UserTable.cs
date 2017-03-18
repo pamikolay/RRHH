@@ -16,9 +16,9 @@ namespace RRHH.Models
         public string UserTablePassword { get; set; }
         public string UserTableGenre { get; set; }
         //Relaciones
-        public City CityID { get; set; }
-        public Province ProvinceID { get; set; }
-        public Cv CvID { get; set; }
-        public UserType UserTypeID { get; set; }
+        public City City { get; set; }
+        public Province Province { get; set; }
+        public Cv CvStatus { get; set; }
+        public UserType UserType { get; set; }
     }
 }

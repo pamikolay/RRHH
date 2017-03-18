@@ -44,6 +44,16 @@ $(document).ready(function () {
                     }
                 }
             },
+            password: {
+                validators: {
+                    stringLength: {
+                        min: 4,
+                    },
+                    notEmpty: {
+                        message: 'Por favor ingrese una contraseña de minimo 4 caracteres'
+                    }
+                }
+            },
             phone: {
                 validators: {
                     notEmpty: {
