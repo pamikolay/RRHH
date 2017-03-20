@@ -21,7 +21,6 @@
     <form class="well form-horizontal" action="@Url.Action("GuardarNuevoUsuario","Login")" method="post" id="contact_form">
         <fieldset>
 
-            <!-- Form Name -->
             <legend>Datos para registro!!!</legend>
 
             <!-- FirsName input-->
@@ -70,7 +69,7 @@
 
             <!-- Phone input-->
             <div class="form-group">
-                <label class="col-md-4 control-label">Telefono #</label>
+                <label class="col-md-4 control-label">Telefono Celular #</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
@@ -90,14 +89,14 @@
                 </div>
             </div>
 
-            <!-- Select Province -->
+            <!-- Province select -->
             <div class="form-group">
                 <label class="col-md-4 control-label">Provincia</label>
                 <div class="col-md-4 selectContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                         @*<select name="state" class="form-control selectpicker">*@
-                        <select class="form-control selectpicker" id="proviceSelect" name="province_id">
+                        <select class="form-control selectpicker" id="provinceSelect" name="province_id" data-url="@Url.Action("GetCiudades","Login")">
                                 <option value="">Seleccione su provincia</option>
                                 @foreach (RRHH.Models.Province row in ViewBag.Provinces)
                                 {
@@ -108,7 +107,7 @@
                 </div>
             </div>
 
-            <!-- Select City -->
+            <!-- City select -->
             <div class="form-group">
                 <label class="col-md-4 control-label">Ciudad</label>
                 <div class="col-md-4 selectContainer">
@@ -152,32 +151,4 @@
         </fieldset>
     </form>
 
-    <!-- FOOTER -->
-    <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-    </footer>
-
 </div>
-
-<script>//SI LO PONIA EN EL ARCHIVO SEPARADO DE js NO ME RECONOCE EL REDIRECCIONAMIENTO Url.Action
-    $("#proviceSelect").change(function () {
-        $("#citySelect").empty();
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("GetCiudades","Login")',
-            dataType: 'json',
-            data: { id: Number($("#proviceSelect").val()) },
-            success: function (ciudades) {
-                $.each(ciudades, function (i, ciudad) {
-                    $("#citySelect").append('<option value="' + ciudad.Value + '">' +
-                    ciudad.Text + '</option>');
-
-                });
-            },
-            //error: function (request, errorType, errorMessage) {
-            //    alert(errorMessage);
-            //}
-        })
-    });
-</script>

@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $(':input[type="submit"]').prop('disabled', true);
 
-    //$("#proviceSelect").change(function () {
-    //    fillCombo("citySelect", $("#proviceSelect").val());
+    //$("#provinceSelect").change(function () {
+    //    fillCombo("citySelect", $("#provinceSelect").val());
     //});
     
 
@@ -109,4 +109,24 @@ $(document).ready(function () {
                 console.log(result);
             }, 'json');
         });
+});
+$("#provinceSelect").change(function () {
+    $("#citySelect").empty();
+    $.ajax({
+        type: 'POST',
+        //@*url: '@Url.Action("GetCiudades","Login")',*@
+        url: $(this).data('url'),
+        dataType: 'json',
+        data: { id: Number($("#provinceSelect").val()) },
+        success: function (ciudades) {
+            $.each(ciudades, function (i, ciudad) {
+                $("#citySelect").append('<option value="' + ciudad.Value + '">' +
+                ciudad.Text + '</option>');
+
+            });
+        },
+        //error: function (request, errorType, errorMessage) {
+        //    alert(errorMessage);
+        //}
+    })
 });
