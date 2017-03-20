@@ -1,11 +1,6 @@
 $(document).ready(function () {
     $(':input[type="submit"]').prop('disabled', true);
 
-    //$("#provinceSelect").change(function () {
-    //    fillCombo("citySelect", $("#provinceSelect").val());
-    //});
-    
-
     $('#contact_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {

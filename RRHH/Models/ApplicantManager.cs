@@ -13,8 +13,8 @@ namespace RRHH.Models
             string sqlquery = "INSERT INTO Applicant (ApplicantDate,UserTableID,JobID,JobApplicationID,InterviewID) VALUES (getdate(),@UserTableID,@JobID,1,1)";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@UserTableID", newApplicant.User);
-            sentencia.Parameters.AddWithValue("@JobID", newApplicant.Job);
+            sentencia.Parameters.AddWithValue("@UserTableID", newApplicant.User.UserTableID);
+            sentencia.Parameters.AddWithValue("@JobID", newApplicant.Job.JobID);
             //5-Ejecutar!
             sentencia.ExecuteNonQuery();
 
