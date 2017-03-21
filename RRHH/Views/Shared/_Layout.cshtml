@@ -31,17 +31,22 @@
                     @*<li><a href="@Url.Action("Registro","Login")">Registro</a></li>*@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="ingresar"><a href="@Url.Action("Login","Login")">Ingresar</a></li>
-                    <li id="registro"><a href="@Url.Action("Registro","Login")">Registrarse</a></li>
-                    <li id="menuUsuario" class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="usuarioIngreso">NombreUsuario </span><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Mi Perfil</a></li>
-                            <li id="nuevoArt"><a href="#">Nuevo Articulo</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a id="salir" href="#">Salir</a></li>
-                        </ul>
-                    </li>
+                    @if (Session["UsuarioLogueado"] != null)
+                    {
+                        <li id="menuUsuario" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="usuarioIngreso">@(((RRHH.Models.UserTable)Session["UsuarioLogueado"]).UserTableFirstName) </span><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mi Perfil</a></li>
+                                <li id="nuevoArt"><a href="#">Nuevo Articulo</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a id="salir" href="@Url.Action("Logout","Users")">Salir</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li id="ingresar"><a href="@Url.Action("Login", "Users")">Ingresar</a></li>
+                    }
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

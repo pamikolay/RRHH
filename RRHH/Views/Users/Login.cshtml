@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+@section scriptsQnecesitoAntesPagina{
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Content/js/login.js"></script>
+}
+@section styles{
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+}
+
+<div class="signin" >
+    <h2 class="form-signin-heading">Loguearse!</h2>
+    <div id="messenger">
+    </div>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" required="" data-url="@Url.Action("Login","Users")" autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" data-url="@Url.Action("Index", "Home")" required="">
+    @*<div class="checkbox">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div>*@
+    <button class="btn btn-lg btn-primary btn-block" id="Login">Ingresa</button>
+    <button class="btn btn-lg btn-danger btn-block" href="@Url.Action("Registro","Users")" >Registrate</button>
+</div>

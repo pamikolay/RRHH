@@ -18,7 +18,7 @@
 
 <div class="container">
 
-    <form class="well form-horizontal" action="@Url.Action("GuardarNuevoUsuario","Login")" method="post" id="contact_form">
+    <form class="well form-horizontal" action="@Url.Action("GuardarNuevoUsuario","Users")" method="post" id="contact_form">
         <fieldset>
 
             <legend>Datos para registro!!!</legend>
@@ -96,7 +96,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                         @*<select name="state" class="form-control selectpicker">*@
-                        <select class="form-control selectpicker" id="provinceSelect" name="province_id" data-url="@Url.Action("GetCiudades","Login")">
+                        <select class="form-control selectpicker" id="provinceSelect" name="province_id" data-url="@Url.Action("GetCiudades","Users")">
                                 <option value="">Seleccione su provincia</option>
                                 @foreach (RRHH.Models.Province row in ViewBag.Provinces)
                                 {

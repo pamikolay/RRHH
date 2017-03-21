@@ -2433,11 +2433,11 @@ go
 
 
 
-INSERT INTO Cv VALUES
-(1,'NoCargado'),
-(2,'Cargado-OK')
+--INSERT INTO Cv VALUES
+--(1,'NoCargado'),
+--(2,'Cargado-OK')
 
-go
+--go
 
 
 

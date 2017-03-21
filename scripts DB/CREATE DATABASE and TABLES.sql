@@ -36,9 +36,10 @@ UserTableAddress varchar(50) not null,
 UserTablePhone varchar(50) not null,
 UserTablePassword varchar(15) not null,
 UserTableGenre varchar(15) not null,
+UserTableCvStatus varchar(15),
 CityID int,
 ProvinceID int,
-CvID int,
+--CvID int,
 UserTypeID int
 )
 
@@ -112,11 +113,11 @@ go
 
 
 
-alter table UserTable
-add constraint fk_usertablecv
-foreign key(CvID) references Cv(CvID)
+--alter table UserTable
+--add constraint fk_usertablecv
+--foreign key(CvID) references Cv(CvID)
 
-go
+--go
 
 
 
