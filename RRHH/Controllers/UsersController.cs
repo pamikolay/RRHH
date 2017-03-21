@@ -16,16 +16,16 @@ namespace RRHH.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(UserTable user)
+        public ActionResult Login(Users user)
         {
-            UserTableManager uManager = new UserTableManager();
+            UsersManager uManager = new UsersManager();
             string message = "";
             if (ModelState.IsValid)
             {
                 if (uManager.CheckUser(user) > 0)
                 {
                     message = "Correcto";
-                    user = uManager.Consultar(user.UserTableEmail);
+                    user = uManager.Consultar(user.Email);
                     Session["UsuarioLogueado"] = user;
                 }
                 else
@@ -62,8 +62,8 @@ namespace RRHH.Controllers
 
         public ActionResult DoLogin2(string email, string password)
         {
-            UserTableManager uManager = new UserTableManager();
-            UserTable user = uManager.Validar(email, password);
+            UsersManager uManager = new UsersManager();
+            Users user = uManager.Validar(email, password);
 
             if (user != null)
             {
@@ -81,34 +81,34 @@ namespace RRHH.Controllers
 
         public ActionResult Registro()
         {
-            ProvinceManager pManager = new ProvinceManager();
+            ProvincesManager pManager = new ProvincesManager();
             ViewBag.Provinces = pManager.ConsultarTodas();
             return View();
         }
         [HttpPost]
         public ActionResult GetCiudades(int id)
         {
-            List<City> ciudades = new List<City>();
-            ciudades = new CityManager().GetCiudadesPorProvincia(id);
-            return Json(new SelectList(ciudades, "CityID", "CityName"));
+            List<Citys> ciudades = new List<Citys>();
+            ciudades = new CitysManager().GetCiudadesPorProvincia(id);
+            return Json(new SelectList(ciudades, "ID", "Name"));
         }
         [HttpPost]
         public ActionResult GuardarNuevoUsuario(string first_name, string last_name, string password, string email, string phone, string address, int province_id, int city_id, string genre)
         {
-            UserTable newUser = new UserTable();
-            newUser.UserTableFirstName = first_name;
-            newUser.UserTableLastName = last_name;
-            newUser.UserTablePassword = password;
-            newUser.UserTableEmail = email;
-            newUser.UserTablePhone = phone;
-            newUser.UserTableAddress = address;
-            newUser.UserTableGenre = genre;
-            ProvinceManager pManager = new ProvinceManager();
+            Users newUser = new Users();
+            newUser.FirstName = first_name;
+            newUser.LastName = last_name;
+            newUser.Password = password;
+            newUser.Email = email;
+            newUser.Phone = phone;
+            newUser.Address = address;
+            newUser.Genre = genre;
+            ProvincesManager pManager = new ProvincesManager();
             newUser.Province = pManager.Consultar(province_id);
-            CityManager cManager = new CityManager();
+            CitysManager cManager = new CitysManager();
             newUser.City = cManager.Consultar(city_id);
 
-            UserTableManager uManager = new UserTableManager();
+            UsersManager uManager = new UsersManager();
             uManager.Insertar(newUser);
 
             return RedirectToAction("Index", "Home");

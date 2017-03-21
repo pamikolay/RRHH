@@ -98,9 +98,9 @@
                         @*<select name="state" class="form-control selectpicker">*@
                         <select class="form-control selectpicker" id="provinceSelect" name="province_id" data-url="@Url.Action("GetCiudades","Users")">
                                 <option value="">Seleccione su provincia</option>
-                                @foreach (RRHH.Models.Province row in ViewBag.Provinces)
+                                @foreach (RRHH.Models.Provinces row in ViewBag.Provinces)
                                 {
-                                    <option value="@row.ProvinceID">@row.ProvinceName</option>
+                                    <option value="@row.ID">@row.Name</option>
                                 }
                         </select>
                     </div>

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function(){
     $("#Login").click(function () {
-        var dataObject = { UserTableEmail: $("#inputEmail").val(), UserTablePassword: $("#inputPassword").val() };
+        var dataObject = { Email: $("#inputEmail").val(), Password: $("#inputPassword").val() };
         $.ajax({
             url: $("#inputEmail").data("url"),
             type: "POST",

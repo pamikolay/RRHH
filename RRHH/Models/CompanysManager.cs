@@ -6,14 +6,14 @@ using System.Web;
 
 namespace RRHH.Models
 {
-    public class CompanyManager
+    public class CompanysManager
     {
-        public void Insertar(Company newCompany)
+        public void Insertar(Companys newCompany)
         {
-            string sqlquery = "insert into Company (CompanyName) VALUES (@CompanyName)";
+            string sqlquery = "insert into Companys (Name) VALUES (@Name)";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@CompanyName", newCompany.CompanyName);
+            sentencia.Parameters.AddWithValue("@Name", newCompany.Name);
             //5-Ejecutar!
             sentencia.ExecuteNonQuery();
 
@@ -21,17 +21,17 @@ namespace RRHH.Models
             ConexionBD.Desconectar();
         }
 
-        public void Eliminar(Company company)
+        public void Eliminar(Companys company)
         {
-            this.Eliminar(company.CompanyID);
+            this.Eliminar(company.ID);
         }
 
         public void Eliminar(long ID)
         {
-            string sqlquery = "delete from Articulos where Id = @Id";
+            string sqlquery = "delete from Company where ID = @ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@Id", ID);
+            sentencia.Parameters.AddWithValue("@ID", ID);
             //5-Ejecutar!
             sentencia.ExecuteNonQuery();
 
@@ -43,14 +43,14 @@ namespace RRHH.Models
         /// Modificamos una compañia
         /// </summary>
         /// <param name="company"></param>
-        public void Actualizar(Company company)
+        public void Actualizar(Companys company)
         {
-            string sqlquery = "update Company set CompanyName = @CompanyName WHERE CompanyID = @CompanyID";
+            string sqlquery = "update Companys set Name = @Name WHERE ID = @ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
-            sentencia.Parameters.AddWithValue("@CompanyName", company.CompanyName);
-            sentencia.Parameters.AddWithValue("@CompanyID", company.CompanyID);
+            sentencia.Parameters.AddWithValue("@Name", company.Name);
+            sentencia.Parameters.AddWithValue("@ID", company.ID);
             //5-Ejecutar!
             sentencia.ExecuteNonQuery();
 
@@ -58,11 +58,11 @@ namespace RRHH.Models
             ConexionBD.Desconectar();
         }
 
-        public List<Company> ConsultarTodos()
+        public List<Companys> ConsultarTodos()
         {
-            List<Company> companys = new List<Company>();
+            List<Companys> companys = new List<Companys>();
 
-            string sqlquery = "select * from Company";
+            string sqlquery = "select * from Companys";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
@@ -70,9 +70,9 @@ namespace RRHH.Models
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo el artículo, le completo los datos 
-                Company company = new Company();
-                company.CompanyID = (int)reader["CompanyID"];
-                company.CompanyName = (string)reader["CompanyName"];
+                Companys company = new Companys();
+                company.ID = (int)reader["ID"];
+                company.Name = (string)reader["Name"];
                 //AGREGO LA company A LA LISTA
                 companys.Add(company);
             }
@@ -85,20 +85,20 @@ namespace RRHH.Models
             return companys;
         }
 
-        public Company Consultar(int ID)
+        public Companys Consultar(int ID)
         {
-            string sqlquery = "select * from Company WHERE CompanyID=@CompanyID";
+            string sqlquery = "select * from Companys WHERE ID=@ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@CompanyID", ID);
+            sentencia.Parameters.AddWithValue("@ID", ID);
 
-            Company company = new Company();
+            Companys company = new Companys();
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo el artículo, le completo los datos 
-                company.CompanyID = (int)reader["CompanyID"];
-                company.CompanyName = (string)reader["CompanyName"];
+                company.ID = (int)reader["ID"];
+                company.Name = (string)reader["Name"];
             }
 
             //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS

@@ -154,26 +154,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Applicant.cs" />
-    <Compile Include="Models\ApplicantManager.cs" />
-    <Compile Include="Models\City.cs" />
-    <Compile Include="Models\CityManager.cs" />
-    <Compile Include="Models\Company.cs" />
-    <Compile Include="Models\CompanyManager.cs" />
-    <Compile Include="Models\Cv.cs" />
+    <Compile Include="Models\Applicants.cs" />
+    <Compile Include="Models\ApplicantsManager.cs" />
+    <Compile Include="Models\Citys.cs" />
+    <Compile Include="Models\CitysManager.cs" />
+    <Compile Include="Models\Companys.cs" />
+    <Compile Include="Models\CompanysManager.cs" />
     <Compile Include="Models\DataBase.cs" />
-    <Compile Include="Models\Interview.cs" />
-    <Compile Include="Models\Job.cs" />
-    <Compile Include="Models\JobApplication.cs" />
-    <Compile Include="Models\JobManager.cs" />
-    <Compile Include="Models\JobStatus.cs" />
-    <Compile Include="Models\JobStatusManager.cs" />
-    <Compile Include="Models\Province.cs" />
-    <Compile Include="Models\ProvinceManager.cs" />
-    <Compile Include="Models\UserTable.cs" />
-    <Compile Include="Models\UserType.cs" />
-    <Compile Include="Models\UserTableManager.cs" />
-    <Compile Include="Models\UserTypeManager.cs" />
+    <Compile Include="Models\Interviews.cs" />
+    <Compile Include="Models\Jobs.cs" />
+    <Compile Include="Models\JobsApplication.cs" />
+    <Compile Include="Models\JobsManager.cs" />
+    <Compile Include="Models\JobStatuses.cs" />
+    <Compile Include="Models\JobStatusesManager.cs" />
+    <Compile Include="Models\Provinces.cs" />
+    <Compile Include="Models\ProvincesManager.cs" />
+    <Compile Include="Models\Users.cs" />
+    <Compile Include="Models\UserTypes.cs" />
+    <Compile Include="Models\UsersManager.cs" />
+    <Compile Include="Models\UserTypesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

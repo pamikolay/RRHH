@@ -5,9 +5,9 @@ using System.Web;
 
 namespace RRHH.Models
 {
-    public class Interview
+    public class Companys
     {
-        public int InterviewID { get; set; }
-        public string InterviewStatus { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }

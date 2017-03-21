@@ -2,7 +2,7 @@ use RRHH
 
 go
 
-INSERT INTO Province VALUES
+INSERT INTO Provinces VALUES
 (1, 'Buenos Aires'),
 (2, 'Buenos Aires-GBA'),
 (3, 'Capital Federal'),
@@ -33,7 +33,7 @@ go
 
 
 
-INSERT INTO City VALUES
+INSERT INTO Citys VALUES
 (1, 1, '25 de Mayo'),
 (2, 1, '3 de febrero'),
 (3, 1, 'A. Alsina'),
@@ -1037,7 +1037,7 @@ go
 
 
 
-INSERT INTO City VALUES
+INSERT INTO Citys VALUES
 (999, 9, 'Aldea Sta. Rosa'),
 (1000, 9, 'Aldea Valle María'),
 (1001, 9, 'Altamirano Sur'),
@@ -2035,7 +2035,7 @@ go
 
 
 
-INSERT INTO City VALUES
+INSERT INTO Citys VALUES
 (1991, 22, 'Hughes'),
 (1992, 22, 'Humberto 1º'),
 (1993, 22, 'Humboldt'),
@@ -2441,7 +2441,7 @@ go
 
 
 
-INSERT INTO UserTYpe VALUES
+INSERT INTO UserTypes VALUES
 (1,'Consultor'),
 (2,'Final')
 
@@ -2449,7 +2449,7 @@ go
 
 
 
-INSERT INTO JobStatus VALUES
+INSERT INTO JobStatuses VALUES
 (1,'Inactiva'),
 (2,'Activa')
 
@@ -2457,7 +2457,7 @@ go
 
 
 
-INSERT INTO JobApplication VALUES
+INSERT INTO JobApplications VALUES
 (1,'SinEstado'),
 (2,'CvLeido'),
 (3,'EntrevistaConsultora'),
@@ -2468,7 +2468,7 @@ go
 
 
 
-INSERT INTO Interview VALUES
+INSERT INTO Interviews VALUES
 (1,'SinAsignar'),
 (2,'Programada'),
 (3,'Aprobada'),

@@ -6,16 +6,16 @@ using System.Web;
 
 namespace RRHH.Models
 {
-    public class JobManager
+    public class JobsManager
     {
-        public void Insertar(Job newJob)
+        public void Insertar(Jobs newJob)
         {
-            string sqlquery="insert into Job (JobName,JobDate,JobDescription,CompanyID,JobStatusID) VALUES (@JobName, getdate(), @JobDescription, @CompanyID, 2)";
+            string sqlquery="insert into Jobs (Name,Date,Description,Company,Status) VALUES (@Name, getdate(), @Description, @Company, 2)";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@JobName", newJob.JobName);
-            sentencia.Parameters.AddWithValue("@JobDescription", newJob.JobDescription);
-            sentencia.Parameters.AddWithValue("@CompanyID", newJob.Company.CompanyID);
+            sentencia.Parameters.AddWithValue("@Name", newJob.Name);
+            sentencia.Parameters.AddWithValue("@Description", newJob.Description);
+            sentencia.Parameters.AddWithValue("@Company", newJob.Company.ID);
             //5-Ejecutar!
             sentencia.ExecuteNonQuery();
 
@@ -23,17 +23,17 @@ namespace RRHH.Models
             ConexionBD.Desconectar();
         }
 
-        public void InactivarJob(Job job)
+        public void InactivarJob(Jobs job)
         {
-            this.InactivarJob(job.JobID);
+            this.InactivarJob(job.ID);
         }
 
         public void InactivarJob(long ID)
         {
-            string sqlquery = "UPDATE Job set JobStatusID = 1 where Id = @Id";
+            string sqlquery = "UPDATE Jobs set Status = 1 where ID = @ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@Id", ID);
+            sentencia.Parameters.AddWithValue("@ID", ID);
             //5-Ejecutar!
             sentencia.ExecuteNonQuery();
 
@@ -45,18 +45,18 @@ namespace RRHH.Models
         /// Modificamos todo un trabajo
         /// </summary>
         /// <param name="job"></param>
-        public void Actualizar(Job job)
+        public void Actualizar(Jobs job)
         {
-            string sqlquery = "UPDATE Job set JobName = @JobName, JobDescription = @JobDescription, CompanyID = @Company, JobStatusID = @JobStatus where JobID = @JobID";
+            string sqlquery = "UPDATE Jobs set Name = @Name, Description = @Description, Company = @Company, Status = @Status where ID = @ID";
             //LA FECHA NO LA QUIERO MODIFICAR
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             //4-escribrimos la sentencia
-            sentencia.Parameters.AddWithValue("@JobName", job.JobName);
-            sentencia.Parameters.AddWithValue("@JobDescription", job.JobDescription);
-            sentencia.Parameters.AddWithValue("@Company", job.Company.CompanyID);
-            sentencia.Parameters.AddWithValue("@JobStatus", job.JobStatus.JobStatusID);
-            sentencia.Parameters.AddWithValue("@JobID", job.JobID);
+            sentencia.Parameters.AddWithValue("@Name", job.Name);
+            sentencia.Parameters.AddWithValue("@Description", job.Description);
+            sentencia.Parameters.AddWithValue("@Company", job.Company.ID);
+            sentencia.Parameters.AddWithValue("@Status", job.Status.ID);
+            sentencia.Parameters.AddWithValue("@ID", job.ID);
             //5-Ejecutar!
             sentencia.ExecuteNonQuery();
 
@@ -64,11 +64,11 @@ namespace RRHH.Models
             ConexionBD.Desconectar();
         }
 
-        public List<Job> ConsultarTodos()
+        public List<Jobs> ConsultarTodos()
         {
-            List<Job> jobs = new List<Job>();
+            List<Jobs> jobs = new List<Jobs>();
 
-            string sqlquery = "SELECT * FROM Job";
+            string sqlquery = "SELECT * FROM Jobs";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
@@ -76,13 +76,13 @@ namespace RRHH.Models
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo el artículo, le completo los datos 
-                Job job = new Job();
-                job.JobID = (int)reader["JobID"];
-                job.JobDate = (DateTime)reader["JobDate"];
-                job.JobName = (string)reader["JobName"];
-                job.JobDescription = (string)reader["JobDescription"];
-                job.Company.CompanyID=(int)(reader["Company"]);
-                job.JobStatus.JobStatusID = (int)(reader["JobStatus"]);
+                Jobs job = new Jobs();
+                job.ID = (int)reader["ID"];
+                job.Date = (DateTime)reader["Date"];
+                job.Name = (string)reader["Name"];
+                job.Description = (string)reader["Description"];
+                job.Company.ID=(int)(reader["Company"]);
+                job.Status.ID = (int)(reader["Status"]);
                 //AGREGO EL job A LA LISTA
                 jobs.Add(job);
             }
@@ -95,26 +95,26 @@ namespace RRHH.Models
             return jobs;
         }
 
-        public List<Job> ConsultarActivas()
+        public List<Jobs> ConsultarActivas()
         {
-            List<Job> jobs = new List<Job>();
+            List<Jobs> jobs = new List<Jobs>();
 
-            string sqlquery = "SELECT * FROM Job WHERE JobStatusID = 2";
+            string sqlquery = "SELECT * FROM Jobs WHERE Status = 2";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
-            CompanyManager cManager = new CompanyManager();     //para pasarle un objeto company necesito el CompanyManager
+            CompanysManager cManager = new CompanysManager();     //para pasarle un objeto company necesito el CompanyManager
             
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo el artículo, le completo los datos 
-                Job job = new Job();
-                job.JobID = (int)reader["JobID"];
-                job.JobDate = (DateTime)reader["JobDate"];        
-                job.JobName = (string)reader["JobName"];
-                job.JobDescription = (string)reader["JobDescription"];
-                job.Company = cManager.Consultar((int)reader["CompanyID"]);
+                Jobs job = new Jobs();
+                job.ID = (int)reader["ID"];
+                job.Date = (DateTime)reader["Date"];        
+                job.Name = (string)reader["Name"];
+                job.Description = (string)reader["Description"];
+                job.Company = cManager.Consultar((int)reader["Company"]);
                 //agrego el job a la lista
                 jobs.Add(job);
             }
@@ -127,26 +127,26 @@ namespace RRHH.Models
             return jobs;
         }
 
-        public Job Consultar(int ID)
+        public Jobs Consultar(int ID)
         {
-            string sqlquery = "select * from Job WHERE JobID=@JobID";
+            string sqlquery = "select * from Jobs WHERE ID=@ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@JobID", ID);
+            sentencia.Parameters.AddWithValue("@ID", ID);
 
-            Job job = new Job();
+            Jobs job = new Jobs();
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo el artículo, le completo los datos 
-                job.JobID = (int)reader["JobID"];
-                job.JobDate = (DateTime)reader["JobDate"];    
-                job.JobName = (string)reader["JobName"];
-                job.JobDescription = (string)reader["JobDescription"];
-                CompanyManager cManager = new CompanyManager();
-                job.Company = cManager.Consultar((int)reader["CompanyID"]);
-                JobStatusManager jManager = new JobStatusManager();
-                job.JobStatus = jManager.Consultar((int)reader["JobStatusID"]);
+                job.ID = (int)reader["ID"];
+                job.Date = (DateTime)reader["Date"];    
+                job.Name = (string)reader["Name"];
+                job.Description = (string)reader["Description"];
+                CompanysManager cManager = new CompanysManager();
+                job.Company = cManager.Consultar((int)reader["Company"]);
+                JobStatusesManager jManager = new JobStatusesManager();
+                job.Status = jManager.Consultar((int)reader["Status"]);
 
             }
 
@@ -163,9 +163,9 @@ namespace RRHH.Models
         /// </summary>
         /// <param name="copmany"></param>
         /// <returns></returns>
-        public List<Job> Consultar(Company company)
+        public List<Jobs> Consultar(Companys company)
         {
-            return new List<Job>();
+            return new List<Jobs>();
         }
     }
 }

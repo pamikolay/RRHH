@@ -4,7 +4,7 @@ go
 
 
 
-INSERT INTO Company VALUES
+INSERT INTO Companys VALUES
 ('Accenture','Lavalle 1010','4444-4444'),
 ('Globant','Viamonte 2020','5555-5555'),
 ('TOTVS','Paraguay 3010','6666-3333'),

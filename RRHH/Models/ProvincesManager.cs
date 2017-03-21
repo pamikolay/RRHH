@@ -6,13 +6,13 @@ using System.Web;
 
 namespace RRHH.Models
 {
-    public class ProvinceManager
+    public class ProvincesManager
     {
-        public List<Province> ConsultarTodas()
+        public List<Provinces> ConsultarTodas()
         {
-            List<Province> provinces = new List<Province>();
+            List<Provinces> provinces = new List<Provinces>();
 
-            string sqlquery = "select * from Province";
+            string sqlquery = "select * from Provinces";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
@@ -20,9 +20,9 @@ namespace RRHH.Models
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo la provincia y le completo los datos 
-                Province province = new Province();
-                province.ProvinceID = (int)reader["ProvinceID"];
-                province.ProvinceName = (string)reader["ProvinceName"];
+                Provinces province = new Provinces();
+                province.ID = (int)reader["ID"];
+                province.Name = (string)reader["Name"];
                 //AGREGO LA company A LA LISTA
                 provinces.Add(province);
             }
@@ -35,20 +35,20 @@ namespace RRHH.Models
             return provinces;
         }
 
-        public Province Consultar(int ID)
+        public Provinces Consultar(int ID)
         {
-            string sqlquery = "select * from Province WHERE ProvinceID=@ProvinceID";
+            string sqlquery = "select * from Provinces WHERE ID=@ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@ProvinceID", ID);
+            sentencia.Parameters.AddWithValue("@ID", ID);
 
-            Province province = new Province();
+            Provinces province = new Provinces();
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo la provincia y le completo los datos 
-                province.ProvinceID = (int)reader["ProvinceID"];
-                province.ProvinceName = (string)reader["ProvinceName"];
+                province.ID = (int)reader["ID"];
+                province.Name = (string)reader["Name"];
             }
 
             //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS

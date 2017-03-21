@@ -25,9 +25,9 @@
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="empresaPuesto">Empresa</label>
             <select id="companySelect" name="company_id">
-                @foreach (RRHH.Models.Company row in ViewBag.TablaCompany)
+                @foreach (RRHH.Models.Companys row in ViewBag.TablaCompany)
                 {
-                <option value="@row.CompanyID">@row.CompanyName</option>
+                <option value="@row.ID">@row.Name</option>
                 }
             </select>
         </div>

@@ -6,15 +6,15 @@ using System.Web;
 
 namespace RRHH.Models
 {
-    public class ApplicantManager
+    public class ApplicantsManager
     {
-        public void Insertar(Applicant newApplicant)
+        public void Insertar(Applicants newApplicant)
         {
-            string sqlquery = "INSERT INTO Applicant (ApplicantDate,UserTableID,JobID,JobApplicationID,InterviewID) VALUES (getdate(),@UserTableID,@JobID,1,1)";
+            string sqlquery = "INSERT INTO Applicants (Date,Postulant,Job,ApplicationStatus,InterviewStatus) VALUES (getdate(),@Postulant,@Job,1,1)";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@UserTableID", newApplicant.User.UserTableID);
-            sentencia.Parameters.AddWithValue("@JobID", newApplicant.Job.JobID);
+            sentencia.Parameters.AddWithValue("@Postulant", newApplicant.Postulant.ID);
+            sentencia.Parameters.AddWithValue("@Job", newApplicant.Job.ID);
             //5-Ejecutar!
             sentencia.ExecuteNonQuery();
 

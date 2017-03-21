@@ -6,13 +6,13 @@ using System.Web;
 
 namespace RRHH.Models
 {
-    public class JobStatusManager
+    public class JobStatusesManager
     {
-        public List<JobStatus> ConsultarTodos()
+        public List<JobStatuses> ConsultarTodos()
         {
-            List<JobStatus> jobstatuses = new List<JobStatus>();
+            List<JobStatuses> jobstatuses = new List<JobStatuses>();
 
-            string sqlquery = "select * from JobStatus";
+            string sqlquery = "select * from JobStatuses";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
@@ -20,9 +20,9 @@ namespace RRHH.Models
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo el artículo, le completo los datos 
-                JobStatus jobstatus = new JobStatus();
-                jobstatus.JobStatusID = (int)reader["JobStatusID"];
-                jobstatus.JobStatusName = (string)reader["JobStatusDetails"];
+                JobStatuses jobstatus = new JobStatuses();
+                jobstatus.ID = (int)reader["ID"];
+                jobstatus.Details = (string)reader["Details"];
                 //AGREGO LA company A LA LISTA
                 jobstatuses.Add(jobstatus);
             }
@@ -35,20 +35,20 @@ namespace RRHH.Models
             return jobstatuses;
         }
 
-        public JobStatus Consultar(int ID)
+        public JobStatuses Consultar(int ID)
         {
-            string sqlquery = "select * from JobStatus WHERE JobStatusID=@JobStatusID";
+            string sqlquery = "select * from JobStatuses WHERE ID=@ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@JobStatusID", ID);
+            sentencia.Parameters.AddWithValue("@ID", ID);
 
-            JobStatus jobstatus = new JobStatus();
+            JobStatuses jobstatus = new JobStatuses();
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo el artículo, le completo los datos 
-                jobstatus.JobStatusID = (int)reader["JobStatusID"];
-                jobstatus.JobStatusName = (string)reader["JobStatusDetails"];
+                jobstatus.ID = (int)reader["ID"];
+                jobstatus.Details = (string)reader["Details"];
             }
 
             //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS

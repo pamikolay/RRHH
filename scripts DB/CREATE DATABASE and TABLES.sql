@@ -6,82 +6,82 @@ use RRHH
 
 go
 
-create table Cv(
-CvID int primary key not null,
-CvStatus varchar (20) not null
+--create table Cv(
+--CvID int primary key not null,
+--CvStatus varchar (20) not null
+--)
+
+create table UserTypes(
+ID int primary key not null,
+Name varchar (20) not null
 )
 
-create table UserType(
-UserTypeID int primary key not null,
-UserTypeName varchar (20) not null
+create table Provinces(
+ID int primary key not null,
+Name varchar (50) not null
 )
 
-create table Province(
-ProvinceID int primary key not null,
-ProvinceName varchar (50) not null
+create table Citys(
+ID int primary key not null,
+Province int,
+Name varchar (50) not null
 )
 
-create table City(
-CityID int primary key not null,
-ProvinceID int,
-CityName varchar (50) not null
-)
-
-create table UserTable(
-UserTableID int primary key IDENTITY(1,1) not null,
-UserTableFirstName varchar(50) not null,
-UserTableLastName varchar(50) not null,
-UserTableEmail varchar(50) not null,
-UserTableAddress varchar(50) not null,
-UserTablePhone varchar(50) not null,
-UserTablePassword varchar(15) not null,
-UserTableGenre varchar(15) not null,
-UserTableCvStatus varchar(15),
-CityID int,
-ProvinceID int,
+create table Users(
+ID int primary key IDENTITY(1,1) not null,
+FirstName varchar(50) not null,
+LastName varchar(50) not null,
+Email varchar(50) not null,
+Address varchar(50) not null,
+Phone varchar(50) not null,
+Password varchar(15) not null,
+Genre varchar(15) not null,
+CvStatus varchar(15),
+City int,
+Province int,
 --CvID int,
-UserTypeID int
+UserType int
 )
 
-create table Company(
-CompanyID int primary key IDENTITY(1,1) not null,
-CompanyName varchar(50) not null,
-CompanyAddress varchar(50),
-CompanyPhone varchar(50)
+create table Companys(
+ID int primary key IDENTITY(1,1) not null,
+Name varchar(50) not null,
+Address varchar(50),
+Phone varchar(50)
 )
 
-create table JobStatus(
-JobStatusID int primary key not null,
-JobStatusDetails varchar(15) not null
+create table JobStatuses(
+ID int primary key not null,
+Details varchar(15) not null
 )
 
-create table Job(
-JobID int primary key IDENTITY(1,1) not null,
-JobName varchar(100) not null,
-JobDate date not null,
-JobDescription varchar(MAX) not null,
-CompanyID int,
-JobStatusID int
+create table Jobs(
+ID int primary key IDENTITY(1,1) not null,
+Name varchar(100) not null,
+Date date not null,
+Description varchar(MAX) not null,
+Company int,
+Status int
 )
 
-create table JobApplication(
-JobApplicationID int primary key not null,
-JobApplicationDetails varchar(50) not null
+create table JobApplications(
+ID int primary key not null,
+Details varchar(50) not null
 )
 
-create table Interview(
-InterviewID int primary key not null,
-InterviewStatus varchar(50) not null
+create table Interviews(
+ID int primary key not null,
+Status varchar(50) not null
 
 )
 
-create table Applicant(
-ApplicantID int primary key IDENTITY(1,1) not null,
-ApplicantDate date not null,
-UserTableID int,
-JobID int,
-JobApplicationID int,
-InterviewID int
+create table Applicants(
+ID int primary key IDENTITY(1,1) not null,
+Date date not null,
+Postulant int,
+Job int,
+ApplicationStatus int,
+InterviewStatus int
 )
 
 
@@ -89,25 +89,25 @@ go
 
 
 
-alter table City
-add constraint fk_cityprovince
-foreign key(ProvinceID) references Province(ProvinceID)
+alter table Citys
+add constraint fk_Citys_Provinces
+foreign key(Province) references Provinces(ID)
 
 go
 
 
 
-alter table UserTable
-add constraint fk_usertablecity
-foreign key(CityID) references City(CityID)
+alter table Users
+add constraint fk_Users_Citys
+foreign key(City) references Citys(ID)
 
 go
 
 
 
-alter table UserTable
-add constraint fk_usertableprovince
-foreign key(ProvinceID) references Province(ProvinceID)
+alter table Users
+add constraint fk_Users_Provinces
+foreign key(Province) references Provinces(ID)
 
 go
 
@@ -121,63 +121,63 @@ go
 
 
 
-alter table UserTable
-add constraint fk_usertableusertype
-foreign key(UserTypeID) references UserType(UserTypeID)
+alter table Users
+add constraint fk_Users_Usertypes
+foreign key(UserType) references UserTypes(ID)
 
 go
 
 
 
-alter table Job
-add constraint fk_jobcompany
-foreign key(CompanyID) references Company(CompanyID)
+alter table Jobs
+add constraint fk_Jobs_Companys
+foreign key(Company) references Companys(ID)
 
 go
 
 
 
-alter table Job
-add constraint fk_jobjobstatus
-foreign key(JobStatusID) references JobStatus(JobStatusID)
+alter table Jobs
+add constraint fk_Jobs_Jobstatuses
+foreign key(Status) references JobStatuses(ID)
 
 go
 
 
 
-alter table Applicant
-add constraint fk_applicantusertable
-foreign key(UserTableID) references UserTable(UserTableID)
+alter table Applicants
+add constraint fk_Applicants_Users
+foreign key(Postulant) references Users(ID)
 
 go
 
 
 
-alter table Applicant
-add constraint fk_applicantjob
-foreign key(JobID) references Job(JobID)
+alter table Applicants
+add constraint fk_Applicants_Jobs
+foreign key(Job) references Jobs(ID)
 
 go
 
 
 
-alter table Applicant
-add constraint fk_applicantjobapplication
-foreign key(JobApplicationID) references JobApplication(JobApplicationID)
+alter table Applicants
+add constraint fk_Applicants_Jobapplications
+foreign key(ApplicationStatus) references JobApplications(ID)
 
 go
 
 
 
-alter table Applicant
-add constraint fk_applicantinterview
-foreign key(InterviewID) references Interview(InterviewID)
+alter table Applicants
+add constraint fk_Applicants_Interviews
+foreign key(InterviewStatus) references Interviews(ID)
 
 go
 
 
 
-alter table UserTable
-add unique (UserTableEmail)
+alter table Users
+add unique (Email)
 
 go

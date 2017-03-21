@@ -6,22 +6,22 @@ using System.Web;
 
 namespace RRHH.Models
 {
-    public class UserTypeManager
+    public class UserTypesManager
     {
-        public UserType Consultar(int ID)
+        public UserTypes Consultar(int ID)
         {
-            string sqlquery = "select * from UserType WHERE UserTypeID=@UserTypeID";
+            string sqlquery = "select * from UserTypes WHERE ID=@ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@UserTypeID", ID);
+            sentencia.Parameters.AddWithValue("@ID", ID);
 
-            UserType userType = new UserType();
+            UserTypes userType = new UserTypes();
             SqlDataReader reader = sentencia.ExecuteReader();
             if (reader.Read()) //mientras haya un registro para leer
             {
                 //creo el artículo, le completo los datos 
-                userType.UserTypeID = (int)reader["UserTypeID"];
-                userType.UserTypeName = (string)reader["UserTypeName"];
+                userType.ID = (int)reader["ID"];
+                userType.Name = (string)reader["Name"];
             }
             else
             {

@@ -20,14 +20,14 @@
         </form>
         @if (ViewBag.TablaBusquedas != null)
         {
-            foreach (RRHH.Models.Job row in ViewBag.TablaBusquedas)
+            foreach (RRHH.Models.Jobs row in ViewBag.TablaBusquedas)
             {
             <div class="col-md-8 col-md-offset-1">
-                <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@row.JobName</span></h3>
-                <p><strong>Fecha:</strong> @row.JobDate</p>
-                <p><strong>Empresa:</strong> @row.Company.CompanyName</p>
-                <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.JobDescription</span></p>
-                <span class="oculto">@row.JobID</span>
+                <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@row.Name</span></h3>
+                <p><strong>Fecha:</strong> @row.Date</p>
+                <p><strong>Empresa:</strong> @row.Company.Name</p>
+                <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.Description</span></p>
+                <span class="oculto">@row.ID</span>
                 <p>
                     <a class="button-modal btn btn-warning botonAgregar" href="@Url.Action("AgregarNuevaBusqueda","Jobs")" role="button">Agregar nueva busqueda</a>
                     <a class="button-modal btn btn-danger botonEditar" role="button">Editar</a>

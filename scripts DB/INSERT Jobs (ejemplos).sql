@@ -4,7 +4,7 @@ go
 
 
 
-INSERT INTO Job VALUES
+INSERT INTO Jobs VALUES
 ('Analista Programador C++','2017-01-03','En Huenei seleccionaremos Analistas Programadores C++ para incorporarse a nuestro equipo de trabajo en importantes proyectos de Banca Financiera.
 Requisitos:
 Sólidos conocimientos de análisis y programación C++.                                                                                                                                                                                          

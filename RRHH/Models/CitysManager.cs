@@ -6,13 +6,13 @@ using System.Web;
 
 namespace RRHH.Models
 {
-    public class CityManager
+    public class CitysManager
     {
-        public List<City> ConsultarTodas()
+        public List<Citys> ConsultarTodas()
         {
-            List<City> citys = new List<City>();
+            List<Citys> citys = new List<Citys>();
 
-            string sqlquery = "select * from City";
+            string sqlquery = "select * from Citys";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
@@ -20,9 +20,9 @@ namespace RRHH.Models
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo la provincia y le completo los datos 
-                City city = new City();
-                city.CityID = (int)reader["CityID"];
-                city.CityName = (string)reader["CityName"];
+                Citys city = new Citys();
+                city.ID = (int)reader["ID"];
+                city.Name = (string)reader["Name"];
                 //AGREGO LA company A LA LISTA
                 citys.Add(city);
             }
@@ -35,20 +35,20 @@ namespace RRHH.Models
             return citys;
         }
 
-        public City Consultar(int ID)
+        public Citys Consultar(int ID)
         {
-            string sqlquery = "SELECT * from City WHERE CityID=@CityID";
+            string sqlquery = "SELECT * from Citys WHERE ID=@ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@CityID", ID);
+            sentencia.Parameters.AddWithValue("@ID", ID);
 
-            City city = new City();
+            Citys city = new Citys();
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo la provincia y le completo los datos 
-                city.CityID = (int)reader["CityID"];
-                city.CityName = (string)reader["CityName"];
+                city.ID = (int)reader["ID"];
+                city.Name = (string)reader["Name"];
             }
 
             //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
@@ -58,22 +58,22 @@ namespace RRHH.Models
 
             return city;
         }
-        public List<City> GetCiudadesPorProvincia(int ID)
+        public List<Citys> GetCiudadesPorProvincia(int ID)
         {
-            List<City> citys = new List<City>();
+            List<Citys> citys = new List<Citys>();
 
-            string sqlquery = "select CityID, CityName from City WHERE ProvinceID=@ProvinceID";
+            string sqlquery = "select ID, Name from Citys WHERE Province=@Province";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
-            sentencia.Parameters.AddWithValue("@ProvinceID", ID);
+            sentencia.Parameters.AddWithValue("@Province", ID);
 
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
                 //creo la provincia y le completo los datos 
-                City city = new City();
-                city.CityID = (int)reader["CityID"];
-                city.CityName = (string)reader["CityName"];
+                Citys city = new Citys();
+                city.ID = (int)reader["ID"];
+                city.Name = (string)reader["Name"];
                 //AGREGO LA company A LA LISTA
                 citys.Add(city);
             }

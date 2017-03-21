@@ -16,13 +16,13 @@ namespace RRHH.Controllers
         // GET: Jobs
         public ActionResult Busquedas()
         {
-            JobManager jManager = new JobManager();
+            JobsManager jManager = new JobsManager();
             ViewBag.TablaBusquedas = jManager.ConsultarActivas();
             return View();
         }
         public ActionResult AgregarNuevaBusqueda()
         {
-            CompanyManager cManager = new CompanyManager();
+            CompanysManager cManager = new CompanysManager();
             ViewBag.TablaCompany = cManager.ConsultarTodos();
             return View();
         }
@@ -30,13 +30,13 @@ namespace RRHH.Controllers
         [HttpPost]
         public ActionResult GuardarNuevaBusqueda(string job_name, string job_description, int company_id)
         {
-            Job newJob = new Job();
-            newJob.JobName = job_name;
-            newJob.JobDescription = job_description;
-            CompanyManager cManager = new CompanyManager();     //para pasarle un objeto company necesito el CompanyManager
+            Jobs newJob = new Jobs();
+            newJob.Name = job_name;
+            newJob.Description = job_description;
+            CompanysManager cManager = new CompanysManager();     //para pasarle un objeto company necesito el CompanyManager
             newJob.Company = cManager.Consultar(company_id);
 
-            JobManager jManager = new JobManager();
+            JobsManager jManager = new JobsManager();
             jManager.Insertar(newJob);
 
             return RedirectToAction("Busquedas", "Jobs");
@@ -45,9 +45,9 @@ namespace RRHH.Controllers
         [HttpPost]
         public ActionResult EditarBusqueda(int id_job)
         {
-            JobStatusManager jSmanager = new JobStatusManager();
-            JobManager jManager = new JobManager();
-            CompanyManager cManager = new CompanyManager();
+            JobStatusesManager jSmanager = new JobStatusesManager();
+            JobsManager jManager = new JobsManager();
+            CompanysManager cManager = new CompanysManager();
             ViewBag.Company = cManager.ConsultarTodos();       //paso la lista de las compañias
             ViewBag.JobAmodificar = jManager.Consultar(id_job);     //paso el job actual
             ViewBag.JobStatus = jSmanager.ConsultarTodos();         //paso la lista de los jobstatus
@@ -59,15 +59,15 @@ namespace RRHH.Controllers
         [HttpPost]
         public ActionResult EditarBusquedaGuardarCambios(int job_id, string job_name, string job_description, int company_id, int job_status_id)
         {
-            Job newJob = new Job();
-            newJob.JobID = job_id;
-            newJob.JobName = job_name;
-            newJob.JobDescription = job_description;
-            CompanyManager cManager = new CompanyManager();     //para pasarle un objeto company necesito el CompanyManager
+            Jobs newJob = new Jobs();
+            newJob.ID = job_id;
+            newJob.Name = job_name;
+            newJob.Description = job_description;
+            CompanysManager cManager = new CompanysManager();     //para pasarle un objeto company necesito el CompanyManager
             newJob.Company = cManager.Consultar(company_id);
-            JobStatusManager jStatusManager = new JobStatusManager();
-            newJob.JobStatus = jStatusManager.Consultar(job_status_id);
-            JobManager jManager = new JobManager();
+            JobStatusesManager jStatusManager = new JobStatusesManager();
+            newJob.Status = jStatusManager.Consultar(job_status_id);
+            JobsManager jManager = new JobsManager();
             jManager.Actualizar(newJob);
 
             return RedirectToAction("Busquedas", "Jobs"); ;

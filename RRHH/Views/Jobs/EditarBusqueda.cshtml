@@ -17,26 +17,26 @@
         <br>
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="tituloPuesto">Título del Puesto</label>
-            <input type="text" class="form-control" value="@ViewBag.JobAmodificar.JobName" id="tituloBusqueda" name="job_name">
+            <input type="text" class="form-control" value="@ViewBag.JobAmodificar.Name" id="tituloBusqueda" name="job_name">
             @*<input type="datetime" class="oculto" value="@ViewBag.JobAmodificar.JobDate" id="fechaBusqueda" name="job_date"> NO QUIERO MODIFICAR LA FECHA*@
-            <input type="number" class="oculto" value="@ViewBag.JobAmodificar.JobID" id="idBusqueda" name="job_id">
+            <input type="number" class="oculto" value="@ViewBag.JobAmodificar.ID" id="idBusqueda" name="job_id">
         </div>
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="descripcionPuesto">Descripcion del puesto</label>
-            <textarea type="text" class="form-control" rows="9" id="descripcionPuesto" name="job_description">@ViewBag.JobAmodificar.JobDescription</textarea>
+            <textarea type="text" class="form-control" rows="9" id="descripcionPuesto" name="job_description">@ViewBag.JobAmodificar.Description</textarea>
         </div>
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="empresaPuesto">Empresa</label>
             <select id="companySelect" name="company_id">
-                @foreach (RRHH.Models.Company row in ViewBag.Company)
+                @foreach (RRHH.Models.Companys row in ViewBag.Company)
                 {
-                    if (ViewBag.JobAmodificar.Company.CompanyID == row.CompanyID)
+                    if (ViewBag.JobAmodificar.Company.ID == row.ID)
                     {
-                        <option value="@row.CompanyID" selected="selected">@row.CompanyName</option>
+                        <option value="@row.ID" selected="selected">@row.Name</option>
                     }
                     else
                     {
-                        <option value="@row.CompanyID">@row.CompanyName</option>
+                        <option value="@row.ID">@row.Name</option>
                     }
                 }
             </select>
@@ -44,15 +44,15 @@
         <div class="form-group col-md-6 col-md-offset-1">
             <label for="estadoPuesto">Estado de la busqueda</label>
             <select id="jobStatusSelect" name="job_status_id">
-                @foreach (RRHH.Models.JobStatus row in ViewBag.JobStatus)
+                @foreach (RRHH.Models.JobStatuses row in ViewBag.JobStatus)
                 {
-                    if(ViewBag.JobAmodificar.JobStatus.JobStatusID == row.JobStatusID)
+                    if(ViewBag.JobAmodificar.Status.ID == row.ID)
                     { 
-                        <option value="@row.JobStatusID" selected="selected">@row.JobStatusName</option>
+                        <option value="@row.ID" selected="selected">@row.Details</option>
                     }
                     else
                     {
-                        <option value="@row.JobStatusID">@row.JobStatusName</option>
+                        <option value="@row.ID">@row.Details</option>
                     }
                 }
             </select>
