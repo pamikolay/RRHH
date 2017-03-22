@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+@section styles{
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+}
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -52,49 +55,52 @@
 </div>
 <br />
 <div class="jumbotron">
-    <h1>Ser  proactivo  es dar un poco mas, es llegar donde solo el espíritu emprendedor te lleva.</h1>
+    <div id="titulo">
+        <h1>Ser  proactivo  es dar un poco mas, es llegar donde solo el espíritu emprendedor te lleva.</h1>
+    </div>
     <p class="lead">Nuestra  política es brindarle a nuestros  clientes soluciones personalizadas acorde a sus necesidades.
-Desarrollamos nuestras tareas bajo los lineamientos de nuestros valores, compromiso, honestidad, responsabilidad, innovación, excelencia y trabajo en equipo.
-Somos una consultora referente en soluciones organizativas, de apoyo a la conducción, al gerenciamiento, a la estandarización de los procesos y a la gestión administrativa financiera para todo tipo de empresas, organizaciones e individuos.
-Brindamos una atención personalizada que garantiza respuestas ágiles, conforme a los requerimientos y necesidades.
-Nos dedicamos a acompañar a empresarios, ejecutivos, gerentes y sus respectivas organizaciones a superar los obstáculos propios de la conducción organizacional, desde una perspectiva humana, interviniendo con coaching, asesoría y nuestra capacidad de gestión.
+    Desarrollamos nuestras tareas bajo los lineamientos de nuestros valores, compromiso, honestidad, responsabilidad, innovación, excelencia y trabajo en equipo.
+    Somos una consultora referente en soluciones organizativas, de apoyo a la conducción, al gerenciamiento, a la estandarización de los procesos y a la gestión administrativa financiera para todo tipo de empresas, organizaciones e individuos.
+    Brindamos una atención personalizada que garantiza respuestas ágiles, conforme a los requerimientos y necesidades.
+    Nos dedicamos a acompañar a empresarios, ejecutivos, gerentes y sus respectivas organizaciones a superar los obstáculos propios de la conducción organizacional, desde una perspectiva humana, interviniendo con coaching, asesoría y nuestra capacidad de gestión.
 
-Dentro del alcance de nuestros servicios incluimos: </p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    Dentro del alcance de nuestros servicios incluimos: </p><br />
+    <p class="lead">Dentro del alcance de nuestros servicios incluimos:</p>
+    <ul class="items">
+        <li>Inducción del personal</li>
+        <li>Armado de perfiles de puesto</li>
+        <li>Búsquedas laborales</li>
+        <li>Consultoría y auditoria en certificaciones ISO</li>
+        <li>Clima laboral. Relevamientos y planes de acción para mejoras</li>
+        <li>Branding</li>
+        <li>Evaluación de desempeño</li>
+        <li>Payroll es la división especializada que le permitirá tercerizar la liquidación de su nómina</li>
+    </ul><br />
+    <p class="lead">Nuestra misión es proporcionar flexibilidad de servicios con soluciones de calidad, fiabilidad y rentabilidad con el fin de satisfacer las necesidades del cliente y complementar el éxito de su negocio.</p>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <div class="col-md-6">
+        <h2>Sectores a los que damos servicio</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            <ul>
+                <li>Ventas</li>
+                <li>Oficinas y administración</li>
+                <li>Asistencia técnica para oficinas</li>
+                <li>Servicio al cliente</li>
+                <li>Bancos</li>
+                <li>Industria</li>
+            </ul>
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-6">
+        <h2>Noticias Recientes</h2>
+        <p>
+            <ul>
+                <li><a href="">Emprender contrata a un nuevo gerente de operaciones</a></li>
+                <li><a href="">El sector de las centrales telefónicas creció en un 5%</a></li>
+                <li><a href="">¿Cuáles son los 10 trabajos con más demanda?</a></li>
+            </ul>
+        </p>
     </div>
 </div>
-
-<style>
-.carousel-caption h2{
-	background-color: rgba(175,183,186,0.8);
-	width:50%;
-	margin:0 auto 0 auto;
-}
-
-.carousel-inner>.item>img{
-	margin:0 auto 0 auto;
-	max-height: 460px;
-}
-
-</style>

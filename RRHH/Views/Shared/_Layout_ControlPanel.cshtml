@@ -30,10 +30,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="@Url.Action("Index","Home")">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a href="@Url.Action("Busquedas","Jobs")">Busquedas</a></li>
-                    <li><a href="@Url.Action("Contacto","Home")">Contacto</a></li>
-                    @*<li><a href="@Url.Action("Registro","Login")">Registro</a></li>*@
+                    <li class="active"><a href="@Url.Action("Index","ControlPanel")">Panel de Control <span class="sr-only">(current)</span></a></li>
+                    <li><a href="@Url.Action("BuscarPostulantes","ControlPanel")">Buscar postulantes</a></li>
+                    <li><a href="@Url.Action("Busquedas","Jobs")">Busquedas Activas</a></li>
+                    <li><a href="@Url.Action("BusquedasInactivas","ControlPanel")">Busquedas Inactivas</a></li>
+                    <li><a href="@Url.Action("AgregarNuevaBusqueda", "Jobs")">Agregar nueva busqueda</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["UsuarioLogueado"] != null)
@@ -67,25 +68,16 @@
     <div class="container body-content">
         <div id="ControlPanel" class="row">
             <br />
-            <div class="menu lateral col-sm-3 bs-example" data-example-id="simple-nav-stacked">
-                <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-                    <li role="presentation" class="active"><a href="@Url.Action("Index","ControlPanel")">Panel de control</a></li>
-                    <li role="presentation"><a href="@Url.Action("BuscarPostulantes","ControlPanel")">Buscar postulantes</a></li>
-                    <li role="presentation"><a href="@Url.Action("BusquedasActivas","ControlPanel")">Busquedas activas</a></li>
-                    <li role="presentation"><a href="@Url.Action("BusquedasInactivas","ControlPanel")">Busquedas inactivas</a></li>
-                    <li role="presentation"><a href="@Url.Action("AgregarNuevaBusqueda", "ControlPanel")">Agregar nueva busqueda</a></li>
-                </ul>
-            </div>
             <div class="col-md-8 col-md-offset-1">
                 @RenderBody()
             </div>
         </div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <hr />
         <div class="container">
             <!-- container footer -->
             <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <p>&copy; @DateTime.Now.Year - World Solutions RRHH</p>
             </footer>
             <br>
         </div><!-- /.container footer-->

@@ -8,7 +8,7 @@ namespace RRHH.Models
 {
     public class DataBase
     {
-        private SqlConnection conexion = new SqlConnection("Server=DEVELOPER-PC\\SQLEXPRESS;Database=RRHH;Trusted_Connection=True;");
+        private SqlConnection conexion = new SqlConnection("Server=CPX-LF4YH71NNSV\\SQLEXPRESS;Database=RRHH;Trusted_Connection=True;");
         private SqlCommand sentencia;
 
         public SqlCommand Conectar(string sqlquery)

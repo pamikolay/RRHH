@@ -186,6 +186,7 @@
     <Content Include="Content\css\aregarNuevaBusqueda.css" />
     <Content Include="Content\css\editarBusqueda.css" />
     <Content Include="Content\css\busquedas.css" />
+    <Content Include="Content\css\index.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\misPostulaciones.css" />
     <Content Include="Content\css\registro.css" />
