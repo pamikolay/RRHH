@@ -127,6 +127,38 @@ namespace RRHH.Models
             return jobs;
         }
 
+        public List<Jobs> ConsultarInactivas()
+        {
+            List<Jobs> jobs = new List<Jobs>();
+
+            string sqlquery = "SELECT * FROM Jobs WHERE Status = 1";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+
+            CompanysManager cManager = new CompanysManager();     //para pasarle un objeto company necesito el CompanyManager
+
+            SqlDataReader reader = sentencia.ExecuteReader();
+            while (reader.Read()) //mientras haya un registro para leer
+            {
+                //creo el artículo, le completo los datos 
+                Jobs job = new Jobs();
+                job.ID = (int)reader["ID"];
+                job.Date = (DateTime)reader["Date"];
+                job.Name = (string)reader["Name"];
+                job.Description = (string)reader["Description"];
+                job.Company = cManager.Consultar((int)reader["Company"]);
+                //agrego el job a la lista
+                jobs.Add(job);
+            }
+
+            //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
+            reader.Close();
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+
+            return jobs;
+        }
+
         public Jobs Consultar(int ID)
         {
             string sqlquery = "select * from Jobs WHERE ID=@ID";

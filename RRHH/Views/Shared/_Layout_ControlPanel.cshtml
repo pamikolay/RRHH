@@ -32,9 +32,9 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="@Url.Action("Index","ControlPanel")">Panel de Control <span class="sr-only">(current)</span></a></li>
                     <li><a href="@Url.Action("BuscarPostulantes","ControlPanel")">Buscar postulantes</a></li>
-                    <li><a href="@Url.Action("Busquedas","Jobs")">Busquedas Activas</a></li>
+                    <li><a href="@Url.Action("BusquedasActivas","ControlPanel")">Busquedas Activas</a></li>
                     <li><a href="@Url.Action("BusquedasInactivas","ControlPanel")">Busquedas Inactivas</a></li>
-                    <li><a href="@Url.Action("AgregarNuevaBusqueda", "Jobs")">Agregar nueva busqueda</a></li>
+                    <li><a href="@Url.Action("AgregarNuevaBusqueda","ControlPanel")">Agregar nueva busqueda</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["UsuarioLogueado"] != null)
@@ -66,13 +66,7 @@
     </nav>
     <br /><br /><br />
     <div class="container body-content">
-        <div id="ControlPanel" class="row">
-            <br />
-            <div class="col-md-8 col-md-offset-1">
-                @RenderBody()
-            </div>
-        </div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        @RenderBody()
         <hr />
         <div class="container">
             <!-- container footer -->

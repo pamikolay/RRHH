@@ -1,37 +1,27 @@
-﻿.bs-example{
-    max-width: 300px;
-}
-
-.bs-example>ul:last-child {
-    margin-bottom: 0;
-}
-
-.bs-example>.nav-pills-stacked-example {
-    max-width: 300px;
-}
-
-.nav {
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-}
-
-ul {
-    margin-top: 0;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-ul, menu, dir {
-    display: block;
-}
-
-body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
+﻿body {  
     color: #333;
+}
+
+.navbar-default {
+    color: #F2F2F2;
+    background-color: #4000FF;
+}
+
+.navbar-default .navbar-nav>.active>a{
+    color: #333;
+    font-weight: bold;
+    background-color: #FFFF00;
+}
+
+.navbar-default .navbar-brand{
+    color: #F2F2F2;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #F2F2F2;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+    color: #FFFF00;
 }
 

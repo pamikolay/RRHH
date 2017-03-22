@@ -9,36 +9,41 @@
 @section scriptsQnecesitoAntesPagina{
     <script src="~/Scripts/jquery.min.js"></script>
 }
+@section styles{
+    <link href="~/Content/css/controlPanel.css" rel="stylesheet" />
+}
 
-<h3>Elegi una busqueda para seleccionar los postulantes a la misma</h3>
-<div class="form-group">
-    <label class="col-md-6 col-md-offset-1 control-label">Busqueda</label>
-    <div class="col-md-6 col-md-offset-1 selectContainer">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-            <select class="form-control selectpicker" id="busquedaSelect" name="busqueda_id" data-url="@Url.Action("GetPostulantes","ControlPanel")">
-                <option value="">Seleccione la busqueda</option>
-                @foreach (RRHH.Models.Jobs row in ViewBag.BusquedasActivas)
-                {
-                    <option value="@row.ID">@row.Name</option>
-                }
-            </select>
+<div class="row">
+    <h3>Elegi una busqueda para seleccionar los postulantes a la misma</h3><br />
+    <div class="form-group">
+        <label class="col-md-6 col-md-offset-1 control-label">Busqueda</label>
+        <div class="col-md-6 col-md-offset-1 selectContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select class="form-control selectpicker" id="busquedaSelect" name="busqueda_id" data-url="@Url.Action("GetPostulantes","ControlPanel")">
+                    <option value="">Seleccione la busqueda</option>
+                    @foreach (RRHH.Models.Jobs row in ViewBag.BusquedasActivas)
+                    {
+                        <option value="@row.ID">@row.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-6 col-md-offset-1 control-label">Postulante</label>
+        <div class="col-md-6 col-md-offset-1 selectContainer">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select class="form-control selectpicker" id="userSelect" name="user_id">
+                    <option value="">Seleccione el postulante</option>
+                </select>
+            </div>
         </div>
     </div>
 </div>
-
-<div class="form-group">
-    <label class="col-md-6 col-md-offset-1 control-label">Postulante</label>
-    <div class="col-md-6 col-md-offset-1 selectContainer">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-            <select class="form-control selectpicker" id="userSelect" name="user_id">
-                <option value="">Seleccione el postulante</option>
-            </select>
-        </div>
-    </div>
-</div>
-
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 <style>
 .control-label {
     margin-bottom: 8px;

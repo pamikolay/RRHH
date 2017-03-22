@@ -6,10 +6,16 @@
 @section styles{
     <link href="~/Content/css/controlPanel.css" rel="stylesheet" />
 }
-<h1>Hola @(((RRHH.Models.Users)Session["UsuarioLogueado"]).FirstName),</h1>
-<h2>Te damos la bienvenida al panel de control</h2>
 
-
-
-
-
+<!-- Panel de Control -->
+<div>
+    <br />
+    <h1>Hola @(((RRHH.Models.Users)Session["UsuarioLogueado"]).FirstName),</h1>
+    <div id="BusquedasActivas" class="row">
+        <div class="col-md-8 col-md-offset-1">
+            <h2>Te damos la bienvenida al panel de control de</h2>
+            <h2>World Solutions RRHH</h2>
+        </div>
+    </div>
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

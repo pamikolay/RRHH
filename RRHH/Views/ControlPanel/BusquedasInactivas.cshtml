@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Busquedas Activas";
+    ViewBag.Title = "Busquedas Inactivas";
     Layout = "~/Views/Shared/_Layout_ControlPanel.cshtml";
 }
 
@@ -14,7 +14,7 @@
 
 <!-- Busquedas -->
 <div>
-    <h2>Busquedas Activas</h2>
+    <h2>Busquedas Inactivas</h2>
     <div id="BusquedasActivas" class="row">
         <form action="@Url.Action("EditarBusqueda","ControlPanel")" method="post">
             <input type="number" class="oculto" id="datoIDeditar" name="id_job">

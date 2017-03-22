@@ -5,6 +5,7 @@
 }
 @section styles{
     <link href="~/Content/css/aregarNuevaBusqueda.css" rel="stylesheet" />
+    <link href="~/Content/css/controlPanel.css" rel="stylesheet" />
 }
 
 <!-- AgregarNuevaBusqueda -->
@@ -27,7 +28,7 @@
             <select id="companySelect" name="company_id">
                 @foreach (RRHH.Models.Companys row in ViewBag.TablaCompany)
                 {
-                <option value="@row.ID">@row.Name</option>
+                    <option value="@row.ID">@row.Name</option>
                 }
             </select>
         </div>
@@ -35,5 +36,4 @@
             <input id="GuardarNuevaBusqueda" type="submit" class="btn btn-primary" value="Guardar">
         </div>
     </form>
-</div>
-
+</div><br /><br />

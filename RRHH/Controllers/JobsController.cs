@@ -20,59 +20,6 @@ namespace RRHH.Controllers
             ViewBag.TablaBusquedas = jManager.ConsultarActivas();
             return View();
         }
-        public ActionResult AgregarNuevaBusqueda()
-        {
-            CompanysManager cManager = new CompanysManager();
-            ViewBag.TablaCompany = cManager.ConsultarTodos();
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult GuardarNuevaBusqueda(string job_name, string job_description, int company_id)
-        {
-            Jobs newJob = new Jobs();
-            newJob.Name = job_name;
-            newJob.Description = job_description;
-            CompanysManager cManager = new CompanysManager();     //para pasarle un objeto company necesito el CompanyManager
-            newJob.Company = cManager.Consultar(company_id);
-
-            JobsManager jManager = new JobsManager();
-            jManager.Insertar(newJob);
-
-            return RedirectToAction("Busquedas", "Jobs");
-        }
-
-        [HttpPost]
-        public ActionResult EditarBusqueda(int id_job)
-        {
-            JobStatusesManager jSmanager = new JobStatusesManager();
-            JobsManager jManager = new JobsManager();
-            CompanysManager cManager = new CompanysManager();
-            ViewBag.Company = cManager.ConsultarTodos();       //paso la lista de las compañias
-            ViewBag.JobAmodificar = jManager.Consultar(id_job);     //paso el job actual
-            ViewBag.JobStatus = jSmanager.ConsultarTodos();         //paso la lista de los jobstatus
-
-            return View();
-            //return RedirectToAction("EditarBusqueda", "Jobs");
-        }
-
-        [HttpPost]
-        public ActionResult EditarBusquedaGuardarCambios(int job_id, string job_name, string job_description, int company_id, int job_status_id)
-        {
-            Jobs newJob = new Jobs();
-            newJob.ID = job_id;
-            newJob.Name = job_name;
-            newJob.Description = job_description;
-            CompanysManager cManager = new CompanysManager();     //para pasarle un objeto company necesito el CompanyManager
-            newJob.Company = cManager.Consultar(company_id);
-            JobStatusesManager jStatusManager = new JobStatusesManager();
-            newJob.Status = jStatusManager.Consultar(job_status_id);
-            JobsManager jManager = new JobsManager();
-            jManager.Actualizar(newJob);
-
-            return RedirectToAction("Busquedas", "Jobs"); ;
-        }
-
         public ActionResult PruebaEmail()
         {
             ViewBag.mensaje = MailCambioEstado("Pepe Argento","pa.mikolay@gmail.com","laralaaaaa","probando probando");
