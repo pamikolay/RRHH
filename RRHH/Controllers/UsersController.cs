@@ -113,5 +113,35 @@ namespace RRHH.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+        public ActionResult ApplyJob(int id_job)
+        {
+            if (Session["UsuarioLogueado"]==null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
+            else
+            {
+                Users user = (Users)Session["UsuarioLogueado"];
+                Applicants applicant = new Applicants();
+                applicant.Postulant = user;
+                JobsManager jManeger = new JobsManager();
+                applicant.Job= jManeger.Consultar(id_job);
+                Session["TrabajoPostulado"] = applicant.Job;
+                ApplicantsManager aManager = new ApplicantsManager();
+                if ( aManager.CheckApplicant(user,(applicant.Job)) > 0) //compruebo si el ususario ya aplico a esa busqueda
+                {
+                    return View("/Views/Users/YaAplicaste.cshtml");
+                }
+                aManager.Insertar(applicant);
+                return View();
+            }
+        }
+        public ActionResult MisPostulaciones()
+        {
+            List<Applicants> applys = new List<Applicants>();
+            applys = new ApplicantsManager().ConsultarPorUser((Users)Session["UsuarioLogueado"]);
+            ViewBag.UserApplys = applys;
+            return View();
+        }
     }
 }

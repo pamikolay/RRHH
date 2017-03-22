@@ -37,8 +37,12 @@ namespace RRHH.Models
             sentencia.CommandType = System.Data.CommandType.StoredProcedure;
             sentencia.Parameters.Add (new SqlParameter ("@Email", user.Email));
             sentencia.Parameters.Add(new SqlParameter("@Password", user.Password));
-            //Retorno el ID
-            return Convert.ToInt32(sentencia.ExecuteScalar());
+
+            int a = Convert.ToInt32(sentencia.ExecuteScalar());
+
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+            return a;  //Retorno el ID
         }
         public Users Consultar(string email)
         {
@@ -56,12 +60,38 @@ namespace RRHH.Models
                 user.FirstName = (string)reader["FirstName"];
                 user.LastName= (string)reader["LastName"];
                 user.Email = (string)reader["Email"];
-                CitysManager cManager = new CitysManager();
-                user.City = cManager.Consultar((int)reader["City"]);
-                ProvincesManager pManager = new ProvincesManager();
-                user.Province = pManager.Consultar((int)reader["Province"]);
-                UserTypesManager uManager = new UserTypesManager();
-                user.UserType = uManager.Consultar((int)reader["UserType"]);
+                user.City = new CitysManager().Consultar((int)reader["City"]);
+                user.Province = new ProvincesManager().Consultar((int)reader["Province"]);
+                user.UserType = new UserTypesManager().Consultar((int)reader["UserType"]);
+                user.CvStatus = (string)reader["CvStatus"];
+            }
+
+            //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
+            reader.Close();
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+
+            return user;
+        }
+        public Users Consultar(int ID)
+        {
+            string sqlquery = "select * from Users WHERE ID=@ID";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            sentencia.Parameters.AddWithValue("@ID", ID);
+
+            Users user = new Users();
+            SqlDataReader reader = sentencia.ExecuteReader();
+            if (reader.Read()) //mientras haya un registro para leer
+            {
+                //creo el artículo, le completo los datos 
+                user.ID = (int)reader["ID"];
+                user.FirstName = (string)reader["FirstName"];
+                user.LastName = (string)reader["LastName"];
+                user.Email = (string)reader["Email"];
+                user.City = new CitysManager().Consultar((int)reader["City"]);
+                user.Province = new ProvincesManager().Consultar((int)reader["Province"]);
+                user.UserType = new UserTypesManager().Consultar((int)reader["UserType"]);
                 user.CvStatus = (string)reader["CvStatus"];
             }
 
@@ -89,12 +119,9 @@ namespace RRHH.Models
                 user.FirstName = (string)reader["FirstName"];
                 user.LastName = (string)reader["LastName"];
                 user.Email = (string)reader["Email"];
-                CitysManager cManager = new CitysManager();
-                user.City = cManager.Consultar((int)reader["City"]);
-                ProvincesManager pManager = new ProvincesManager();
-                user.Province = pManager.Consultar((int)reader["Province"]);
-                UserTypesManager uManager = new UserTypesManager();
-                user.UserType = uManager.Consultar((int)reader["UserType"]);
+                user.City = new CitysManager().Consultar((int)reader["City"]);
+                user.Province = new ProvincesManager().Consultar((int)reader["Province"]);
+                user.UserType = new UserTypesManager().Consultar((int)reader["UserType"]);
                 user.CvStatus = (string)reader["CvStatus"];
             }
             else
@@ -108,6 +135,33 @@ namespace RRHH.Models
             ConexionBD.Desconectar();
 
             return user;
+        }
+        public List<Users> GetUsuariosPorBusqueda(int ID)
+        {
+            List<Users> users = new List<Users>();
+
+            string sqlquery = "select Postulant from Applicants WHERE Job=@Job";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            sentencia.Parameters.AddWithValue("@Job", ID);
+
+            SqlDataReader reader = sentencia.ExecuteReader();
+            while (reader.Read()) //mientras haya un registro para leer
+            {
+                UsersManager uManager = new UsersManager();
+                Users user = new Users();
+                user = uManager.Consultar((int)reader["Postulant"]);
+                
+                //AGREGO LA company A LA LISTA
+                users.Add(user);
+            }
+
+            //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
+            reader.Close();
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+
+            return users;
         }
     }
 }

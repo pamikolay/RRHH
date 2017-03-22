@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Busquedas Activas";
+    Layout = "~/Views/Shared/_Layout_ControlPanel.cshtml";
+}
+
+@section styles{
+    <link href="~/Content/css/busquedas.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Content/js/busquedas.js"></script>
+}
+
+<!-- Busquedas -->
+<div>
+    <h2>Busquedas Activas</h2>
+    <div id="BusquedasActivas" class="row">
+        <form action="@Url.Action("EditarBusqueda","ControlPanel")" method="post">
+            <input type="number" class="oculto" id="datoIDeditar" name="id_job">
+            <input type="submit" class="button-modal btn btn-danger oculto" id="pasarDatos" value="Editar">
+        </form>
+        @if (ViewBag.TablaBusquedas != null)
+        {
+            foreach (RRHH.Models.Jobs row in ViewBag.TablaBusquedas)
+            {
+                <div class="col-md-9 col-md-offset-1">
+                    <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@row.Name</span></h3>
+                    <p><strong>Fecha:</strong> @row.Date</p>
+                    <p><strong>Empresa:</strong> @row.Company.Name</p>
+                    <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.Description</span></p>
+                    <span class="oculto">@row.ID</span>
+                    <p>
+                        <a class="button-modal btn btn-danger botonEditar" role="button">Editar</a>
+                    </p>
+                </div>
+            }
+        }
+    </div>
+</div>

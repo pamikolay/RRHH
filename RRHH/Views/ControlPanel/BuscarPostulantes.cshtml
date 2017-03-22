@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "BuscarPostulantes";
+    Layout = "~/Views/Shared/_Layout_ControlPanel.cshtml";
+}
+@section scripts{
+    <script src="~/Content/js/buscarPostulantes.js"></script>
+}
+@section scriptsQnecesitoAntesPagina{
+    <script src="~/Scripts/jquery.min.js"></script>
+}
+
+<h3>Elegi una busqueda para seleccionar los postulantes a la misma</h3>
+<div class="form-group">
+    <label class="col-md-6 col-md-offset-1 control-label">Busqueda</label>
+    <div class="col-md-6 col-md-offset-1 selectContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select class="form-control selectpicker" id="busquedaSelect" name="busqueda_id" data-url="@Url.Action("GetPostulantes","ControlPanel")">
+                <option value="">Seleccione la busqueda</option>
+                @foreach (RRHH.Models.Jobs row in ViewBag.BusquedasActivas)
+                {
+                    <option value="@row.ID">@row.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-6 col-md-offset-1 control-label">Postulante</label>
+    <div class="col-md-6 col-md-offset-1 selectContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+            <select class="form-control selectpicker" id="userSelect" name="user_id">
+                <option value="">Seleccione el postulante</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<style>
+.control-label {
+    margin-bottom: 8px;
+}
+
+.selectContainer{
+    margin-bottom: 25px;
+}
+</style>

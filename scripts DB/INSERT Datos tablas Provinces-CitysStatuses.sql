@@ -2458,10 +2458,10 @@ go
 
 
 INSERT INTO JobApplications VALUES
-(1,'SinEstado'),
-(2,'CvLeido'),
-(3,'EntrevistaConsultora'),
-(4,'EntrevistaEmpresa'),
+(1,'Sin Estado'),
+(2,'Cv Leido'),
+(3,'Entrevista con Consultora'),
+(4,'Entrevista con Empresa'),
 (5,'Contratado')
 
 go
@@ -2469,10 +2469,10 @@ go
 
 
 INSERT INTO Interviews VALUES
-(1,'SinAsignar'),
+(1,'Sin Asignar'),
 (2,'Programada'),
 (3,'Aprobada'),
 (4,'Desaprobada'),
-(5,'NoAsistio')
+(5,'No Asistio')
 
 go

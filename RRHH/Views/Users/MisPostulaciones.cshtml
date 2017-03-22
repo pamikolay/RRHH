@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "MisPostulaciones";
+}
+@section styles{
+    <link href="~/Content/css/misPostulaciones.css" rel="stylesheet" />
+}
+<br /><br /><br />
+<!-- Mis Postulaciones -->
+<div>
+    <h3>Mis Postulaciones</h3>
+    <div id="MisPostulaciones" class="row">
+        @if (ViewBag.UserApplys != null)
+        {
+            foreach (RRHH.Models.Applicants row in ViewBag.UserApplys)
+            {
+                <div class="col-md-8 col-md-offset-1">
+                    <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@row.Job.Name</span></h3>
+                    <p><strong>Fecha postulado:</strong> @row.Date</p>
+                    <p><strong>Empresa:</strong> @row.Job.Company.Name</p>
+                    <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.Job.Description</span></p>
+                    <p><strong>Estado de la busqueda:</strong> @row.Job.Status.Details</p>
+                    <p><strong>Estado de postulacion:</strong> @row.ApplicationStatus.Details</p>
+                    @if (row.ApplicationStatus.ID > 2)
+                    {
+                    <p><strong>Estado de Entrevista:</strong> @row.InterviewStatus.Status</p>
+                    }
+                    <br />
+                    <span class="oculto">@row.ID</span>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+

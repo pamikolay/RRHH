@@ -3,7 +3,7 @@
     ViewBag.Title = "Listado de busquedas";
 }
 @section styles{
-    <link href="~/Content/css/job.css" rel="stylesheet" />
+    <link href="~/Content/css/busquedas.css" rel="stylesheet" />
 }
 @section scripts{
     <script src="~/Content/js/busquedas.js"></script>
@@ -15,8 +15,12 @@
     <h2>Busquedas Activas</h2>
     <div  id="BusquedasActivas" class="row">
         <form action="@Url.Action("EditarBusqueda","Jobs")" method="post">
-            <input type="number" class="oculto" id="datoID" name="id_job">
+            <input type="number" class="oculto" id="datoIDeditar" name="id_job">
             <input type="submit" class="button-modal btn btn-danger oculto" id="pasarDatos" value="Editar">
+        </form>
+        <form action="@Url.Action("ApplyJob","Users")" method="post">
+            <input type="number" class="oculto" id="datoIDpostularse" name="id_job">
+            <input type="submit" class="button-modal btn btn-danger oculto" id="pasarDatos" value="Postularse">
         </form>
         @if (ViewBag.TablaBusquedas != null)
         {
@@ -29,48 +33,21 @@
                 <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.Description</span></p>
                 <span class="oculto">@row.ID</span>
                 <p>
-                    <a class="button-modal btn btn-warning botonAgregar" href="@Url.Action("AgregarNuevaBusqueda","Jobs")" role="button">Agregar nueva busqueda</a>
-                    <a class="button-modal btn btn-danger botonEditar" role="button">Editar</a>
-                    <a class="button-modal btn btn-primary botonPostularse" role="button">Postularse</a>
+                    @if (Session["UsuarioLogueado"] != null)
+                    {
+                        if ((((RRHH.Models.Users)Session["UsuarioLogueado"]).UserType.ID) == 1)
+                        {
+                            <a class="button-modal btn btn-danger botonEditar" role="button">Editar</a>
+                        }
+                    }
+                    else { } 
+                    @if(Session["UsuarioLogueado"] == null || (((RRHH.Models.Users)Session["UsuarioLogueado"]).UserType.ID) == 2)
+                    {
+                        <a class="button-modal btn btn-primary botonPostularse" role="button">Postularse</a>
+                    }
                 </p>
             </div>
-            }            
+            }
         }
-    </div>
-</div>
-<!-- Modal Editar Busqueda -->
-<div class="modal fade" id="modalEditarBusqueda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form action="@Url.Action("EditarBusqueda","Jobs")" method="post">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Editar busqueda</h4>
-                </div>
-                <div class="modal-body">
-                    @*<div class="form-group">
-                        <select id="companySelect" name="empresaPuesto">
-                            @foreach (RRHH.Models.Company row in ViewBag.TablaCompany)
-                            {
-                                <option value="@row.CompanyID">@row.CompanyName</option>
-                            }
-                        </select>
-                    </div>*@
-                    <div class="form-group">
-                            <label for="tituloBusqueda">Título de la Busqueda</label>
-                            <input type="text" id="modalTituloBusqueda" name="job_name" class="form-control">
-                            <input type="number" id="modalIdBusqueda" class="oculto" name="id_job">
-                    </div>
-                    <div class="form-group">
-                            <label for="descripcionPuesto">Descripcion de la Busqueda</label>
-                            <textarea type="text" id="modalDescripcionBusqueda" name="job_description" rows="9" class="form-control"></textarea>
-                    </div>
-                </div>
-            <div class="modal-footer">
-                    <input id="guardarBusqueda" type="submit" class="btn btn-primary" value="Guardar Cambios">
-                    <!--<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>-->
-            </div>
-            </form>
-        </div>
     </div>
 </div>

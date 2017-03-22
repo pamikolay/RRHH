@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "ControlPanel";
+    Layout = "~/Views/Shared/_Layout_ControlPanel.cshtml";
+}
+@section styles{
+    <link href="~/Content/css/controlPanel.css" rel="stylesheet" />
+}
+<h1>Hola @(((RRHH.Models.Users)Session["UsuarioLogueado"]).FirstName),</h1>
+<h2>Te damos la bienvenida al panel de control</h2>
+
+
+
+
+

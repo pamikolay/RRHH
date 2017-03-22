@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Nueva Busqueda";
+    Layout = "~/Views/Shared/_Layout_ControlPanel.cshtml";
+}
+@section styles{
+    <link href="~/Content/css/aregarNuevaBusqueda.css" rel="stylesheet" />
+}
+
+<!-- AgregarNuevaBusqueda -->
+<div class="row" id="formNuevaBusqueda">
+    <form action="@Url.Action("GuardarNuevaBusqueda","ControlPanel")" method="post">
+        <div>
+            <h3>Agregar Nueva busqueda</h3>
+        </div>
+        <br>
+        <div class="form-group col-md-9 col-md-offset-1">
+            <label for="tituloPuesto">Título del Puesto</label>
+            <input type="text" class="form-control" id="tituloBusqueda" name="job_name">
+        </div>
+        <div class="form-group col-md-9 col-md-offset-1">
+            <label for="descripcionPuesto">Descripcion del puesto</label>
+            <textarea type="text" class="form-control" rows="9" id="descripcionPuesto" name="job_description"></textarea>
+        </div>
+        <div class="form-group col-md-9 col-md-offset-1">
+            <label for="empresaPuesto">Empresa</label>
+            <select id="companySelect" name="company_id">
+                @foreach (RRHH.Models.Companys row in ViewBag.TablaCompany)
+                {
+                <option value="@row.ID">@row.Name</option>
+                }
+            </select>
+        </div>
+        <div class="footer col-md-9 col-md-offset-1">
+            <input id="GuardarNuevaBusqueda" type="submit" class="btn btn-primary" value="Guardar">
+        </div>
+    </form>
+</div>
+

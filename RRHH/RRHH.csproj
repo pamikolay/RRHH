@@ -148,6 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -162,6 +163,8 @@
     <Compile Include="Models\CompanysManager.cs" />
     <Compile Include="Models\DataBase.cs" />
     <Compile Include="Models\Interviews.cs" />
+    <Compile Include="Models\InterviewsManager.cs" />
+    <Compile Include="Models\JobsApplicationsManager.cs" />
     <Compile Include="Models\Jobs.cs" />
     <Compile Include="Models\JobsApplication.cs" />
     <Compile Include="Models\JobsManager.cs" />
@@ -180,13 +183,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\aregarNuevaBusqueda.css" />
     <Content Include="Content\css\editarBusqueda.css" />
-    <Content Include="Content\css\job.css" />
+    <Content Include="Content\css\busquedas.css" />
     <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\misPostulaciones.css" />
     <Content Include="Content\css\registro.css" />
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\bootstrapvalidator.min.js" />
+    <Content Include="Content\js\buscarPostulantes.js" />
     <Content Include="Content\js\busquedas.js" />
+    <Content Include="Content\css\controlPanel.css" />
     <Content Include="Content\js\login.js" />
     <Content Include="Content\js\registro.js" />
     <Content Include="Content\user-group-icon.png" />
@@ -234,6 +240,15 @@
     <Content Include="Views\Jobs\PruebaEmail.cshtml" />
     <Content Include="Views\Jobs\EditarBusqueda.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Users\ApplyJob.cshtml" />
+    <Content Include="Views\Users\YaAplicaste.cshtml" />
+    <Content Include="Views\Users\MisPostulaciones.cshtml" />
+    <Content Include="Views\Shared\_Layout_ControlPanel.cshtml" />
+    <Content Include="Views\ControlPanel\Index.cshtml" />
+    <Content Include="Views\ControlPanel\BuscarPostulantes.cshtml" />
+    <Content Include="Views\ControlPanel\BusquedasActivas.cshtml" />
+    <Content Include="Views\ControlPanel\EditarBusqueda.cshtml" />
+    <Content Include="Views\ControlPanel\AgregarNuevaBusqueda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
