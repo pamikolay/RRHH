@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -8,7 +9,8 @@ namespace RRHH.Models
 {
     public class DataBase
     {
-        private SqlConnection conexion = new SqlConnection("Server=CPX-LF4YH71NNSV\\SQLEXPRESS;Database=RRHH;Trusted_Connection=True;");
+        //private SqlConnection conexion = new SqlConnection("Server=CPX-LF4YH71NNSV\\SQLEXPRESS;Database=RRHH;Trusted_Connection=True;");
+        private SqlConnection conexion = new SqlConnection(ConfigurationManager.AppSettings["ConexionBaseDeDatos"]);
         private SqlCommand sentencia;
 
         public SqlCommand Conectar(string sqlquery)
