@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "ConsultarEstadoPostulante";
+    Layout = "~/Views/Shared/_Layout_ControlPanel.cshtml";
+}
+@section styles{
+    <link href="~/Content/css/controlPanel.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <h2>ConsultarEstadoPostulante</h2>
+    @*@foreach (RRHH.Models.Applicants row in ViewBag.applicant)
+        {*@
+        <div class="col-md-2">
+            <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@ViewBag.applicant.Job.Name</span></h3>
+        </div>
+        <div class="col-md-1">
+            <p><strong>Fecha postulado:</strong> @ViewBag.applicant.Date</p>
+        </div>
+        <div class="col-md-1">
+            <p><strong>Empresa:</strong> @ViewBag.applicant.Job.Company.Name</p>
+        </div>
+        <div class="col-md-1">
+            <p><strong>Estado de la busqueda:</strong> @ViewBag.applicant.Job.Status.Details</p>
+        </div>
+        <div class="col-md-1">
+            <p><strong>Estado de postulacion:</strong> @ViewBag.applicant.ApplicationStatus.Details</p>
+        </div>
+        <div class="col-md-1">
+            @if (@ViewBag.applicant.ApplicationStatus.ID > 2)
+            {
+                <p><strong>Estado de Entrevista:</strong> @ViewBag.applicant.InterviewStatus.Status</p>
+            }
+            <br />
+            <span class="oculto">@ViewBag.applicant.ID</span>
+        </div>
+        @*}*@
+</div>

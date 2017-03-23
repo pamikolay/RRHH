@@ -92,6 +92,7 @@ namespace RRHH.Controllers
             ciudades = new CitysManager().GetCiudadesPorProvincia(id);
             return Json(new SelectList(ciudades, "ID", "Name"));
         }
+
         [HttpPost]
         public ActionResult GuardarNuevoUsuario(string first_name, string last_name, string password, string email, string phone, string address, int province_id, int city_id, string genre)
         {

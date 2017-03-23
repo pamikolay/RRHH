@@ -91,5 +91,12 @@ namespace RRHH.Controllers
 
             return RedirectToAction("Index", "ControlPanel"); ;
         }
+
+        public ActionResult ConsultarEstadoPostulante(int busqueda_id, int user_id)
+        {
+            Applicants applicant = new ApplicantsManager().ConsultarEstado(busqueda_id, user_id);
+            ViewBag.applicant = applicant;
+            return View();
+        }
     }
 }

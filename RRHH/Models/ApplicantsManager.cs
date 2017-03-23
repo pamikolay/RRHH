@@ -60,5 +60,28 @@ namespace RRHH.Models
 
             return applys;
         }
+        public Applicants ConsultarEstado(int busqueda_id, int user_id)
+        {
+            string sqlquery = "SELECT * FROM Applicants WHERE Postulant=@Postulant AND Job=@Job";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            sentencia.Parameters.AddWithValue("@Postulant", user_id);
+            sentencia.Parameters.AddWithValue("@Job", busqueda_id);
+
+            //creo la busqueda y le completo los datos 
+            Applicants apply = new Applicants();
+            SqlDataReader reader = sentencia.ExecuteReader();
+            if (reader.Read()) //mientras haya un registro para leer
+            {
+                apply.ID = (int)reader["ID"];
+                apply.Date = (DateTime)reader["Date"];
+                apply.Job = new JobsManager().Consultar((int)reader["Job"]);
+                apply.Postulant = new UsersManager().Consultar((int)reader["Postulant"]);
+                apply.ApplicationStatus = new JobsApplicationsManager().Consultar((int)reader["ApplicationStatus"]);
+                apply.InterviewStatus = new InterviewsManager().Consultar((int)reader["InterviewStatus"]);
+            }
+
+            return apply;
+        }
     }
 }

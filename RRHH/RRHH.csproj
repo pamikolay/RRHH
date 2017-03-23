@@ -253,6 +253,8 @@
     <Content Include="Views\ControlPanel\EditarBusqueda.cshtml" />
     <Content Include="Views\ControlPanel\AgregarNuevaBusqueda.cshtml" />
     <Content Include="Views\ControlPanel\BusquedasInactivas.cshtml" />
+    <Content Include="Views\Users\ConsultarEstadoPostulante.cshtml" />
+    <Content Include="Views\ControlPanel\ConsultarEstadoPostulante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
