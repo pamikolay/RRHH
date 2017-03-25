@@ -107,10 +107,11 @@ namespace RRHH.Controllers
 
             return View();
         }
-        public ActionResult ModificarEstadoPostulante(int jobApp_id, int interview_id, int applicant_id)
+        public ActionResult ModificarEstado(int applicant_id, int jobApp_id, int interview_id)
         {
-
-            return View();
+            ApplicantsManager applicantMod = new ApplicantsManager();
+            applicantMod.ActualizarEstado(applicant_id, jobApp_id, interview_id);
+            return View("/Views/ControlPanel/ModificarEstado.cshtml");
         }
     }
 }

@@ -83,15 +83,19 @@ namespace RRHH.Models
 
             return apply;
         }
-        public void Modificar(Applicants applicant)
+        public void ActualizarEstado(int applicant_id, int jobApp_id, int interview_id)
         {
             string sqlquery = "update Applicant set ApplicationStatus = @ApplicationStatus, InterviewStatus = @InterviewStatus WHERE ID = @ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
-            sentencia.Parameters.AddWithValue("@ApplicationStatus", applicant.ApplicationStatus.ID);
-            sentencia.Parameters.AddWithValue("@InterviewStatus", applicant.InterviewStatus.ID);
-            sentencia.Parameters.AddWithValue("@ID", applicant.ID);
+            //sentencia.Parameters.AddWithValue("@ApplicationStatus", applicant.ApplicationStatus.ID);
+            //sentencia.Parameters.AddWithValue("@InterviewStatus", applicant.InterviewStatus.ID);
+            //sentencia.Parameters.AddWithValue("@ID", applicant.ID);
+            sentencia.Parameters.AddWithValue("@ApplicationStatus", jobApp_id);
+            sentencia.Parameters.AddWithValue("@InterviewStatus", interview_id);
+            sentencia.Parameters.AddWithValue("@ID", applicant_id);
+
             //5-Ejecutar!
             sentencia.ExecuteNonQuery();
 
