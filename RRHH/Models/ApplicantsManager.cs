@@ -83,5 +83,20 @@ namespace RRHH.Models
 
             return apply;
         }
+        public void Modificar(Applicants applicant)
+        {
+            string sqlquery = "update Applicant set ApplicationStatus = @ApplicationStatus, InterviewStatus = @InterviewStatus WHERE ID = @ID";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+
+            sentencia.Parameters.AddWithValue("@ApplicationStatus", applicant.ApplicationStatus.ID);
+            sentencia.Parameters.AddWithValue("@InterviewStatus", applicant.InterviewStatus.ID);
+            sentencia.Parameters.AddWithValue("@ID", applicant.ID);
+            //5-Ejecutar!
+            sentencia.ExecuteNonQuery();
+
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+        }
     }
 }

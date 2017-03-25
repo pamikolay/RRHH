@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "ConsultarEstadoPostulante";
+    Layout = "~/Views/Shared/_Layout_ControlPanel.cshtml";
+}
+@section styles{
+    <link href="~/Content/css/controlPanel.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/Content/js/consultarPostulante.js"></script>
+}
+
+<div class="container">
+    <form action="@Url.Action("ModificarEstadoPostulante", "ControlPanel")" method="post">
+        <h2>Consultar estado postulante</h2>
+        <p>Al cambiar de estado y confirmar se enviara un mail al postulante informando el nuevo estado</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Postulante</th>
+                    <th>Puesto</th>
+                    <th>Fecha postulado</th>
+                    <th>Estado busqueda</th>
+                    <th>Estado postulacion</th>
+                    @if (@ViewBag.applicant.ApplicationStatus.ID > 2)
+                    {
+                        <th>Estado entrevista</th>
+                    }
+                    <th class="oculto"><input type="number" value="@ViewBag.applicant.ID" name="applicant_id"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@ViewBag.applicant.Postulant.FirstName @ViewBag.applicant.Postulant.LastName</td>
+                    <td>@ViewBag.applicant.Job.Name</td>
+                    <td>@ViewBag.applicant.Date</td>
+                    <td>@ViewBag.applicant.Job.Status.Details</td>
+                    <td>
+                        <select id="jobAppSelect" name="jobApp_id">
+                            @foreach (RRHH.Models.JobApplications row in ViewBag.JobApplications)
+                            {
+                                if (ViewBag.applicant.ApplicationStatus.ID == row.ID)
+                                {
+                                    <option value="@row.ID" selected="selected">@row.Details</option>
+                                }
+                                else
+                                {
+                                    <option value="@row.ID">@row.Details</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    @if (@ViewBag.applicant.ApplicationStatus.ID > 2)
+                    {
+                        <td>
+                            <select id="interviewSelect" name="interview_id">
+                                @foreach (RRHH.Models.Interviews row in ViewBag.Interviews)
+                                {
+                                    if (ViewBag.applicant.InterviewStatus.ID == row.ID)
+                                    {
+                                        <option value="@row.ID" selected="selected">@row.Status</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@row.ID">@row.Status</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+        <input id="GuardarCambios" type="submit" class="btn btn-primary" value="Guardar cambios">
+    </form>
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

@@ -92,10 +92,24 @@ namespace RRHH.Controllers
             return RedirectToAction("Index", "ControlPanel"); ;
         }
 
-        public ActionResult ConsultarEstadoPostulante(int busqueda_id, int user_id)
+        public ActionResult ConsultarPostulante(int busqueda_id, int user_id)
         {
             Applicants applicant = new ApplicantsManager().ConsultarEstado(busqueda_id, user_id);
             ViewBag.applicant = applicant;
+
+            List<JobApplications> applicationsStatuses = new List<JobApplications>();
+            applicationsStatuses = new JobsApplicationsManager().ConsultarTodos();
+            ViewBag.JobApplications = applicationsStatuses;
+
+            List<Interviews> interviewsStatuses = new List<Interviews>();
+            interviewsStatuses = new InterviewsManager().ConsultarTodos();
+            ViewBag.Interviews = interviewsStatuses;
+
+            return View();
+        }
+        public ActionResult ModificarEstadoPostulante(int jobApp_id, int interview_id, int applicant_id)
+        {
+
             return View();
         }
     }
