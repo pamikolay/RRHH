@@ -162,6 +162,8 @@
     <Compile Include="Models\Companys.cs" />
     <Compile Include="Models\CompanysManager.cs" />
     <Compile Include="Models\DataBase.cs" />
+    <Compile Include="Models\Emails.cs" />
+    <Compile Include="Models\EmailsManager.cs" />
     <Compile Include="Models\Interviews.cs" />
     <Compile Include="Models\InterviewsManager.cs" />
     <Compile Include="Models\JobsApplicationsManager.cs" />

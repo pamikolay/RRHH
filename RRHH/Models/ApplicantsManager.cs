@@ -102,5 +102,32 @@ namespace RRHH.Models
             //CERRAR LA CONEXION AL TERMINAR!!!!
             ConexionBD.Desconectar();
         }
+        public Applicants Consultar(int ID)
+        {
+            string sqlquery = "select * from Applicants WHERE ID=@ID";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            sentencia.Parameters.AddWithValue("@ID", ID);
+
+            Applicants apply = new Applicants();
+            SqlDataReader reader = sentencia.ExecuteReader();
+            if (reader.Read()) //mientras haya un registro para leer
+            {
+                //creo la postulación, le completo los datos 
+                apply.ID = (int)reader["ID"];
+                apply.Date = (DateTime)reader["Date"];
+                apply.Job = new JobsManager().Consultar((int)reader["Job"]);
+                apply.Postulant = new UsersManager().Consultar((int)reader["Postulant"]);
+                apply.ApplicationStatus = new JobsApplicationsManager().Consultar((int)reader["ApplicationStatus"]);
+                apply.InterviewStatus = new InterviewsManager().Consultar((int)reader["InterviewStatus"]);
+            }
+
+            //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
+            reader.Close();
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+
+            return apply;
+        }
     }
 }

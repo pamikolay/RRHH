@@ -111,6 +111,12 @@ namespace RRHH.Controllers
         {
             ApplicantsManager applicantMod = new ApplicantsManager();
             applicantMod.ActualizarEstado(applicant_id, jobApp_id, interview_id);
+
+            Applicants apply = applicantMod.Consultar(applicant_id);
+            string respuestaEmail = new EmailsManager().EmailCambioEstado(apply);
+            ViewBag.respuestaEmail = respuestaEmail;
+            ViewBag.datosApply = apply;
+
             return View();
         }
     }
