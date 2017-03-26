@@ -85,7 +85,7 @@ namespace RRHH.Models
         }
         public void ActualizarEstado(int applicant_id, int jobApp_id, int interview_id)
         {
-            string sqlquery = "update Applicant set ApplicationStatus = @ApplicationStatus, InterviewStatus = @InterviewStatus WHERE ID = @ID";
+            string sqlquery = "update Applicants set ApplicationStatus = @ApplicationStatus, InterviewStatus = @InterviewStatus WHERE ID = @ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 

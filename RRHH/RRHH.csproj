@@ -256,7 +256,7 @@
     <Content Include="Views\ControlPanel\BusquedasInactivas.cshtml" />
     <Content Include="Views\Users\ConsultarEstadoPostulante.cshtml" />
     <Content Include="Views\ControlPanel\ConsultarPostulante.cshtml" />
-    <Content Include="Views\ControlPanel\ModificarEstado.cshtml" />
+    <Content Include="Views\ControlPanel\ModificarEstadoPostulante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

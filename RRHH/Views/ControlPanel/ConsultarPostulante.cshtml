@@ -11,7 +11,7 @@
 }
 
 <div class="container">
-    <form action="@Url.Action("ModificarEstado", "ControlPanel")" method="post">
+    <form action="@Url.Action("ModificarEstadoPostulante", "ControlPanel")" method="post">
         <h2>Consultar estado postulante</h2>
         <p>Al cambiar de estado y confirmar se enviara un mail al postulante informando el nuevo estado</p>
         <table class="table">
@@ -22,10 +22,10 @@
                     <th>Fecha postulado</th>
                     <th>Estado busqueda</th>
                     <th>Estado postulacion</th>
-                    @if (@ViewBag.applicant.ApplicationStatus.ID > 2)
-                    {
-                        <th>Estado entrevista</th>
-                    }
+                    @*@if (@ViewBag.applicant.ApplicationStatus.ID > 2)
+                    {*@
+                    <th>Estado entrevista</th>
+                    @*}*@
                     <th class="oculto"><input type="number" value="@ViewBag.applicant.ID" name="applicant_id"></th>
                 </tr>
             </thead>
@@ -50,24 +50,24 @@
                             }
                         </select>
                     </td>
-                    @if (@ViewBag.applicant.ApplicationStatus.ID > 2)
-                    {
-                        <td>
-                            <select id="interviewSelect" name="interview_id">
-                                @foreach (RRHH.Models.Interviews row in ViewBag.Interviews)
+                    @*@if (@ViewBag.applicant.ApplicationStatus.ID > 2)
+                    {*@
+                    <td>
+                        <select id="interviewSelect" name="interview_id">
+                            @foreach (RRHH.Models.Interviews row in ViewBag.Interviews)
+                            {
+                                if (ViewBag.applicant.InterviewStatus.ID == row.ID)
                                 {
-                                    if (ViewBag.applicant.InterviewStatus.ID == row.ID)
-                                    {
-                                        <option value="@row.ID" selected="selected">@row.Status</option>
-                                    }
-                                    else
-                                    {
-                                        <option value="@row.ID">@row.Status</option>
-                                    }
+                                    <option value="@row.ID" selected="selected">@row.Status</option>
                                 }
-                            </select>
-                        </td>
-                    }
+                                else
+                                {
+                                    <option value="@row.ID">@row.Status</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    @*}*@
                 </tr>
             </tbody>
         </table>
