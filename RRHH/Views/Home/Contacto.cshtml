@@ -1,7 +1,73 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Contacto";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<br />
+<div class="row">
+    <div class="col-md-5 col-md-offset-1">
+        <h2><strong>@ViewBag.Title</strong></h2>
+        <br />
+        <h3>San Martin 492</h3>
+        <h3>(1004) C.A.B.A.</h3>
+        <h3>rrhh.proyecto.comit@gmail.com</h3>
+        <h3>Tel: +54 11 5555-5555</h3>
+        <br />
+    </div>
+    <div class="col-md-5">
+        <form action="@Url.Action("Contactarse","Home")" method="post" id="contact_form">
+            <br /><br /><br /><br /><br />
+            <!-- Name input-->
+            <div class="form-group">
+                <label class="control-label">Nombre</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="name" placeholder="Nombre" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-mail input-->
+            <div class="form-group">
+                <label class="control-label">E-Mail</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="email" placeholder="E-Mail" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subject input-->
+            <div class="form-group">
+                <label class="control-label">Asunto</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="subject" placeholder="Asunto" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message area -->
+            <div class="form-group">
+                <label class="control-label">Mensaje</label>
+                <div class="inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <textarea class="form-control" rows="5" name="message" placeholder="completa aqui tu consulta..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="control-label"></label>
+                <div>
+                    <button type="submit" class="btn btn-warning">Enviar <span class="glyphicon glyphicon-send"></span></button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
