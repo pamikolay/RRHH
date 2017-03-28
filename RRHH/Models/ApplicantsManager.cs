@@ -39,7 +39,7 @@ namespace RRHH.Models
         {
             List<Applicants> applys = new List<Applicants>();
 
-            string sqlquery = "SELECT * FROM Applicants WHERE Postulant=@Postulant";
+            string sqlquery = "SELECT * FROM Applicants WHERE Postulant=@Postulant ORDER BY Date DESC";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             sentencia.Parameters.AddWithValue("@Postulant", user.ID);

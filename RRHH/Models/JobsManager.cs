@@ -98,8 +98,9 @@ namespace RRHH.Models
         public List<Jobs> ConsultarActivas()
         {
             List<Jobs> jobs = new List<Jobs>();
-
-            string sqlquery = "SELECT * FROM Jobs WHERE Status = 2";
+            
+            //las busquedas son ordenadas de por fecha de la mas nueva a la mas antigua
+            string sqlquery = "SELECT * FROM Jobs WHERE Status = 2 ORDER BY Date DESC";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
@@ -131,7 +132,7 @@ namespace RRHH.Models
         {
             List<Jobs> jobs = new List<Jobs>();
 
-            string sqlquery = "SELECT * FROM Jobs WHERE Status = 1";
+            string sqlquery = "SELECT * FROM Jobs WHERE Status = 1 ORDER BY Date DESC";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
