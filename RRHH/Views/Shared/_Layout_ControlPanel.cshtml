@@ -45,7 +45,7 @@
                                 <li><a href="#">Mi Perfil</a></li>
                                 @if ((((RRHH.Models.Users)Session["UsuarioLogueado"]).UserType.ID) == 1)
                                 {
-                                    <li id="controlPanel"><a href="@Url.Action("ControlPanel","Users")">Panel de control</a></li>
+                                    <li id="controlPanel"><a href="@Url.Action("Index","ControlPanel")">Panel de control</a></li>
                                 }
                                 @if ((((RRHH.Models.Users)Session["UsuarioLogueado"]).UserType.ID) == 2)
                                 {

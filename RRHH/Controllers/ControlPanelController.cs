@@ -17,13 +17,13 @@ namespace RRHH.Controllers
         public ActionResult BusquedasActivas()
         {
             JobsManager jManager = new JobsManager();
-            ViewBag.TablaBusquedas = jManager.ConsultarActivas();
+            ViewBag.BusquedasActivas = jManager.ConsultarActivas();
             return View();
         }
         public ActionResult BusquedasInactivas()
         {
             JobsManager jManager = new JobsManager();
-            ViewBag.TablaBusquedas = jManager.ConsultarInactivas();
+            ViewBag.BusquedasInactivas = jManager.ConsultarInactivas();
             return View();
         }
         public ActionResult BuscarPostulantes()
@@ -61,7 +61,6 @@ namespace RRHH.Controllers
             return RedirectToAction("BusquedasActivas", "ControlPanel");
         }
 
-        [HttpPost]
         public ActionResult EditarBusqueda(int id_job)
         {
             JobStatusesManager jSmanager = new JobStatusesManager();

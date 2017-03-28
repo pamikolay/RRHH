@@ -9,7 +9,3 @@
 .oculto{
     display: none;
 }
-
-.modal-dialog{
-        transform: translate(0,10%) !important;
-    }

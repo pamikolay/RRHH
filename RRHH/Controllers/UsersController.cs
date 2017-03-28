@@ -55,30 +55,6 @@ namespace RRHH.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Login2()
-        {
-            return View();
-        }
-
-        public ActionResult DoLogin2(string email, string password)
-        {
-            UsersManager uManager = new UsersManager();
-            Users user = uManager.Validar(email, password);
-
-            if (user != null)
-            {
-                //Usuario y contraseña CORRECTO
-                Session["UsuarioLogueado"] = user;
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                //EL USUARIO NO EXISTE O ESTA MAL LA CONTRASEÑA
-                TempData["Error"] = "El usuario no existe o está mal la contraseña";
-                return RedirectToAction("Login2", "Users");
-            }
-        }
-
         public ActionResult Registro()
         {
             ProvincesManager pManager = new ProvincesManager();

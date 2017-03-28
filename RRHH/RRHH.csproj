@@ -186,6 +186,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\aregarNuevaBusqueda.css" />
+    <Content Include="Content\css\buscarPostulante.css" />
     <Content Include="Content\css\editarBusqueda.css" />
     <Content Include="Content\css\busquedas.css" />
     <Content Include="Content\css\index.css" />
@@ -197,7 +198,6 @@
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\bootstrapvalidator.min.js" />
     <Content Include="Content\js\buscarPostulantes.js" />
-    <Content Include="Content\js\busquedas.js" />
     <Content Include="Content\css\controlPanel.css" />
     <Content Include="Content\carrousel3.jpg" />
     <Content Include="Content\carrousel4.jpeg" />
@@ -243,7 +243,6 @@
     <Content Include="Views\Home\Contacto.cshtml" />
     <Content Include="Views\Users\Registro.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Users\Login2.cshtml" />
     <Content Include="Views\Jobs\Busquedas.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
     <Content Include="Views\Users\ApplyJob.cshtml" />
@@ -256,7 +255,6 @@
     <Content Include="Views\ControlPanel\EditarBusqueda.cshtml" />
     <Content Include="Views\ControlPanel\AgregarNuevaBusqueda.cshtml" />
     <Content Include="Views\ControlPanel\BusquedasInactivas.cshtml" />
-    <Content Include="Views\Users\ConsultarEstadoPostulante.cshtml" />
     <Content Include="Views\ControlPanel\ConsultarPostulante.cshtml" />
     <Content Include="Views\ControlPanel\ModificarEstadoPostulante.cshtml" />
     <Content Include="Views\Home\Contactarse.cshtml" />

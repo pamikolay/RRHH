@@ -5,25 +5,14 @@
 @section styles{
     <link href="~/Content/css/busquedas.css" rel="stylesheet" />
 }
-@section scripts{
-    <script src="~/Content/js/busquedas.js"></script>
-}
 
 <!-- Busquedas -->
 <div>
     <h2>Busquedas Activas</h2>
     <div  id="BusquedasActivas" class="row">
-        <form action="@Url.Action("EditarBusqueda","Jobs")" method="post">
-            <input type="number" class="oculto" id="datoIDeditar" name="id_job">
-            <input type="submit" class="button-modal btn btn-danger oculto" id="pasarDatos" value="Editar">
-        </form>
-        <form action="@Url.Action("ApplyJob","Users")" method="post">
-            <input type="number" class="oculto" id="datoIDpostularse" name="id_job">
-            <input type="submit" class="button-modal btn btn-danger oculto" id="pasarDatos" value="Postularse">
-        </form>
-        @if (ViewBag.TablaBusquedas != null)
+        @if (ViewBag.Busquedas != null)
         {
-            foreach (RRHH.Models.Jobs row in ViewBag.TablaBusquedas)
+            foreach (RRHH.Models.Jobs row in ViewBag.Busquedas)
             {
             <div class="col-md-8 col-md-offset-1">
                 <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@row.Name</span></h3>
@@ -36,13 +25,13 @@
                     {
                         if ((((RRHH.Models.Users)Session["UsuarioLogueado"]).UserType.ID) == 1)
                         {
-                            <a class="button-modal btn btn-danger botonEditar" role="button">Editar</a>
+                            <a class="button-modal btn btn-danger botonEditar" href="@Url.Action("EditarBusqueda", "ControlPanel", new { id_job = row.ID })" role="button">Editar</a>
                         }
                     }
                     else { } 
                     @if(Session["UsuarioLogueado"] == null || (((RRHH.Models.Users)Session["UsuarioLogueado"]).UserType.ID) == 2)
                     {
-                        <a class="button-modal btn btn-primary botonPostularse" role="button">Postularse</a>
+                        <a class="button-modal btn btn-primary botonPostularse" href="@Url.Action("ApplyJob", "Users", new { id_job = row.ID })" role="button">Postularse</a>
                     }
                 </p>
             </div>
