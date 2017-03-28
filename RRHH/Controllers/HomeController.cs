@@ -17,6 +17,13 @@ namespace RRHH.Controllers
             {
                 return RedirectToAction("Index", "ControlPanel");
             }
+            if(Session["UsuarioLogueado"] != null && ((Users)Session["UsuarioLogueado"]).UserType.ID == 2)
+            {
+                if ( ((Users)Session["UsuarioLogueado"]).CvStatus== "NoCargado")
+                {
+                    return View("/Views/Users/CargarCv.cshtml");
+                }
+            }
             return View();
         }
 

@@ -29,6 +29,23 @@ namespace RRHH.Models
             //CERRAR LA CONEXION AL TERMINAR!!!!
             ConexionBD.Desconectar();
         }
+
+        public void SubirCvOk(Users user)
+        {
+            string sqlquery = "UPDATE Users set CvStatus = @CvStatus where ID = @ID";
+            //LA FECHA NO LA QUIERO MODIFICAR
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            //4-escribrimos la sentencia
+            sentencia.Parameters.AddWithValue("@ID", user.ID);
+            sentencia.Parameters.AddWithValue("@CvStatus", "Cargado-OK");
+            //5-Ejecutar!
+            sentencia.ExecuteNonQuery();
+
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+        }
+
         public int CheckUser(Users user)
         {
             string sqlquery = "uspLogin";
@@ -44,6 +61,33 @@ namespace RRHH.Models
             ConexionBD.Desconectar();
             return a;  //Retorno el ID
         }
+
+        public Users UpdateStatusCv(Users user)
+        {
+            string sqlquery = "select * from Users WHERE Email=@Email";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            sentencia.Parameters.AddWithValue("@Email", user.Email);
+
+            SqlDataReader reader = sentencia.ExecuteReader();
+            if (reader.Read()) //mientras haya un registro para leer
+            {
+                //creo el artículo, le completo los datos 
+                user.ID = (int)reader["ID"];
+                user.FirstName = (string)reader["FirstName"];
+                user.LastName = (string)reader["LastName"];
+                user.Email = (string)reader["Email"];
+                user.CvStatus = (string)reader["CvStatus"];
+            }
+
+            //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
+            reader.Close();
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+
+            return user;
+        }
+
         public Users Consultar(string email)
         {
             string sqlquery = "select * from Users WHERE Email=@Email";

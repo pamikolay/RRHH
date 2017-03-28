@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Falta Cargar tu Cv";
+}
+<div>
+    <h2>@(((RRHH.Models.Users)Session["UsuarioLogueado"]).FirstName), para poder aplicar a la busqueda tenes que haber cargado tu Cv</h2>
+    <div class="row">
+        <form action="@Url.Action("CargarCv","Users")" method="post" enctype="multipart/form-data">
+            <!-- CargarCv input-->
+            <div class="form-group">
+                <label class="col-md-6 col-md-offset-1 control-label">Sube tu Cv en un archivo .pdf</label>
+                <div class="col-md-5 col-md-offset-1 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-upload"></i></span>
+                        <input name="cv_file" class="form-control" type="file">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-1">
+                <br />
+                <input type="submit" class="btn btn-primary" value="Cargar">
+            </div>
+        </form>
+    </div>
+</div>

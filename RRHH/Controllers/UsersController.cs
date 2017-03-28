@@ -90,6 +90,19 @@ namespace RRHH.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult CargarCv(HttpPostedFileBase cv_file)
+        {
+            if (cv_file != null)
+            {
+                cv_file.SaveAs(Server.MapPath("~/Content/Cvs/" + ((Users)Session["UsuarioLogueado"]).ID + "-" + ((Users)Session["UsuarioLogueado"]).Email + ".pdf"));
+                UsersManager uManager = new UsersManager();
+                uManager.SubirCvOk(((Users)Session["UsuarioLogueado"]));
+                return View("/Views/Users/CargaCvOk.cshtml");
+            }
+            return View("/Views/Users/CargarCv.cshtml");
+        }
+        
         public ActionResult ApplyJob(int id_job)
         {
             if (Session["UsuarioLogueado"]==null)
@@ -98,19 +111,25 @@ namespace RRHH.Controllers
             }
             else
             {
-                Users user = (Users)Session["UsuarioLogueado"];
-                Applicants applicant = new Applicants();
-                applicant.Postulant = user;
-                JobsManager jManeger = new JobsManager();
-                applicant.Job= jManeger.Consultar(id_job);
-                Session["TrabajoPostulado"] = applicant.Job;
-                ApplicantsManager aManager = new ApplicantsManager();
-                if ( aManager.CheckApplicant(user,(applicant.Job)) > 0) //compruebo si el ususario ya aplico a esa busqueda
+                Users user = new UsersManager().UpdateStatusCv((Users)Session["UsuarioLogueado"]);
+                if (user.CvStatus == "Cargado-OK")
                 {
-                    return View("/Views/Users/YaAplicaste.cshtml");
+                    Applicants applicant = new Applicants();
+                    applicant.Postulant = user;
+                    JobsManager jManeger = new JobsManager();
+                    applicant.Job= jManeger.Consultar(id_job);
+                    Session["TrabajoPostulado"] = applicant.Job;
+                    ApplicantsManager aManager = new ApplicantsManager();
+                        if ( aManager.CheckApplicant(user,(applicant.Job)) > 0) //compruebo si el ususario ya aplico a esa busqueda
+                        {
+                            return View("/Views/Users/YaAplicaste.cshtml");
+                        }
+                    aManager.Insertar(applicant);
+                    return View();
                 }
-                aManager.Insertar(applicant);
-                return View();
+                else {
+                    return View("/Views/Users/FaltaCv.cshtml");
+                }
             }
         }
         public ActionResult MisPostulaciones()

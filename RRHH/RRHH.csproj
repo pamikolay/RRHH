@@ -258,6 +258,9 @@
     <Content Include="Views\ControlPanel\ConsultarPostulante.cshtml" />
     <Content Include="Views\ControlPanel\ModificarEstadoPostulante.cshtml" />
     <Content Include="Views\Home\Contactarse.cshtml" />
+    <Content Include="Views\Users\CargarCv.cshtml" />
+    <Content Include="Views\Users\CargaCvOk.cshtml" />
+    <Content Include="Views\Users\FaltaCv.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
