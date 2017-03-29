@@ -58,7 +58,7 @@ Details varchar(15) not null
 create table Jobs(
 ID int primary key IDENTITY(1,1) not null,
 Name varchar(100) not null,
-Date date not null,
+Date datetime not null,
 Description varchar(MAX) not null,
 Company int,
 Status int
@@ -77,7 +77,7 @@ Status varchar(50) not null
 
 create table Applicants(
 ID int primary key IDENTITY(1,1) not null,
-Date date not null,
+Date datetime not null,
 Postulant int,
 Job int,
 ApplicationStatus int,

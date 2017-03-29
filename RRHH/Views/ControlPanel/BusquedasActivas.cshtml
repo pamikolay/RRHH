@@ -22,7 +22,7 @@
             {
                 <div class="col-md-8 col-md-offset-1">
                     <h3><strong>Puesto:</strong> <span class="tituloBusqueda">@row.Name</span></h3>
-                    <p><strong>Fecha:</strong> @row.Date</p>
+                    <p><strong>Fecha:</strong> @row.Date.Day/@row.Date.Month/@row.Date.Year</p>
                     <p><strong>Empresa:</strong> @row.Company.Name</p>
                     <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.Description</span></p>
                     <span class="oculto">@row.ID</span>
