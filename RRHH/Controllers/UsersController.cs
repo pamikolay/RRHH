@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -88,6 +89,8 @@ namespace RRHH.Controllers
             UsersManager uManager = new UsersManager();
             uManager.Insertar(newUser);
 
+            EmailRegistro(newUser);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -138,6 +141,39 @@ namespace RRHH.Controllers
             applys = new ApplicantsManager().ConsultarPorUser((Users)Session["UsuarioLogueado"]);
             ViewBag.UserApplys = applys;
             return View();
+        }
+
+        public void EmailRegistro(Users user)
+        {
+            string mensaje = "";
+            try
+            {
+                //Definimos la conexión al servidor SMTP que vamos a usar
+                //para mandar el mail. Hay que buscarla en nuestro proveedor
+                SmtpClient clienteSmtp = new SmtpClient("smtp.gmail.com", 587);
+                clienteSmtp.Credentials = new System.Net.NetworkCredential("rrhh.proyecto.comit@gmail.com", "proyectoCom17");
+                clienteSmtp.EnableSsl = true;
+
+                //Generamos el objeto MAIL a enviar
+                MailMessage mailAEnviar = new MailMessage();
+                mailAEnviar.From = new MailAddress("rrhh.proyecto.comit@gmail.com", "RRHH Proyecto ComIT-2017");
+                mailAEnviar.To.Add(user.Email);
+                mailAEnviar.Subject = "Registro - World Solutios RRHH";
+                mailAEnviar.IsBodyHtml = true;
+                mailAEnviar.Body = "Hola " + user.FirstName + ", gracias por registrarte.<br /><br /><strong>Te damos la bienvenida a World Solutions RRHH</strong>";
+
+                //mandamos el mail
+                clienteSmtp.Send(mailAEnviar);
+                //Si todo sale bien configuro una mensaje
+                mensaje = "Se ha enviado un mail confirmando tu registro en World Solution RRHH";
+            }
+            catch (Exception ex)
+            {
+                mensaje = "Lo sentimos, ha ocurrido un error al enviar el mail. Intenta nuevamente en unos minutos";
+                string detalleError = ex.Message;   //guardo el error para ver que paso pero no lo muestro al usuario
+                //mensaje = "ERROR: " + ex.Message;
+            }
+            //return mensaje;
         }
     }
 }
