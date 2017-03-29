@@ -173,7 +173,7 @@ namespace RRHH.Controllers
                 string detalleError = ex.Message;   //guardo el error para ver que paso pero no lo muestro al usuario
                 //mensaje = "ERROR: " + ex.Message;
             }
-            //return mensaje;
+            mensaje = mensaje+1;//si quiero retornar el mensaje borrar esta linea y poner --> return mensaje;
         }
     }
 }
