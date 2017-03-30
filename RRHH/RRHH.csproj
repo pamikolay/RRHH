@@ -187,7 +187,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\aregarNuevaBusqueda.css" />
     <Content Include="Content\css\buscarPostulante.css" />
-    <Content Include="Content\css\editarBusqueda.css" />
     <Content Include="Content\css\busquedas.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\layout.css" />

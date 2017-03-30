@@ -28,3 +28,7 @@
 .oculto{
     display:none;
 }
+
+#GuardarCambios{
+    float: right;
+}
