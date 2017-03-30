@@ -91,7 +91,7 @@ namespace RRHH.Controllers
 
             EmailRegistro(newUser);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Users");
         }
 
         public ActionResult CargarCv(HttpPostedFileBase cv_file)
