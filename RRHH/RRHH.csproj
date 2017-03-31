@@ -181,8 +181,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\carrousel1.jpg" />
-    <Content Include="Content\carrousel2.jpg" />
+    <Content Include="Content\images\carrousel1.jpg" />
+    <Content Include="Content\images\carrousel2.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\aregarNuevaBusqueda.css" />
@@ -204,8 +204,8 @@
     <Content Include="Content\js\bootstrapvalidator.min.js" />
     <Content Include="Content\js\buscarPostulantes.js" />
     <Content Include="Content\css\controlPanel.css" />
-    <Content Include="Content\carrousel3.jpg" />
-    <Content Include="Content\carrousel4.jpeg" />
+    <Content Include="Content\images\carrousel3.jpg" />
+    <Content Include="Content\images\carrousel4.jpeg" />
     <Content Include="Content\js\consultarPostulante.js" />
     <Content Include="Content\js\login.js" />
     <Content Include="Content\js\registro.js" />

@@ -1,5 +1,4 @@
 ﻿body {
-  padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
 }
@@ -46,3 +45,12 @@
         color: white;
         background-color: red;
     }
+
+.img-responsive{
+    max-width: 150px;
+    margin: 0 auto;
+}
+
+h2{
+    margin-top: 2px;
+}
