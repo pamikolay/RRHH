@@ -98,6 +98,43 @@ namespace RRHH.Models
         public List<Jobs> ConsultarActivas()
         {
             List<Jobs> jobs = new List<Jobs>();
+
+            //las busquedas son ordenadas de por fecha de la mas nueva a la mas antigua
+            string sqlquery =   "SELECT        Jobs.ID, Jobs.Name, Jobs.Date, Jobs.Description, Jobs.Company, Jobs.Status, " + 
+                                "Companys.Name AS CompanyName " + 
+                                "FROM   Companys " + 
+                                "INNER JOIN Jobs ON Companys.ID = Jobs.Company " + 
+                                "WHERE(Jobs.Status = 2)  ORDER BY Jobs.Date DESC";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+
+            SqlDataReader reader = sentencia.ExecuteReader();
+            while (reader.Read()) //mientras haya un registro para leer
+            {
+                //creo el artículo, le completo los datos 
+                Jobs job = new Jobs();
+                job.ID = (int)reader["ID"];
+                job.Date = (DateTime)reader["Date"];
+                job.Name = (string)reader["Name"];
+                job.Description = (string)reader["Description"];
+                job.Company = new Companys();
+                job.Company.Name = (string)reader["CompanyName"];
+                //agrego el job a la lista
+                jobs.Add(job);
+            }
+
+            //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
+            reader.Close();
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+
+            return jobs;
+        }
+
+        [Obsolete]
+        public List<Jobs> ConsultarActivasViejo()
+        {
+            List<Jobs> jobs = new List<Jobs>();
             
             //las busquedas son ordenadas de por fecha de la mas nueva a la mas antigua
             string sqlquery = "SELECT * FROM Jobs WHERE Status = 2 ORDER BY Date DESC";
@@ -132,7 +169,11 @@ namespace RRHH.Models
         {
             List<Jobs> jobs = new List<Jobs>();
 
-            string sqlquery = "SELECT * FROM Jobs WHERE Status = 1 ORDER BY Date DESC";
+            string sqlquery =   "SELECT        Jobs.ID, Jobs.Name, Jobs.Date, Jobs.Description, Jobs.Company, Jobs.Status, " + 
+                                "Companys.Name AS CompanyName " + 
+                                "FROM   Companys " + 
+                                "INNER JOIN Jobs ON Companys.ID = Jobs.Company " + 
+                                "WHERE(Jobs.Status = 1)  ORDER BY Jobs.Date DESC";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
 
@@ -147,7 +188,8 @@ namespace RRHH.Models
                 job.Date = (DateTime)reader["Date"];
                 job.Name = (string)reader["Name"];
                 job.Description = (string)reader["Description"];
-                job.Company = cManager.Consultar((int)reader["Company"]);
+                job.Company = new Companys();
+                job.Company.Name = (string)reader["CompanyName"];
                 //agrego el job a la lista
                 jobs.Add(job);
             }
@@ -162,7 +204,12 @@ namespace RRHH.Models
 
         public Jobs Consultar(int ID)
         {
-            string sqlquery = "select * from Jobs WHERE ID=@ID";
+            string sqlquery =   "SELECT        Jobs.*, Companys.ID AS CompanyID, Companys.Name AS CompanyName, " + 
+                                "JobStatuses.ID AS JobStatusID, JobStatuses.Details AS JobStatusDetails " + 
+                                "FROM            dbo.Companys INNER JOIN " + 
+                                "Jobs ON Companys.ID = Jobs.Company INNER JOIN " + 
+                                "JobStatuses ON Jobs.Status = JobStatuses.ID " + 
+                                "WHERE Jobs.ID = @ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             sentencia.Parameters.AddWithValue("@ID", ID);
@@ -176,10 +223,12 @@ namespace RRHH.Models
                 job.Date = (DateTime)reader["Date"];    
                 job.Name = (string)reader["Name"];
                 job.Description = (string)reader["Description"];
-                CompanysManager cManager = new CompanysManager();
-                job.Company = cManager.Consultar((int)reader["Company"]);
-                JobStatusesManager jManager = new JobStatusesManager();
-                job.Status = jManager.Consultar((int)reader["Status"]);
+                job.Company = new Companys();
+                job.Company.ID = (int)reader["CompanyID"];
+                job.Company.Name = (string)reader["CompanyName"];
+                job.Status = new JobStatuses();
+                job.Status.ID= (int)reader["JobStatusID"];
+                job.Status.Details = (string)reader["JobStatusDetails"];
 
             }
 
