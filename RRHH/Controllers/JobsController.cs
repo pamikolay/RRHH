@@ -17,6 +17,13 @@ namespace RRHH.Controllers
             JobsManager jManager = new JobsManager();
             ViewBag.Busquedas = jManager.ConsultarActivas();
             return View();
+        }
+        
+        public ActionResult VerBusqueda(int ID)
+        {
+            JobsManager jManager = new JobsManager();
+            ViewBag.Busqueda = jManager.Consultar(ID);
+            return View();
         }        
     }
 }

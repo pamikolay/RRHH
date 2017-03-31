@@ -12,6 +12,30 @@
 <!-- Busquedas -->
 <div>
     <h2>Busquedas Inactivas</h2>
+    <div id="BusquedasInactivas" class="row">
+        @if (ViewBag.BusquedasInactivas != null)
+        {
+            foreach (RRHH.Models.Jobs row in ViewBag.BusquedasInactivas)
+            {
+                <div>
+                    <a href="@Url.Action("VerBusqueda", "ControlPanel", new { ID = row.ID })">
+                        <div class="job col-md-7 col-md-offset-1">
+                            <h3><strong><span class="tituloBusqueda">@row.Name</span></strong></h3>
+                            <p class="pDate"><strong>Fecha:</strong> @row.Date.Day/@row.Date.Month/@row.Date.Year</p>
+                            <p class="pCompany"><strong>Empresa:</strong> @row.Company.Name</p>
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+
+
+
+@*<div>
+    <h2>Busquedas Inactivas</h2>
     <div id="BusquedasActivas" class="row">
         @if (ViewBag.BusquedasInactivas != null)
         {
@@ -36,4 +60,4 @@
             }
         }
     </div>
-</div>
+</div>*@
