@@ -93,8 +93,8 @@ namespace RRHH.Controllers
             Jobs newJob = new Jobs();
             newJob.Name = job_name;
             newJob.Description = job_description;
-            CompanysManager cManager = new CompanysManager();     //para pasarle un objeto company necesito el CompanyManager
-            newJob.Company = cManager.Consultar(company_id);
+            newJob.Company = new Companys();
+            newJob.Company.ID = company_id;
 
             JobsManager jManager = new JobsManager();
             jManager.Insertar(newJob);
@@ -122,10 +122,10 @@ namespace RRHH.Controllers
             newJob.ID = job_id;
             newJob.Name = job_name;
             newJob.Description = job_description;
-            CompanysManager cManager = new CompanysManager();     //para pasarle un objeto company necesito el CompanyManager
-            newJob.Company = cManager.Consultar(company_id);
-            JobStatusesManager jStatusManager = new JobStatusesManager();
-            newJob.Status = jStatusManager.Consultar(job_status_id);
+            newJob.Company = new Companys();
+            newJob.Company.ID = company_id;
+            newJob.Status = new JobStatuses();
+            newJob.Status.ID = job_status_id;
             JobsManager jManager = new JobsManager();
             jManager.Actualizar(newJob);
 
