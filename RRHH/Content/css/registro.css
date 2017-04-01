@@ -1,3 +1,27 @@
 #success_message{ 
 	display: none;
-	}
+}
+
+#MailError{
+    margin-left: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: white;
+    background-color: red;
+}
+
+#MailOk{
+    margin-left: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: white;
+    background-color: green;
+}
+
+#ValidarEmail{
+    height: 31px;
+    text-align:center;
+}
+

@@ -62,6 +62,20 @@ namespace RRHH.Models
             return a;  //Retorno el ID
         }
 
+        public int ValidarPorEmail(string email)
+        {
+            string sqlquery = "SELECT * FROM Users WHERE Email=@Email";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            sentencia.Parameters.Add(new SqlParameter("@Email", email));
+
+            int a = Convert.ToInt32(sentencia.ExecuteScalar());
+
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+            return a;  //Retorno el ID
+        }
+
         public Users UpdateStatusCv(Users user)
         {
             string sqlquery = "select * from Users WHERE Email=@Email";

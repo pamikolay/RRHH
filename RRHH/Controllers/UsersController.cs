@@ -64,6 +64,13 @@ namespace RRHH.Controllers
         }
 
         [HttpPost]
+        public ActionResult ValidarEmail(string email)
+        {
+            int a = new UsersManager().ValidarPorEmail(email);
+            return Json(a);
+        }
+
+        [HttpPost]
         public ActionResult GetCiudades(int id)
         {
             List<Citys> ciudades = new List<Citys>();

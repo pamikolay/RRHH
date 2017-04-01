@@ -90,6 +90,7 @@ $(document).ready(function () {
             $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
                 $('#contact_form').data('bootstrapValidator').resetForm();
 
+
             // Prevent form submission
             e.preventDefault();
 
@@ -119,6 +120,28 @@ $("#provinceSelect").change(function () {
                 ciudad.Text + '</option>');
 
             });
+        },
+        //error: function (request, errorType, errorMessage) {
+        //    alert(errorMessage);
+        //}
+    })
+});
+$("#ValidarEmail").click(function () {
+    $.ajax({
+        type: 'POST',
+        url: $("#emailInput").data('url'),
+        dataType: 'json',
+        data: { email: String($("#emailInput").val()) },
+        success: function (existe) {
+            if (existe > 0)
+            {
+                $("#CheckMail").empty();
+                $("#CheckMail").append("<span id='MailError'>El email ya se encuentra registrado</span>");
+            }
+            else {
+                $("#CheckMail").empty();
+                $("#CheckMail").append("<span id='MailOk'>El email se encuentra disponible</span>");
+            }
         },
         //error: function (request, errorType, errorMessage) {
         //    alert(errorMessage);

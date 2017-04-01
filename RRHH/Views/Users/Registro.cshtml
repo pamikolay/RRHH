@@ -44,14 +44,17 @@
             </div>
 
             <!-- E-mail input-->
-            <div class="form-group">
+            <div id="emailDiv" class="form-group">
                 <label class="col-md-4 control-label">E-Mail</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input name="email" placeholder="E-Mail" class="form-control" type="text">
+                        <input id="emailInput" name="email" placeholder="E-Mail" class="form-control" data-url="@Url.Action("ValidarEmail","Users")" type="text">
                     </div>
                 </div>
+                <a id="ValidarEmail" class="btn btn-success">Validar Email</a>
+                <span id="CheckMail">
+                </span>
             </div>
 
             <!-- Password input-->
@@ -137,6 +140,14 @@
             <!-- Success message -->
             <div class="alert alert-success" role="alert" id="success_message">Completado <i class="glyphicon glyphicon-thumbs-up"></i> Gracias por contactarte.</div>
 
+            <!-- Button ValidarEmail -->
+            @*<div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button class="btn btn-success" id="ValidarEmail">Validar Email</button>
+                </div>
+            </div>*@
+
             <!-- Button -->
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
@@ -147,5 +158,4 @@
 
         </fieldset>
     </form>
-
 </div>
