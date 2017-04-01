@@ -106,7 +106,6 @@ namespace RRHH.Models
 
         public Applicants ConsultarEstado(int busqueda_id, int user_id)
         {
-            //string sqlquery = "SELECT * FROM Applicants WHERE Postulant=@Postulant AND Job=@Job";
             string sqlquery = "SELECT        Applicants.ID, Applicants.Date, Applicants.Postulant, Applicants.Job, Applicants.InterviewStatus, Applicants.ApplicationStatus, Users.FirstName," +
                                 "Companys.Name AS CompanyName, Jobs.Company, Jobs.Name AS JobName, Jobs.Description, Jobs.Status, JobStatuses.Details, JobStatuses.ID AS JobStatusID, " +
                                 "JobApplications.ID AS JobApplicationID, JobApplications.Details AS JobApplicationDetails, dbo.Interviews.Status AS InterviewStatusName, Interviews.ID AS InterviewID " +
@@ -144,15 +143,7 @@ namespace RRHH.Models
                 apply.InterviewStatus = new Interviews();
                 apply.InterviewStatus.Status = (string)reader["InterviewStatusName"];
             }
-            //{
-            //    apply.ID = (int)reader["ID"];
-            //    apply.Date = (DateTime)reader["Date"];
-            //    apply.Job = new JobsManager().Consultar((int)reader["Job"]);
-            //    apply.Postulant = new UsersManager().Consultar((int)reader["Postulant"]);
-            //    apply.ApplicationStatus = new JobsApplicationsManager().Consultar((int)reader["ApplicationStatus"]);
-            //    apply.InterviewStatus = new InterviewsManager().Consultar((int)reader["InterviewStatus"]);
-            //}
-
+            
             return apply;
         }
         public void ActualizarEstado(int applicant_id, int jobApp_id, int interview_id)
@@ -174,7 +165,58 @@ namespace RRHH.Models
             //CERRAR LA CONEXION AL TERMINAR!!!!
             ConexionBD.Desconectar();
         }
+
         public Applicants Consultar(int ID)
+        {
+            string sqlquery = "SELECT        Applicants.ID, Applicants.Date, Applicants.Postulant, Applicants.Job, Applicants.InterviewStatus, Applicants.ApplicationStatus, Users.FirstName, Users.LastName, Users.Email, " +
+                                "Companys.Name AS CompanyName, Jobs.Company, Jobs.Name AS JobName, Jobs.Description, Jobs.Status, JobStatuses.Details, JobStatuses.ID AS JobStatusID, " +
+                                "JobApplications.ID AS JobApplicationID, JobApplications.Details AS JobApplicationDetails, dbo.Interviews.Status AS InterviewStatusName, Interviews.ID AS InterviewID " +
+                                "FROM            dbo.Applicants INNER JOIN " +
+                                "Jobs ON Applicants.Job = Jobs.ID " +
+                                "INNER JOIN Users ON Applicants.Postulant = Users.ID " +
+                                "INNER JOIN Companys ON Jobs.Company = Companys.ID INNER JOIN " +
+                                "Interviews ON Applicants.InterviewStatus = Interviews.ID INNER JOIN " +
+                                "JobApplications ON Applicants.ApplicationStatus = JobApplications.ID INNER JOIN " +
+                                "JobStatuses ON Jobs.Status = JobStatuses.ID " +
+                                "WHERE Applicants.ID=@ID";
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            sentencia.Parameters.AddWithValue("@ID", ID);
+
+            Applicants apply = new Applicants();
+            SqlDataReader reader = sentencia.ExecuteReader();
+            if (reader.Read()) //mientras haya un registro para leer
+            {
+                //creo la postulación, le completo los datos 
+                apply.ID = (int)reader["ID"];
+                apply.Date = (DateTime)reader["Date"];
+                apply.Postulant = new Users();
+                apply.Postulant.FirstName = (string)reader["FirstName"];
+                apply.Postulant.LastName = (string)reader["LastName"];
+                apply.Postulant.Email = (string)reader["Email"];
+                apply.Job = new Jobs();
+                apply.Job.Name = (string)reader["JobName"];
+                apply.Job.Description = (string)reader["Description"];
+                apply.Job.Company = new Companys();
+                apply.Job.Company.Name = (string)reader["CompanyName"];
+                apply.Job.Status = new JobStatuses();
+                apply.Job.Status.Details = (string)reader["Details"];
+                apply.ApplicationStatus = new JobApplications();
+                apply.ApplicationStatus.Details = (string)reader["JobApplicationDetails"];
+                apply.InterviewStatus = new Interviews();
+                apply.InterviewStatus.Status = (string)reader["InterviewStatusName"];
+            }
+
+            //CERRAR EL READER AL TERMINAR DE LEER LOS REGISTROS
+            reader.Close();
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
+
+            return apply;
+        }
+
+        [Obsolete]
+        public Applicants ConsultarViejo(int ID)
         {
             string sqlquery = "select * from Applicants WHERE ID=@ID";
             DataBase ConexionBD = new DataBase();
