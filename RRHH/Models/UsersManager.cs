@@ -204,6 +204,10 @@ namespace RRHH.Models
             List<Users> users = new List<Users>();
 
             string sqlquery = "select Postulant from Applicants WHERE Job=@Job";
+            /*SELECT        dbo.Applicants.Postulant, dbo.Users.*, dbo.Applicants.Job
+FROM            dbo.Applicants INNER JOIN
+                         dbo.Users ON dbo.Applicants.Postulant = dbo.Users.ID
+*/
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             sentencia.Parameters.AddWithValue("@Job", ID);
