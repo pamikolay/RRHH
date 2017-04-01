@@ -106,7 +106,18 @@ namespace RRHH.Models
 
         public Applicants ConsultarEstado(int busqueda_id, int user_id)
         {
-            string sqlquery = "SELECT * FROM Applicants WHERE Postulant=@Postulant AND Job=@Job";
+            //string sqlquery = "SELECT * FROM Applicants WHERE Postulant=@Postulant AND Job=@Job";
+            string sqlquery = "SELECT        Applicants.ID, Applicants.Date, Applicants.Postulant, Applicants.Job, Applicants.InterviewStatus, Applicants.ApplicationStatus, Users.FirstName," +
+                                "Companys.Name AS CompanyName, Jobs.Company, Jobs.Name AS JobName, Jobs.Description, Jobs.Status, JobStatuses.Details, JobStatuses.ID AS JobStatusID, " +
+                                "JobApplications.ID AS JobApplicationID, JobApplications.Details AS JobApplicationDetails, dbo.Interviews.Status AS InterviewStatusName, Interviews.ID AS InterviewID " +
+                                "FROM            dbo.Applicants INNER JOIN " +
+                                "Jobs ON Applicants.Job = Jobs.ID " +
+                                "INNER JOIN Users ON Applicants.Postulant = Users.ID " +
+                                "INNER JOIN Companys ON Jobs.Company = Companys.ID INNER JOIN " +
+                                "Interviews ON Applicants.InterviewStatus = Interviews.ID INNER JOIN " +
+                                "JobApplications ON Applicants.ApplicationStatus = JobApplications.ID INNER JOIN " +
+                                "JobStatuses ON Jobs.Status = JobStatuses.ID " + 
+                                "WHERE Postulant=@Postulant AND Job=@Job";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             sentencia.Parameters.AddWithValue("@Postulant", user_id);
@@ -119,11 +130,28 @@ namespace RRHH.Models
             {
                 apply.ID = (int)reader["ID"];
                 apply.Date = (DateTime)reader["Date"];
-                apply.Job = new JobsManager().Consultar((int)reader["Job"]);
-                apply.Postulant = new UsersManager().Consultar((int)reader["Postulant"]);
-                apply.ApplicationStatus = new JobsApplicationsManager().Consultar((int)reader["ApplicationStatus"]);
-                apply.InterviewStatus = new InterviewsManager().Consultar((int)reader["InterviewStatus"]);
+                apply.Postulant = new Users();
+                apply.Postulant.FirstName = (string)reader["FirstName"];
+                apply.Job = new Jobs();
+                apply.Job.Name = (string)reader["JobName"];
+                apply.Job.Description = (string)reader["Description"];
+                apply.Job.Company = new Companys();
+                apply.Job.Company.Name = (string)reader["CompanyName"];
+                apply.Job.Status = new JobStatuses();
+                apply.Job.Status.Details = (string)reader["Details"];
+                apply.ApplicationStatus = new JobApplications();
+                apply.ApplicationStatus.Details = (string)reader["JobApplicationDetails"];
+                apply.InterviewStatus = new Interviews();
+                apply.InterviewStatus.Status = (string)reader["InterviewStatusName"];
             }
+            //{
+            //    apply.ID = (int)reader["ID"];
+            //    apply.Date = (DateTime)reader["Date"];
+            //    apply.Job = new JobsManager().Consultar((int)reader["Job"]);
+            //    apply.Postulant = new UsersManager().Consultar((int)reader["Postulant"]);
+            //    apply.ApplicationStatus = new JobsApplicationsManager().Consultar((int)reader["ApplicationStatus"]);
+            //    apply.InterviewStatus = new InterviewsManager().Consultar((int)reader["InterviewStatus"]);
+            //}
 
             return apply;
         }
