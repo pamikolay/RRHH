@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "Mi Perfil";
+    Layout = "~/Views/Shared/_Layout_ControlPanel.cshtml";
+}
+@section styles{
+    <link href="~/Content/css/controlPanel.css" rel="stylesheet" />
+}
+
+
+<div class="container">
+
+    <form class="well form-horizontal" action="@Url.Action("ModificarDatos","ControlPanel")" method="post" id="contact_form">
+        <fieldset>
+
+            <legend>Mis datos</legend>
+
+            <!-- FirsName input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Nombre</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="first_name" value="@ViewBag.User.FirstName" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- LastName input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Apellido</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="last_name" value="@ViewBag.User.LastName" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-mail input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">E-Mail</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="email" value="@ViewBag.User.Email" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Contraseña</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-flash"></i></span>
+                        <input name="password" value="@ViewBag.User.Password" class="form-control" type="password">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phone input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Telefono Celular #</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input name="phone" value="@ViewBag.User.Phone" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Dirección</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input name="address" value="@ViewBag.User.Address" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Province select -->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Provincia</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select class="form-control selectpicker" id="provinceSelect" name="province_id">
+                            <option value="">Seleccione su provincia</option>
+                            @foreach (RRHH.Models.Provinces row in ViewBag.Provinces)
+                            {
+                                if (row.ID == ViewBag.User.Province.ID)
+                                {
+                                    <option value="@row.ID" selected="selected">@row.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@row.ID">@row.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- City select -->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Ciudad</label>
+                <div class="col-md-4 selectContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        <select class="form-control selectpicker" id="citySelect" name="city_id">
+                            <option value="">Seleccione su ciudad</option>
+                            @foreach (RRHH.Models.Citys row in ViewBag.Citys)
+                            {
+                                if (row.ID == ViewBag.User.City.ID)
+                                {
+                                    <option value="@row.ID" selected="selected">@row.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@row.ID">@row.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Genre radio checks -->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Sexo?</label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label>
+                            @if (ViewBag.User.Genre == "hombre")
+                            {
+                                <input type="radio" name="genre" value="hombre" checked /><span>Hombre</span>
+                            }
+                            else
+                            {
+                                <input type="radio" name="genre" value="hombre" /><span>Hombre</span>
+                            }
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            @if (ViewBag.User.Genre == "mujer")
+                            {
+                                <input type="radio" name="genre" value="mujer" checked /><span>Mujer</span>
+                            }
+                            else
+                            {
+                                <input type="radio" name="genre" value="mujer" /><span>Mujer</span>
+                            }
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary">Modificar Datos <span class="glyphicon glyphicon-floppy-saved"></span></button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>
+

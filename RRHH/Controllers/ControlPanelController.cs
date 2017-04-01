@@ -14,6 +14,41 @@ namespace RRHH.Controllers
         {
             return View();
         }
+
+        public ActionResult MiPerfil()
+        {
+            ViewBag.Provinces = new ProvincesManager().ConsultarTodas();
+
+            Users user = new UsersManager().Consultar(((Users)Session["UsuarioLogueado"]).ID);
+            ViewBag.User = user;
+
+            ViewBag.Citys = new CitysManager().GetCiudadesPorProvincia(user.Province.ID);
+
+            return View();
+        }
+
+        public ActionResult ModificarDatos(string first_name, string last_name, string password, string email, string phone, string address, int province_id, int city_id, string genre)
+        {
+            Users user = new Users();
+            user.ID = ((Users)Session["UsuarioLogueado"]).ID;
+            user.FirstName = first_name;
+            user.LastName = last_name;
+            user.Password = password;
+            user.Email = email;
+            user.Phone = phone;
+            user.Address = address;
+            user.Genre = genre;
+            user.Province = new Provinces();
+            user.Province.ID = province_id;
+            user.City = new Citys();
+            user.City.ID = city_id;
+
+            UsersManager uManager = new UsersManager();
+            uManager.Actualizar(user);
+
+            return View();
+        }
+
         public ActionResult BusquedasActivas()
         {
             JobsManager jManager = new JobsManager();

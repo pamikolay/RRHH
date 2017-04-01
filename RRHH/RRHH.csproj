@@ -268,6 +268,10 @@
     <Content Include="Views\Users\FaltaCv.cshtml" />
     <Content Include="Views\Jobs\VerBusqueda.cshtml" />
     <Content Include="Views\ControlPanel\VerBusqueda.cshtml" />
+    <Content Include="Views\Users\MiPerfil.cshtml" />
+    <Content Include="Views\Users\ModificarDatos.cshtml" />
+    <Content Include="Views\ControlPanel\MiPerfil.cshtml" />
+    <Content Include="Views\ControlPanel\ModificarDatos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

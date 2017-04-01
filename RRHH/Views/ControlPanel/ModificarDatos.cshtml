@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Modificar Datos";
+    Layout = "~/Views/Shared/_Layout_ControlPanel.cshtml";
+}
+@section styles{
+    <link href="~/Content/css/controlPanel.css" rel="stylesheet" />
+}
+
+<br />
+<h2>Gracias @(((RRHH.Models.Users)Session["UsuarioLogueado"]).FirstName)</h2>
+<h3>Tus datos han sido modificados con exito</h3>
+
+

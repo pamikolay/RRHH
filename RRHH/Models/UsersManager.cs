@@ -125,7 +125,7 @@ namespace RRHH.Models
         }
         public Users Consultar(int ID)
         {
-            string sqlquery = "SELECT        Users.*, Citys.Name AS CityName, Provinces.Name AS ProvinceName " +
+            string sqlquery = "SELECT        Users.*, Citys.ID AS CityID, Citys.Name AS CityName, Provinces.ID AS ProvinceID, Provinces.Name AS ProvinceName " +
                                 "FROM Citys INNER JOIN " +
                                 "Provinces ON Citys.Province = Provinces.ID INNER JOIN " +
                                 "Users ON Citys.ID = Users.City AND Provinces.ID = Users.Province WHERE Users.ID=@ID";
@@ -143,9 +143,15 @@ namespace RRHH.Models
                 user.FirstName = (string)reader["FirstName"];
                 user.LastName = (string)reader["LastName"];
                 user.Email = (string)reader["Email"];
+                user.Address = (string)reader["Address"];
+                user.Phone = (string)reader["Phone"];
+                user.Password = (string)reader["Password"];
+                user.Genre = (string)reader["Genre"];
                 user.City = new Citys();
+                user.City.ID = (int)reader["CityID"];
                 user.City.Name = (string)reader["CityName"];
                 user.Province = new Provinces();
+                user.Province.ID = (int)reader["ProvinceID"];
                 user.Province.Name = (string)reader["ProvinceName"];
                 user.UserType = new UserTypes();
                 user.UserType.ID = (int)reader["UserType"];
@@ -228,6 +234,30 @@ namespace RRHH.Models
             ConexionBD.Desconectar();
 
             return users;
+        }
+
+        public void Actualizar(Users user)
+        {
+            string sqlquery = "UPDATE Users set FirstName = @FirstName, LastName = @LastName, Email = @Email, Address = @Address, Phone = @Phone, Password = @Password, Genre=@Genre, City=@City, Province=@Province where ID = @ID";
+            //LA FECHA NO LA QUIERO MODIFICAR
+            DataBase ConexionBD = new DataBase();
+            SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
+            //4-escribrimos la sentencia
+            sentencia.Parameters.AddWithValue("@FirstName", user.FirstName);
+            sentencia.Parameters.AddWithValue("@LastName", user.LastName);
+            sentencia.Parameters.AddWithValue("@Email", user.Email);
+            sentencia.Parameters.AddWithValue("@Address", user.Address);
+            sentencia.Parameters.AddWithValue("@Phone", user.Phone);
+            sentencia.Parameters.AddWithValue("@Password", user.Password);
+            sentencia.Parameters.AddWithValue("@Genre", user.Genre);
+            sentencia.Parameters.AddWithValue("@City", user.City.ID);
+            sentencia.Parameters.AddWithValue("@Province", user.Province.ID);
+            sentencia.Parameters.AddWithValue("@ID", user.ID);
+            //5-Ejecutar!
+            sentencia.ExecuteNonQuery();
+
+            //CERRAR LA CONEXION AL TERMINAR!!!!
+            ConexionBD.Desconectar();
         }
     }
 }
