@@ -1,11 +1,48 @@
 ﻿
 @{
-    ViewBag.Title = "MisPostulaciones";
+    ViewBag.Title = "Mis Postulaciones";
 }
 @section styles{
-    <link href="~/Content/css/misPostulaciones.css" rel="stylesheet" />
+    <link href="~/Content/css/busquedas.css" rel="stylesheet" />
 }
+
 <!-- Mis Postulaciones -->
+<div>
+    <h3 class="titulo">Mis Postulaciones</h3>
+    <div id="MisPostulaciones" class="row">
+        <br />
+        @if (ViewBag.UserApplys != null)
+        {
+            foreach (RRHH.Models.Applicants row in ViewBag.UserApplys)
+            {
+                <div>
+                    <a href="@Url.Action("VerBusqueda", "Jobs", new { ID = row.Job.ID })">
+                        <div class="jobB col-md-7 col-md-offset-1">
+                            <h3 class="tituloB"><strong><span>@row.Job.Name</span></strong></h3>
+                            <p class="pDate"><strong>Fecha postulado:</strong> @row.Date.Day/@row.Date.Month/@row.Date.Year</p>
+                            <p class="pDate"><strong>Empresa:</strong> @row.Job.Company.Name</p>
+                            <p class="pDate"><strong>Estado de busqueda:</strong> @row.Job.Status.Details</p>
+                            @if (row.ApplicationStatus.ID > 2)
+                            {
+                                <p class="pDate"><strong>Estado de postulacion:</strong> @row.ApplicationStatus.Details</p>
+                            }
+                            else
+                            {
+                                <p class="pCompany"><strong>Estado de postulacion:</strong> @row.ApplicationStatus.Details</p>
+                            }
+                            @if (row.ApplicationStatus.ID > 2)
+                            {
+                                <p class="pCompany"><strong>Estado de entrevista:</strong> @row.InterviewStatus.Status</p>
+                            }
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+ @*Mis Postulaciones 
 <div>
     <h3 class="titulo">Mis Postulaciones</h3>
     <div id="MisPostulaciones" class="row">
@@ -30,6 +67,6 @@
             }
         }
     </div>
-</div>
+</div>*@
 
 

@@ -41,7 +41,7 @@ namespace RRHH.Models
             List<Applicants> applys = new List<Applicants>();
 
             string sqlquery =   "SELECT        Applicants.ID, Applicants.Date, Applicants.Postulant, Applicants.Job, Applicants.InterviewStatus, Applicants.ApplicationStatus, " +
-                                "Companys.Name AS CompanyName, Jobs.Company, Jobs.Name AS JobName, Jobs.Description, Jobs.Status, JobStatuses.Details, JobStatuses.ID AS JobStatusID, " +
+                                "Companys.Name AS CompanyName, Jobs.Company, Jobs.Name AS JobName, Jobs.ID AS JobID, Jobs.Description, Jobs.Status, JobStatuses.Details, JobStatuses.ID AS JobStatusID, " +
                                 "JobApplications.ID AS JobApplicationID, JobApplications.Details AS JobApplicationDetails, dbo.Interviews.Status AS InterviewStatusName, Interviews.ID AS InterviewID " +
                                 "FROM            dbo.Applicants INNER JOIN " +
                                 "Jobs ON Applicants.Job = Jobs.ID " +
@@ -62,6 +62,7 @@ namespace RRHH.Models
                 apply.ID = (int)reader["ID"];
                 apply.Date = (DateTime)reader["Date"];
                 apply.Job = new Jobs();
+                apply.Job.ID = (int)reader["JobID"];
                 apply.Job.Name = (string)reader["JobName"];
                 apply.Job.Description = (string)reader["Description"];
                 apply.Job.Company = new Companys();
@@ -69,6 +70,7 @@ namespace RRHH.Models
                 apply.Job.Status = new JobStatuses();
                 apply.Job.Status.Details = (string)reader["Details"];
                 apply.ApplicationStatus = new JobApplications();
+                apply.ApplicationStatus.ID = (int)reader["JobApplicationID"];
                 apply.ApplicationStatus.Details = (string)reader["JobApplicationDetails"];
                 apply.InterviewStatus = new Interviews();
                 apply.InterviewStatus.Status = (string)reader["InterviewStatusName"];

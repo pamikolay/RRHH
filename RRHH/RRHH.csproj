@@ -193,7 +193,6 @@
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\layout.css" />
     <Content Include="Content\css\login.css" />
-    <Content Include="Content\css\misPostulaciones.css" />
     <Content Include="Content\css\registro.css" />
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\images\japan-lines.png" />
