@@ -90,7 +90,10 @@ namespace RRHH.Models
 
         public Users Consultar(string email)
         {
-            string sqlquery = "select * from Users WHERE Email=@Email";
+            string sqlquery =   "SELECT        Users.*, Citys.Name AS CityName, Provinces.Name AS ProvinceName " +
+                                "FROM Citys INNER JOIN " +
+                                "Provinces ON Citys.Province = Provinces.ID INNER JOIN " +
+                                "Users ON Citys.ID = Users.City AND Provinces.ID = Users.Province WHERE Email=@Email";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             sentencia.Parameters.AddWithValue("@Email", email);
@@ -104,9 +107,12 @@ namespace RRHH.Models
                 user.FirstName = (string)reader["FirstName"];
                 user.LastName= (string)reader["LastName"];
                 user.Email = (string)reader["Email"];
-                user.City = new CitysManager().Consultar((int)reader["City"]);
-                user.Province = new ProvincesManager().Consultar((int)reader["Province"]);
-                user.UserType = new UserTypesManager().Consultar((int)reader["UserType"]);
+                user.City = new Citys();
+                user.City.Name = (string)reader["CityName"];
+                user.Province = new Provinces();
+                user.Province.Name = (string)reader["ProvinceName"];
+                user.UserType = new UserTypes();
+                user.UserType.ID = (int)reader["UserType"];
                 user.CvStatus = (string)reader["CvStatus"];
             }
 
@@ -119,7 +125,11 @@ namespace RRHH.Models
         }
         public Users Consultar(int ID)
         {
-            string sqlquery = "select * from Users WHERE ID=@ID";
+            string sqlquery = "SELECT        Users.*, Citys.Name AS CityName, Provinces.Name AS ProvinceName " +
+                                "FROM Citys INNER JOIN " +
+                                "Provinces ON Citys.Province = Provinces.ID INNER JOIN " +
+                                "Users ON Citys.ID = Users.City AND Provinces.ID = Users.Province WHERE Users.ID=@ID";
+            //string sqlquery = "select * from Users WHERE ID=@ID";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             sentencia.Parameters.AddWithValue("@ID", ID);
@@ -133,9 +143,12 @@ namespace RRHH.Models
                 user.FirstName = (string)reader["FirstName"];
                 user.LastName = (string)reader["LastName"];
                 user.Email = (string)reader["Email"];
-                user.City = new CitysManager().Consultar((int)reader["City"]);
-                user.Province = new ProvincesManager().Consultar((int)reader["Province"]);
-                user.UserType = new UserTypesManager().Consultar((int)reader["UserType"]);
+                user.City = new Citys();
+                user.City.Name = (string)reader["CityName"];
+                user.Province = new Provinces();
+                user.Province.Name = (string)reader["ProvinceName"];
+                user.UserType = new UserTypes();
+                user.UserType.ID = (int)reader["UserType"];
                 user.CvStatus = (string)reader["CvStatus"];
             }
 
@@ -148,7 +161,10 @@ namespace RRHH.Models
         }
         public Users Validar(string email, string password)
         {
-            string sqlquery = "select * from Users WHERE Email=@Email AND Password = @Password ";
+            string sqlquery = "SELECT        Users.*, Citys.Name AS CityName, Provinces.Name AS ProvinceName " +
+                                "FROM Citys INNER JOIN " +
+                                "Provinces ON Citys.Province = Provinces.ID INNER JOIN " +
+                                "Users ON Citys.ID = Users.City AND Provinces.ID = Users.Province WHERE Email=@Email AND Password = @Password ";
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             sentencia.Parameters.AddWithValue("@Email", email);
@@ -163,9 +179,12 @@ namespace RRHH.Models
                 user.FirstName = (string)reader["FirstName"];
                 user.LastName = (string)reader["LastName"];
                 user.Email = (string)reader["Email"];
-                user.City = new CitysManager().Consultar((int)reader["City"]);
-                user.Province = new ProvincesManager().Consultar((int)reader["Province"]);
-                user.UserType = new UserTypesManager().Consultar((int)reader["UserType"]);
+                user.City = new Citys();
+                user.City.Name = (string)reader["CityName"];
+                user.Province = new Provinces();
+                user.Province.Name = (string)reader["ProvinceName"];
+                user.UserType = new UserTypes();
+                user.UserType.ID = (int)reader["UserType"];
                 user.CvStatus = (string)reader["CvStatus"];
             }
             else
