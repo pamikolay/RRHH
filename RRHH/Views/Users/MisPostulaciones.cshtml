@@ -7,14 +7,14 @@
 }
 <!-- Mis Postulaciones -->
 <div>
-    <h3>Mis Postulaciones</h3>
+    <h3 class="titulo">Mis Postulaciones</h3>
     <div id="MisPostulaciones" class="row">
         @if (ViewBag.UserApplys != null)
         {
             foreach (RRHH.Models.Applicants row in ViewBag.UserApplys)
             {
                 <div class="col-md-8 col-md-offset-1">
-                    <h3 class="titulo"><strong><span class="tituloBusqueda">@row.Job.Name</span></strong></h3>
+                    <h3 class="tituloB"><strong><span class="tituloBusqueda">@row.Job.Name</span></strong></h3>
                     <p><strong>Fecha postulado:</strong> @row.Date.Day/@row.Date.Month/@row.Date.Year</p>
                     <p><strong>Empresa:</strong> @row.Job.Company.Name</p>
                     <p><strong>Descripcion del puesto:</strong> <span class="descripcionBusqueda">@row.Job.Description</span></p>

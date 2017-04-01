@@ -82,10 +82,10 @@ namespace RRHH.Controllers
             newUser.Phone = phone;
             newUser.Address = address;
             newUser.Genre = genre;
-            ProvincesManager pManager = new ProvincesManager();
-            newUser.Province = pManager.Consultar(province_id);
-            CitysManager cManager = new CitysManager();
-            newUser.City = cManager.Consultar(city_id);
+            newUser.Province = new Provinces();
+            newUser.Province.ID = province_id;
+            newUser.City = new Citys();
+            newUser.City.ID = city_id;
 
             UsersManager uManager = new UsersManager();
             uManager.Insertar(newUser);
@@ -154,8 +154,8 @@ namespace RRHH.Controllers
                 {
                     Applicants applicant = new Applicants();
                     applicant.Postulant = user;
-                    JobsManager jManeger = new JobsManager();
-                    applicant.Job= jManeger.Consultar(id_job);
+                    applicant.Job = new Jobs();
+                    applicant.Job.ID = id_job;
                     Session["TrabajoPostulado"] = applicant.Job;
                     ApplicantsManager aManager = new ApplicantsManager();
                         if ( aManager.CheckApplicant(user,(applicant.Job)) > 0) //compruebo si el ususario ya aplico a esa busqueda
