@@ -203,11 +203,10 @@ namespace RRHH.Models
         {
             List<Users> users = new List<Users>();
 
-            string sqlquery = "select Postulant from Applicants WHERE Job=@Job";
-            /*SELECT        dbo.Applicants.Postulant, dbo.Users.*, dbo.Applicants.Job
-FROM            dbo.Applicants INNER JOIN
-                         dbo.Users ON dbo.Applicants.Postulant = dbo.Users.ID
-*/
+            string sqlquery =   "SELECT        dbo.Applicants.Postulant, dbo.Users.*, dbo.Applicants.Job " +
+                                "FROM dbo.Applicants INNER JOIN " +
+                                "dbo.Users ON dbo.Applicants.Postulant = dbo.Users.ID WHERE Job=@Job";
+
             DataBase ConexionBD = new DataBase();
             SqlCommand sentencia = ConexionBD.Conectar(sqlquery);
             sentencia.Parameters.AddWithValue("@Job", ID);
@@ -215,10 +214,10 @@ FROM            dbo.Applicants INNER JOIN
             SqlDataReader reader = sentencia.ExecuteReader();
             while (reader.Read()) //mientras haya un registro para leer
             {
-                UsersManager uManager = new UsersManager();
                 Users user = new Users();
-                user = uManager.Consultar((int)reader["Postulant"]);
-                
+                user.ID = ((int)reader["Postulant"]);
+                user.Email = (string)reader["Email"];
+                                
                 //AGREGO LA company A LA LISTA
                 users.Add(user);
             }
