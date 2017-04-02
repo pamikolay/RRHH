@@ -36,7 +36,7 @@
                         <li id="menuUsuario" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="usuarioIngreso">@(((RRHH.Models.Users)Session["UsuarioLogueado"]).FirstName) </span><span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="@Url.Action("MiPerfil","Users")">Mi Perfil</li>
+                                <li><a href="@Url.Action("MiPerfil","Users")">Mi Perfil</a></li>
                                 @if ((((RRHH.Models.Users)Session["UsuarioLogueado"]).UserType.ID) == 1)
                                 {
                                     <li id="controlPanel"><a href="@Url.Action("Index","ControlPanel")">Panel de control</a></li>

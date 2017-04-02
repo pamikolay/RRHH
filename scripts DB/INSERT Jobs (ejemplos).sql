@@ -5,7 +5,7 @@ go
 
 
 INSERT INTO Jobs VALUES
-('Analista Programador C++','2017-01-03','En Huenei seleccionaremos Analistas Programadores C++ para incorporarse a nuestro equipo de trabajo en importantes proyectos de Banca Financiera.
+('Analista Programador C++','2017-03-01','En Huenei seleccionaremos Analistas Programadores C++ para incorporarse a nuestro equipo de trabajo en importantes proyectos de Banca Financiera.
 Requisitos:
 Sólidos conocimientos de análisis y programación C++.                                                                                                                                                                                          
 Base de datos Oracle (Store Procedures DTS - Functions-View-Packages), PL-SQL
@@ -85,7 +85,7 @@ Que ofrecemos:
 -Tarjeta de Snack para golosinas y gaseosas.
 -Descuentos en casas restaurant/ indumentaria / entretenimiento.
 Envianos tu CV a mgobet@capgemini.com o postulate a traves de la pagina.',4,2),
-('Desarrollador JAVA Bs As','2017-07-03','Elige una carrera en Accenture y disfruta de un entorno innovador donde el trabajo desafiante y motivador es parte de la vida diaria.
+('Desarrollador JAVA Bs As','2017-03-07','Elige una carrera en Accenture y disfruta de un entorno innovador donde el trabajo desafiante y motivador es parte de la vida diaria.
 Nos encontramos es la búsqueda de un Analista Programador, orientada a graduados de las carreras de: Sistemas, Informática, Ciencias de la Computación y afines para importantes proyectos en diferentes industrias (Financiera, Telecomunicaciones, Recursos Naturales, Productos, entre otras) en Capital Federal. 
  Requisitos excluyentes:
 ·         Experiencia laboral mayor a 2 años en proyectos de programación de aplicaciones en tecnología Java.
@@ -97,7 +97,7 @@ Skills técnicos:
  ¿Que ofrecemos como empleador? Desafíos. Trabajo en equipo. Capacitación. Reconocimientos. Desarrollo de carrera. Motivación. En Accenture ponemos a tu disposición nuestros recursos, para que llegues tan lejos como te lo propongas. Si esto es lo que buscás, Accenture es tu lugar.
 Accenture es una empresa que asegura la igualdad de oportunidades sin discriminar por motivos de raza, religión o creencias, origen étnico, discapacidad, edad, nacionalidad, estado civil, orientación sexual, género o cualquier otro motivo protegido por legislación vigente.',1,2),
 ('Larala','2017-11-03','Esta busqueda no se tienen que ver porque el estado es 1(Busqueda Inactiva)',1,1),
-('Soporte de Aplicaciones SQL','2017-12-03','Requisitos
+('Soporte de Aplicaciones SQL','2017-03-13','Requisitos
 Experiencia en programación general
 Consulta y programación de base de datos en SQL
 Inglés Intermedio / Avanzado

@@ -26,7 +26,7 @@
                 else { }
                 @if (Session["UsuarioLogueado"] == null || (((RRHH.Models.Users)Session["UsuarioLogueado"]).UserType.ID) == 2)
                 {
-                    <a class="button-modal btn btn-primary botonPostularse" href="@Url.Action("ApplyJob", "Users", new { id_job = ViewBag.Busqueda.ID })" role="button">Postularse</a>
+                    <a class="button-modal btn btn-primary botonPostularse" href="@Url.Action("ApplyJob", "Users", new { id_job = ViewBag.Busqueda.ID, nameJob=ViewBag.Busqueda.Name })" role="button">Postularse</a>
                 }
             </p>
         </div>

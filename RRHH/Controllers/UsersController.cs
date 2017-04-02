@@ -163,7 +163,7 @@ namespace RRHH.Controllers
             return View();
         }
 
-        public ActionResult ApplyJob(int id_job)
+        public ActionResult ApplyJob(int id_job, string nameJob)
         {
             if (Session["UsuarioLogueado"]==null)
             {
@@ -178,6 +178,7 @@ namespace RRHH.Controllers
                     applicant.Postulant = user;
                     applicant.Job = new Jobs();
                     applicant.Job.ID = id_job;
+                    applicant.Job.Name = nameJob;
                     Session["TrabajoPostulado"] = applicant.Job;
                     ApplicantsManager aManager = new ApplicantsManager();
                         if ( aManager.CheckApplicant(user,(applicant.Job)) > 0) //compruebo si el ususario ya aplico a esa busqueda
