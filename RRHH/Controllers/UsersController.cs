@@ -71,6 +71,21 @@ namespace RRHH.Controllers
         }
 
         [HttpPost]
+        public ActionResult ValidarPassword(string pass1, string pass2)
+        {
+            int a;
+            if(pass1 == pass2)
+            {
+                a = 0;
+            }
+            else
+            {
+                a = 1;
+            }
+            return Json(a);
+        }
+
+        [HttpPost]
         public ActionResult GetCiudades(int id)
         {
             List<Citys> ciudades = new List<Citys>();

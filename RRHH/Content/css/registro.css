@@ -21,7 +21,11 @@
 }
 
 #ValidarEmail{
+    margin-left: 10px;
     height: 31px;
     text-align:center;
 }
 
+#CheckPassword{
+    vertical-align: -webkit-baseline-middle;
+}

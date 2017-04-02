@@ -140,7 +140,28 @@ $("#ValidarEmail").click(function () {
             }
             else {
                 $("#CheckMail").empty();
-                $("#CheckMail").append("<span id='MailOk'>El email se encuentra disponible</span>");
+                $("#CheckMail").append("<span id='MailOk'>El email se puede utilizar</span>");
+            }
+        },
+        //error: function (request, errorType, errorMessage) {
+        //    alert(errorMessage);
+        //}
+    })
+});
+$("#paswordInput2").change(function () {
+    $.ajax({
+        type: 'POST',
+        url: $("#paswordInput2").data('url'),
+        dataType: 'json',
+        data: { pass1: String($("#paswordInput1").val()), pass2: String($("#paswordInput2").val()) },
+        success: function (existe) {
+            if (existe > 0) {
+                $("#CheckPassword").empty();
+                $("#CheckPassword").append("<span id='MailError'>Los passwords no son identicos</span>");
+            }
+            else {
+                $("#CheckPassword").empty();
+                $("#CheckPassword").append("<span id='MailOk'>El password es identico</span>");
             }
         },
         //error: function (request, errorType, errorMessage) {

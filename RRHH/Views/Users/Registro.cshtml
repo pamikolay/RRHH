@@ -63,9 +63,22 @@
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-flash"></i></span>
-                        <input name="password" placeholder="Contraseña" class="form-control" type="password">
+                        <input id="paswordInput1" name="password" placeholder="Contraseña" class="form-control" type="password">
                     </div>
                 </div>
+            </div>
+
+            <!-- Password Confirm input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">Confirma la contraseña</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-flash"></i></span>
+                        <input id="paswordInput2" name="password2" placeholder="Confirma la contraseña" data-url="@Url.Action("ValidarPassword","Users")" class="form-control" type="password">
+                    </div>
+                </div>
+                <span id="CheckPassword">
+                </span>
             </div>
 
             <!-- Phone input-->
@@ -152,7 +165,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label"></label>
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-warning">Enviar <span class="glyphicon glyphicon-send"></span></button>
+                    <button type="submit" class="btn btn-warning">Registrate <span class="glyphicon glyphicon-send"></span></button>
                 </div>
             </div>
 
