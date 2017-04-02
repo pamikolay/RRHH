@@ -1,6 +1,23 @@
 $(document).ready(function () {
     $(':input[type="submit"]').prop('disabled', true);
 
+    //$("#btnPreSubmit").click(function(){
+    //    var x = $("#MailOk").text();
+    //    var y = $("#PassOk").text();
+    //    if (x != "El email se puede utilizar" || y != "El password es identico") {
+    //        forms[0].submit();
+    //    }
+    //});
+
+    $("#contact_form").submit(function () {
+        var x = $("#MailOk").text();
+        var y = $("#PassOk").text();
+        if (x != "El email se puede utilizar" || y != "El password es identico") {
+            return false;
+        } else
+            return true;
+    });
+    
     $('#contact_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
@@ -141,6 +158,7 @@ $("#ValidarEmail").click(function () {
             else {
                 $("#CheckMail").empty();
                 $("#CheckMail").append("<span id='MailOk'>El email se puede utilizar</span>");
+                $("#btnSubmit").removeAttr('disabled');
             }
         },
         //error: function (request, errorType, errorMessage) {
@@ -157,11 +175,12 @@ $("#paswordInput2").change(function () {
         success: function (existe) {
             if (existe > 0) {
                 $("#CheckPassword").empty();
-                $("#CheckPassword").append("<span id='MailError'>Los passwords no son identicos</span>");
+                $("#CheckPassword").append("<span id='PassError'>Los passwords no son identicos</span>");
             }
             else {
                 $("#CheckPassword").empty();
-                $("#CheckPassword").append("<span id='MailOk'>El password es identico</span>");
+                $("#CheckPassword").append("<span id='PassOk'>El password es identico</span>");
+                $("#btnSubmit").removeAttr('disabled');
             }
         },
         //error: function (request, errorType, errorMessage) {

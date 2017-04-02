@@ -29,3 +29,25 @@
 #CheckPassword{
     vertical-align: -webkit-baseline-middle;
 }
+
+#PassError{
+    margin-left: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: white;
+    background-color: red;
+}
+
+#PassOk{
+    margin-left: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: white;
+    background-color: green;
+}
+
+.oculto{
+    display: none;
+}
