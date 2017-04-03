@@ -108,7 +108,7 @@ namespace RRHH.Models
 
         public Applicants ConsultarEstado(int busqueda_id, int user_id)
         {
-            string sqlquery = "SELECT        Applicants.ID, Applicants.Date, Applicants.Postulant, Applicants.Job, Applicants.InterviewStatus, Applicants.ApplicationStatus, Users.FirstName," +
+            string sqlquery = "SELECT        Applicants.ID, Applicants.Date, Applicants.Postulant, Applicants.Job, Applicants.InterviewStatus, Applicants.ApplicationStatus, Users.FirstName, Users.Email, Users.ID AS UserID, " +
                                 "Companys.Name AS CompanyName, Jobs.Company, Jobs.Name AS JobName, Jobs.Description, Jobs.Status, JobStatuses.Details, JobStatuses.ID AS JobStatusID, " +
                                 "JobApplications.ID AS JobApplicationID, JobApplications.Details AS JobApplicationDetails, dbo.Interviews.Status AS InterviewStatusName, Interviews.ID AS InterviewID " +
                                 "FROM            dbo.Applicants INNER JOIN " +
@@ -132,7 +132,9 @@ namespace RRHH.Models
                 apply.ID = (int)reader["ID"];
                 apply.Date = (DateTime)reader["Date"];
                 apply.Postulant = new Users();
+                apply.Postulant.ID = (int)reader["UserID"];
                 apply.Postulant.FirstName = (string)reader["FirstName"];
+                apply.Postulant.Email= (string)reader["Email"];
                 apply.Job = new Jobs();
                 apply.Job.Name = (string)reader["JobName"];
                 apply.Job.Description = (string)reader["Description"];

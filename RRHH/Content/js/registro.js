@@ -188,3 +188,7 @@ $("#paswordInput2").change(function () {
         //}
     })
 });
+
+$("#emailInput").change(function () {
+    $("#CheckMail").empty();
+});
