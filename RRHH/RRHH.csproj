@@ -198,8 +198,6 @@
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\images\japan-lines.png" />
     <Content Include="Content\images\japan-lines_byn.png" />
-    <Content Include="Content\images\lines.png" />
-    <Content Include="Content\images\lines_byn.png" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\bootstrapvalidator.min.js" />
     <Content Include="Content\js\buscarPostulantes.js" />
