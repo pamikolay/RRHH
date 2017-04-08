@@ -39,6 +39,12 @@
                 </div>
             }
         }
+        @if (ViewBag.UserApplys.Count == 0)
+        {
+            <div class="col-md-7 col-md-offset-1">
+                <h3 class="tituloB"><span>Lo sentimos @(((RRHH.Models.Users)Session["UsuarioLogueado"]).FirstName), todavia no te has postulado a ninguna busqueda</span></h3>
+            </div>
+        }
     </div>
 </div>
 

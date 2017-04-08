@@ -13,8 +13,21 @@ $(document).ready(function () {
         var x = $("#MailOk").text();
         var y = $("#PassOk").text();
         if (x != "El email se puede utilizar" || y != "El password es identico") {
-            return false;
+            if (x != "El email se puede utilizar" && y == "El password es identico")
+            {
+                $("#Validaciones").empty();
+                $("#Validaciones").append("<span id='ValidacionesError'>El email no esta validado</span>");
+                return false;
+            }
+            if (y != "El password es identico" && x == "El email se puede utilizar") {
+                $("#Validaciones").empty();
+                $("#Validaciones").append("<span id='ValidacionesError'>El password no esta correcto</span>");
+                return false;
+            }
+            $("#Validaciones").empty();
+            $("#Validaciones").append("<span id='ValidacionesError'>El email no esta validado y el password no es correcto</span>");
         } else
+            $("#Validaciones").empty();
             return true;
     });
     
@@ -159,6 +172,7 @@ $("#ValidarEmail").click(function () {
                 $("#CheckMail").empty();
                 $("#CheckMail").append("<span id='MailOk'>El email se puede utilizar</span>");
                 $("#btnSubmit").removeAttr('disabled');
+                $("#Validaciones").empty();
             }
         },
         //error: function (request, errorType, errorMessage) {
@@ -181,6 +195,31 @@ $("#paswordInput2").change(function () {
                 $("#CheckPassword").empty();
                 $("#CheckPassword").append("<span id='PassOk'>El password es identico</span>");
                 $("#btnSubmit").removeAttr('disabled');
+                $("#Validaciones").empty();
+            }
+        },
+        //error: function (request, errorType, errorMessage) {
+        //    alert(errorMessage);
+        //}
+    })
+});
+
+$("#paswordInput1").change(function () {
+    $.ajax({
+        type: 'POST',
+        url: $("#paswordInput2").data('url'),
+        dataType: 'json',
+        data: { pass1: String($("#paswordInput1").val()), pass2: String($("#paswordInput2").val()) },
+        success: function (existe) {
+            if (existe > 0) {
+                $("#CheckPassword").empty();
+                $("#CheckPassword").append("<span id='PassError'>Los passwords no son identicos</span>");
+            }
+            else {
+                $("#CheckPassword").empty();
+                $("#CheckPassword").append("<span id='PassOk'>El password es identico</span>");
+                $("#btnSubmit").removeAttr('disabled');
+                $("#Validaciones").empty();
             }
         },
         //error: function (request, errorType, errorMessage) {
