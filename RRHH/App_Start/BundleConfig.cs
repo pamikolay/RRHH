@@ -26,7 +26,7 @@ namespace RRHH
                       "~/Content/js/bootstrap.min.js", "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",
+                      "~/Content/css/bootstrap.min.css",
                       "~/Content/css/layout.css"));
         }
     }
