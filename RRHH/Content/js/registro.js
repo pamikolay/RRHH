@@ -26,6 +26,7 @@ $(document).ready(function () {
             }
             $("#Validaciones").empty();
             $("#Validaciones").append("<span id='ValidacionesError'>El email no esta validado y el password no es correcto</span>");
+            return false;
         } else
             $("#Validaciones").empty();
             return true;
