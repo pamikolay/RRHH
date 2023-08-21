@@ -1,2 +1,2 @@
 # RRHH
-proyecto curso Comunidad IT 2017
+proyecto curso Comunidad IT
